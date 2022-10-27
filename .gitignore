@@ -1,6 +1,9 @@
 
 .ipynb_checkpoints
+.idea
 saved
 hero_grid_config.json
 *.env
 AHKScript.exe
+*.logs
+config.py

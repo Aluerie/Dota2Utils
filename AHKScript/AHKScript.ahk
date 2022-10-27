@@ -87,4 +87,27 @@ LWin::F10
 CapsLock::F9
 SC029::F8 ; it's tilda key
 
+#IfWinActive ahk_exe `eldenring.exe
+LWin::o
+C:: 
+Send, {e down}{3 down}
+sleep 5
+Send, {e up}{3 up}
+return
+V:: 
+Send, {e down}{4 down}
+sleep 5
+Send, {e up}{4 up}
+return
+CapsLock:: 
+Send, {e down}{2 down}
+sleep 5
+Send, {e up}{2 up}
+return
+numpadsub:: 
+Send, {e down}{1 down}
+sleep 5
+Send, {e up}{1 up}
+return
 #If
+
