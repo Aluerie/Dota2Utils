@@ -1,1 +1,1 @@
-cmd /k "python _quest_refresh.py"
+cmd /k "python biweekly_quest_refresh.py"
