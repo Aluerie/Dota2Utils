@@ -7,4 +7,4 @@ hero_grid_config.json
 AHKScript.exe
 *.logs
 config.py
-.etmp
+.temp
