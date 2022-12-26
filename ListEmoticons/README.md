@@ -7,7 +7,9 @@ Scroll down the table, choose emote you like - copy&paste the unicode character 
 It doesn't matter if you don't own the emoticon pack.
 
 ### Table of Dota 2 Emoticons
-Last Updated: 26/December/2022 | Amount of emoticons found: 321
+Last Updated: 26/December/2022
+
+Amount of emoticons listed: 321
 <table><tr><th colspan=1>preview</th><th>chr</th><th>alias</th><th colspan=1>preview</th><th>chr</th><th>alias</th><th colspan=1>preview</th><th>chr</th><th>alias</th></tr>
 <tr>
 <td><img src='./gifs/001_96.gif'></td>
