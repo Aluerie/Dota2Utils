@@ -29,28 +29,34 @@ def opendota_constants_heroes():
 
 hero_keys_cache = opendota_constants_heroes()
 
-async def id_by_npcname(value: str) -> int:
+def id_by_npcname(value: str) -> int:
     """ Get hero id by npcname ;
-    example: 'npc_dota_hero_antimage' -> 1 """
+    example: 'npc_dota_hero_antimage' -> 1 
+    """
     return hero_keys_cache['id_by_npcname'][value]
 
 
-async def id_by_name(value: str) -> int:
+def id_by_name(value: str) -> int:
     """ Get hero id by localized to english name ;
-    example: 'Anti-Mage' -> 1 """
+    example: 'Anti-Mage' -> 1 
+    """
     return hero_keys_cache['id_by_name'][value]
 
 
-async def name_by_id(value: int) -> str:
+def name_by_id(value: int) -> str:
     """ Get hero id by name ;
-    example: 1 -> 'Anti-Mage' """
+    example: 1 -> 'Anti-Mage' 
+    """
     return hero_keys_cache['name_by_id'][value]
 
 
-async def iconurl_by_id(value: int) -> str:
+def iconurl_by_id(value: int) -> str:
     """ Get hero icon utl id by id ;
-    example: 1 -> 'https://cdn.cloudflare.steamstatic.com//apps/dota2/images/dota_react/heroes/antimage.png?' """
+    example: 1 -> 'https://cdn.cloudflare.steamstatic.com//apps/dota2/images/dota_react/heroes/antimage.png?' 
+    """
     return hero_keys_cache['iconurl_by_id'][value]
 
-# How many heroes are in Dota ?
-len(hero_keys_cache['id_by_name']) - 1 # minus one for that zero value
+
+def amount_of_dota_heroes() -> int:
+    """Get amount of heroes in Dota 2"""
+    return len(hero_keys_cache['id_by_name']) - 1 # minus one for that zero value

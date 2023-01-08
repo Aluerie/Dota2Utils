@@ -8,3 +8,4 @@ AHKScript.exe
 *.logs
 config.py
 .temp
+__pycache__
