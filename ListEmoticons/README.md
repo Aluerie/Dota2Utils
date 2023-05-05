@@ -9,6 +9,8 @@ Scroll down the table, choose emote you like - copy&paste the unicode character 
 * into console for such binds as `bind o "say_team "` - this one is `:pa_kiss:`.  
 * into your nickname - note that then emoticons only show up in system-messages during the game such as "Player paused the game". It will not show in chat, kill-feed or anywhere else really, only system messages.
 
+![example](./example.png)
+
 It doesn't matter if you don't own the emoticon pack.
 
 ## Table of Dota 2 Emoticons
