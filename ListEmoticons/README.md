@@ -15,7 +15,7 @@ It doesn't matter if you don't own the emoticon pack.
 
 <table>
       <tr><td>Last Updated</td><td>05/May/2023</td></tr>
-      <tr><td>Amount of emoticons listed</td><td>1488</td></tr>
+      <tr><td>Amount of emoticons listed</td><td>1487</td></tr>
 </table>
 
 
