@@ -9,3 +9,4 @@ AHKScript.exe
 config.py
 .temp
 __pycache__
+venv
