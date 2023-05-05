@@ -4,28 +4,28 @@ Utilities and useful code snippets for Dota 2
 
 * [AHKScript](https://github.com/Aluerie/AhkScripts)
 
-    A GitHub copy of my personal AutoHotkey script. (Different repository)
+    GitHub copy of my personal AutoHotkey script. (Different repository)
 
-* [BiweeklyQuestRefresh](https://github.com/Aluerie/Dota2Utils/tree/main/BiweeklyQuestRefresh)
+* [BiweeklyQuestRefresh](./BiweeklyQuestRefresh)
   
   Script that auto-clicks "refresh challenges" for DotaPlus hero quests.
 
 * [D2RoshTimer](./D2RoshTimer)
 
-    A toned down `D2RoshTimer.exe` of [Fjara's project](https://github.com/Fjara-h/D2RoshTimer).
+    Toned down `D2RoshTimer.exe` of [Fjara's project](https://github.com/Fjara-h/D2RoshTimer).
 
-* [HeroGridEditing](https://github.com/Aluerie/Dota2Utils/tree/main/HeroGridEditing)
+* [HeroGridEditing](./HeroGridEditing)
   
   Edit Custom Hero Grids and align categories as you wish.
 
-* [ListEmoticons](https://github.com/Aluerie/Dota2Utils/tree/main/ListEmoticons)
+* [ListEmoticons](./ListEmoticons)
 
-    Just a remade/updated/improved fork of [ListEmoticons.ipynb](https://github.com/rossengeorgiev/dota2_notebooks/blob/master/List%20Emoticons.ipynb) notebook by [rossengeorgiev](https://github.com/rossengeorgiev).
+    Fully updated fork of [ListEmoticons.ipynb](https://github.com/rossengeorgiev/dota2_notebooks/blob/master/List%20Emoticons.ipynb) notebook by [rossengeorgiev](https://github.com/rossengeorgiev).
 
-* [SocialFeedPosting](https://github.com/Aluerie/Dota2Utils/tree/main/SocialFeedPosting)
+* [SocialFeedPosting](./SocialFeedPosting)
 
   Send messages into your profile feed like it was possible a few years ago.
 
-* [autoexec](https://github.com/Aluerie/Dota2Utils/tree/main/autoexec)
+* [autoexec](./Autoexec)
 
-    A GitHub copy of my `autoexec.cfg` file.
+    GitHub copy of my `autoexec.cfg` file.
