@@ -20,7 +20,7 @@ jobs:
           git pull
           git checkout ${{ env.PAGE_BRANCH }}
           git rebase ${{ env.MAIN_BRANCH }} 
-          git push ${{ env.PAGE_BRANCH }}
+          git push ${{ env.PAGE_BRANCH }} -f
 
       - name: CREATE PULL REQUEST
         id: cpr
