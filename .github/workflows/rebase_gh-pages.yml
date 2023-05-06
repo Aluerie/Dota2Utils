@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - 'main'
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      MAIN_BRANCH: main
+      PAGE_BRANCH: gh-pages
+    steps:
+      - name: Checkout BRANCH
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: FETCH MAIN 
+        run: |
+          git config --global user.email github-actions@github.com
+          git config --global user.name github-actions
+          git config pull.rebase true
+
+          git pull
+          git checkout ${{ env.PAGE_BRANCH }}
+          git rebase ${{ env.MAIN_BRANCH }}
+          git push -f
+
