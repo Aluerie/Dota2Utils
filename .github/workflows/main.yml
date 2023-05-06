@@ -19,9 +19,9 @@ jobs:
 
           git pull
           git checkout ${{ env.PAGE_BRANCH }}
+          git rebase --continue
+          git add .
           git rebase ${{ env.MAIN_BRANCH }} 
-          git add . 
-          got rebase --continue
           git push ${{ env.PAGE_BRANCH }} -f
 
       - name: CREATE PULL REQUEST
