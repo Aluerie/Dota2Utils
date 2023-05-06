@@ -16,7 +16,7 @@ jobs:
         run: |
           git pull
           git checkout ${{ env.PAGE_BRANCH }}
-          git merge --no-ff ${{ env.MAIN_BRANCH }}
+          git merge --no-ff ${{ env.MAIN_BRANCH }} ----allow-unrelated-histories
           git reset HEAD~1
 
       - name: CREATE PULL REQUEST
