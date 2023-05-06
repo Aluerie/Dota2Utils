@@ -13,7 +13,7 @@ jobs:
           ref: gh-branch
       - name: FETCH MAIN 
         run: |
-          git pull origin main
+          git pull main
 
       - name: CREATE PULL REQUEST
         id: cpr
