@@ -2,7 +2,7 @@
 
 With this you can send message in your profile feed like it was possible a few years ago.
 
-Valve removed interface to send messages in your profile Social Feed 
+Valve removed UI to send messages in your profile Social Feed 
 but GameCoordinator Proto messages are still there and still functioning. 
 
 ---
