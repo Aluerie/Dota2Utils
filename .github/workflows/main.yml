@@ -16,9 +16,7 @@ jobs:
         run: |
           git pull
           git checkout ${{ env.PAGE_BRANCH }}
-          git fetch origin main
-          git pull
-          git push
+          git rebase ${{ env.MAIN_BRANCH }}
           
       - name: CREATE PULL REQUEST
         id: cpr
