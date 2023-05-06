@@ -14,7 +14,7 @@
 
     Toned down `D2RoshTimer.exe` of [Fjara's project](https://github.com/Fjara-h/D2RoshTimer).
 
-* [HeroGridEditing](./HeroGridEditing)
+* [🖼️ HeroGridEditing](./HeroGridEditing)
   
   Edit Custom Hero Grids and align categories as you wish.
 
