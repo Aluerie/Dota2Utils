@@ -18,7 +18,7 @@ Utilities and useful code snippets for Dota 2
   
   Edit Custom Hero Grids and align categories as you wish.
 
-* [ListEmoticons](https://aluerie.github.io/Dota2Utils/ListEmoticons)
+* [ListEmoticons](./ListEmoticons)
 
     Fully updated fork of [ListEmoticons.ipynb](https://github.com/rossengeorgiev/dota2_notebooks/blob/master/List%20Emoticons.ipynb) notebook by [rossengeorgiev](https://github.com/rossengeorgiev).
 
