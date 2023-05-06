@@ -16,7 +16,8 @@ jobs:
           ref: ${{ env.PAGE_BRANCH }}
       - name: FETCH MAIN 
         run: |
-          git merge main
+          git merge --no-ff ${{ env.MAIN_BRANCH }}
+          git reset HEAD~1
 
       - name: CREATE PULL REQUEST
         id: cpr
