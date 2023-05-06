@@ -2,7 +2,7 @@
 
 🔧 Utilities and useful code snippets for Dota 2.
 
-* [AHKScript](https://github.com/Aluerie/AhkScripts)
+* [⌨️ AHKScript](https://github.com/Aluerie/AhkScripts)
 
     GitHub copy of my personal AutoHotkey script. (Different repository)
 
