@@ -9,11 +9,11 @@ jobs:
     steps:
       - name: Checkout BRANCH
         uses: actions/checkout@v3
-        with:
-          ref: gh-pages
       - name: FETCH MAIN 
         run: |
-          git fetch origin main:main
+          git checkout gh-pages
+          git pull
+
       - name: CREATE PULL REQUEST
         id: cpr
         uses: peter-evans/create-pull-request@v5

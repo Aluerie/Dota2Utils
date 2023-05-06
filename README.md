@@ -10,7 +10,7 @@
   
   Script that auto-clicks "refresh challenges" for DotaPlus hero quests.
 
-* [D2RoshTimer](./D2RoshTimer)
+* [⏰ D2RoshTimer](./D2RoshTimer)
 
     Toned down `D2RoshTimer.exe` of [Fjara's project](https://github.com/Fjara-h/D2RoshTimer).
 
