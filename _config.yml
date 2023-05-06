@@ -1,3 +1,4 @@
 remote_theme: godalming123/cayman@patch-1
+future: true
 plugins:
 - jekyll-remote-theme
