@@ -18,7 +18,7 @@
   
   Edit Custom Hero Grids and align categories as you wish.
 
-* [ListEmoticons](./ListEmoticons)
+* [😳 ListEmoticons](./ListEmoticons)
 
     Fully updated fork of [ListEmoticons.ipynb](https://github.com/rossengeorgiev/dota2_notebooks/blob/master/List%20Emoticons.ipynb) notebook by [rossengeorgiev](https://github.com/rossengeorgiev).
 
