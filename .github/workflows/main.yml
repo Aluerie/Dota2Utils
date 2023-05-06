@@ -12,11 +12,9 @@ jobs:
     steps:
       - name: Checkout BRANCH
         uses: actions/checkout@v3
-        with:
-          ref: ${{ env.PAGE_BRANCH }}
       - name: FETCH MAIN 
         run: |
-          git merge --no-ff ${{ env.MAIN_BRANCH }}
+          git merge --no-ff ${{ env.PAGE_BRANCH }}
           git reset HEAD~1
 
       - name: CREATE PULL REQUEST
