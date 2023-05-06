@@ -16,7 +16,7 @@ jobs:
           ref: ${{ env.PAGE_BRANCH }}
       - name: FETCH MAIN 
         run: |
-          git pull
+          git merge main
 
       - name: CREATE PULL REQUEST
         id: cpr
