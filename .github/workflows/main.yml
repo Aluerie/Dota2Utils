@@ -14,6 +14,9 @@ jobs:
         uses: actions/checkout@v3
       - name: FETCH MAIN 
         run: |
+          git config --global user.email github-actions@github.com
+          git config --global user.name github-actions
+
           git pull
           git checkout ${{ env.PAGE_BRANCH }}
           git merge --no-ff ${{ env.MAIN_BRANCH }} --allow-unrelated-histories
