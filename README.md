@@ -1,10 +1,10 @@
-# 🔧 Dota2Utils
-
 # PLS SOMEBODY HELP ME FIX WORKFLOW .github/MAIN.YML
 
 I want `gh-pages` branch to automatically be synced to `main` as in copy all commits. At the same time files, related to generating GitHub page should stay at `gh-pages` (such as `_layouts`,`assets`,`_config.yml`).
 
 ---
+
+# 🔧 Dota2Utils
 
 🔧 Utilities and useful code snippets for Dota 2.
 
