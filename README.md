@@ -22,7 +22,7 @@
 
     Fully updated fork of [ListEmoticons.ipynb](https://github.com/rossengeorgiev/dota2_notebooks/blob/master/List%20Emoticons.ipynb) notebook by [rossengeorgiev](https://github.com/rossengeorgiev).
 
-* [SocialFeedPosting](./SocialFeedPosting)
+* [🧦 SocialFeedPosting](./SocialFeedPosting)
 
   Send messages into your profile feed like it was possible a few years ago.
 
