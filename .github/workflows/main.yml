@@ -14,7 +14,6 @@ jobs:
       - name: FETCH MAIN 
         run: |
           git fetch origin main:main
-          git reset --hard main
       - name: CREATE PULL REQUEST
         id: cpr
         uses: peter-evans/create-pull-request@v5
