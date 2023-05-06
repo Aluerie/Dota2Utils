@@ -6,7 +6,7 @@
 
     GitHub copy of my personal AutoHotkey script. (Different repository)
 
-* [BiweeklyQuestRefresh](./BiweeklyQuestRefresh)
+* [👻 BiweeklyQuestRefresh](./BiweeklyQuestRefresh)
   
   Script that auto-clicks "refresh challenges" for DotaPlus hero quests.
 
