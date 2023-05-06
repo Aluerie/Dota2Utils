@@ -6,21 +6,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      MAIN_BRANCH: main
+      PAGE_BRANCH: gh-pages
     steps:
       - name: Checkout BRANCH
         uses: actions/checkout@v3
         with:
-          ref: gh-pages
+          ref: ${{ env.PAGE_BRANCH }}
       - name: FETCH MAIN 
         run: |
-          git pull main
+          git pull ${{ env.MAIN_BRANCH }}
 
       - name: CREATE PULL REQUEST
         id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
-          base: main
-          branch: gh-pages
+          base: ${{ env.MAIN_BRANCH }}
+          branch: ${{ env.PAGE_BRANCH }}
       - name: ENABLE PR AUTOMERGE
         if: steps.cpr.outputs.pull-request-operation == 'created'
         uses: peter-evans/enable-pull-request-automerge@v3
