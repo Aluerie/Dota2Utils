@@ -18,8 +18,8 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
-          base: main
-          branch: gh-pages
+          base: gh-pages
+          branch: main
       - name: ENABLE PR AUTOMERGE
         if: steps.cpr.outputs.pull-request-operation == 'created'
         uses: peter-evans/enable-pull-request-automerge@v3
