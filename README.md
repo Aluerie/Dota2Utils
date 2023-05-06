@@ -26,6 +26,6 @@
 
   Send messages into your profile feed like it was possible a few years ago.
 
-* [autoexec](./Autoexec)
+* [🎽 autoexec](./Autoexec)
 
     GitHub copy of my `autoexec.cfg` file.
