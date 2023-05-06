@@ -10,7 +10,7 @@ jobs:
       - name: Checkout BRANCH
         uses: actions/checkout@v3
         with:
-          ref: gh-branch
+          ref: gh-pages
       - name: FETCH MAIN 
         run: |
           git pull main
