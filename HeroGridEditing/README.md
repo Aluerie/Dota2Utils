@@ -1,4 +1,4 @@
-# HeroGridEditing 
+# 🖼️ HeroGridEditing 
 
 Unfortunately, Dota 2 UI does not allow for pixel-perfect alignment and 
 overall it is a bit annoying for slight OCD people like me. 
