@@ -13,8 +13,18 @@ log.basicConfig(
 )
 
 # 1920x1080 resolution
-X, Y = 1145, 800
+XY_progress = (729, 88)
+XY_refresh = (610, 842)
 
+def left_mouse_click(xy, wait_after=0, *, repeat=1, wait_repeat: float = 0.05):
+    for _ in range(repeat):
+        pag.moveTo(xy)
+        time.sleep(0.001)
+        pag.mouseDown(xy, button='left')
+        time.sleep(0.001)
+        pag.mouseUp(xy, button='left')
+        time.sleep(wait_repeat)
+    time.sleep(wait_after)
 
 def opendota_constants_heroes():
     endpoint = 'https://api.opendota.com/api/constants/heroes'
@@ -43,15 +53,13 @@ def refresh_dota_plus_quests():
     time.sleep(3)
     hero_list = opendota_constants_heroes()
     for name in hero_list:
-        time.sleep(0.5)
-        for _ in range(3):
-            pag.click(x=X, y=Y)
-            time.sleep(0.1)
+        left_mouse_click(XY_progress, 1.5)
+        left_mouse_click(XY_refresh, 1.5, repeat=3)
 
         if locate_turbo_quests():
             log.info(name)
 
-        time.sleep(0.5)
+        time.sleep(2.0)
         pag.press('right')
     log.info('--- finished ---')
 
