@@ -49,7 +49,7 @@ def refresh_dota_plus_quests(turbo: bool, resolution: str):
             pyautogui.press("right")
             time.sleep(0.3)
 
-        easygui.msgbox('Done!', title=title, ok_button="OK!")
+        # easygui.msgbox('Done!', title=title, ok_button="OK!")
 
     print("--- Finished ---")
 
