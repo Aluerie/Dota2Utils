@@ -1,5 +1,0 @@
-pyautogui
-requests
-opencv-python
-click
-easygui

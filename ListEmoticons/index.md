@@ -16,8 +16,8 @@ It doesn't matter if you don't own the emoticon pack.
 ## Table of Dota 2 Emoticons
 
 <table>
-      <tr><td>Last Updated</td><td>06/May/2023</td></tr>
-      <tr><td>Amount of emoticons listed</td><td>1487</td></tr>
+      <tr><td>Last Updated</td><td>26/December/2023</td></tr>
+      <tr><td>Amount of emoticons listed</td><td>1748</td></tr>
 </table>
 
 ## Default
@@ -120,19 +120,24 @@ It doesn't matter if you don't own the emoticon pack.
 | ![emoticon](./gifs/281_96.gif)|  | `:mirana_drink:`| ![emoticon](./gifs/282_96.gif)|  | `:profit:`| ![emoticon](./gifs/283_96.gif)|  | `:radiance:` |
 | ![emoticon](./gifs/284_96.gif)|  | `:rapier:`| ![emoticon](./gifs/286_96.gif)|  | `:shadowdemon_sus:`| ![emoticon](./gifs/287_96.gif)|  | `:slardar_sleepy:` |
 | ![emoticon](./gifs/288_96.gif)|  | `:spin:`| ![emoticon](./gifs/289_96.gif)|  | `:spotted:`| ![emoticon](./gifs/290_96.gif)|  | `:storm_clap:` |
-| ![emoticon](./gifs/292_96.gif)|  | `:tango:`| ![emoticon](./gifs/293_96.gif)|  | `:tb_laugh:`| ![emoticon](./gifs/296_96.gif)|  | `:whoahahah:` |
+| ![emoticon](./gifs/291_96.gif)|  | `:storm_impressed:`| ![emoticon](./gifs/292_96.gif)|  | `:tango:`| ![emoticon](./gifs/293_96.gif)|  | `:tb_laugh:` |
+| ![emoticon](./gifs/294_96.gif)|  | `:void_thumbsdown:`| ![emoticon](./gifs/295_96.gif)|  | `:void_unimpressed:`| ![emoticon](./gifs/296_96.gif)|  | `:whoahahah:` |
 | ![emoticon](./gifs/297_96.gif)|  | `:ti10_compendium:`| ![emoticon](./gifs/298_96.gif)|  | `:aghawooga:`| ![emoticon](./gifs/299_96.gif)|  | `:awwghanim:` |
 | ![emoticon](./gifs/300_96.gif)|  | `:fraghanim:`| ![emoticon](./gifs/301_96.gif)|  | `:poghanim:`| ![emoticon](./gifs/302_96.gif)|  | `:smughanim:` |
 | ![emoticon](./gifs/303_96.gif)|  | `:swaghanim:`| ![emoticon](./gifs/305_96.gif)|  | `:come_here:`| ![emoticon](./gifs/315_96.gif)|  | `:giggle:` |
-| ![emoticon](./gifs/316_96.gif)|  | `:hot_cocoa:`| ![emoticon](./gifs/318_96.gif)|  | `:marci_omnom:`| ![emoticon](./gifs/319_96.gif)|  | `:not_like_this:` |
-| ![emoticon](./gifs/321_96.gif)|  | `:smoked_ya:`| ![emoticon](./gifs/323_96.gif)|  | `:power_runes:`| ![emoticon](./gifs/324_96.gif)|  | `:bucket:` |
-| ![emoticon](./gifs/325_96.gif)|  | `:itsatrap:`| ![emoticon](./gifs/326_96.gif)|  | `:itsfromprimal:`| ![emoticon](./gifs/327_96.gif)|  | `:flamescepter:` |
-| ![emoticon](./gifs/328_96.gif)|  | `:apexmage:`| ![emoticon](./gifs/329_96.gif)|  | `:sagan_sad:`| ![emoticon](./gifs/330_96.gif)|  | `:flaming_mad:` |
-| ![emoticon](./gifs/331_96.gif)|  | `:shut_up:`| ![emoticon](./gifs/332_96.gif)|  | `:wait_for_it:`| ![emoticon](./gifs/333_96.gif)|  | `:surprised_meepo:` |
-| ![emoticon](./gifs/334_96.gif)|  | `:stupid_bruiser:`| ![emoticon](./gifs/335_96.gif)|  | `:snowballing:`| ![emoticon](./gifs/336_96.gif)|  | `:smugstroke:` |
-| ![emoticon](./gifs/337_96.gif)|  | `:shivers:`| ![emoticon](./gifs/338_96.gif)|  | `:hungry_hellbear:`| ![emoticon](./gifs/339_96.gif)|  | `:furious:` |
-| ![emoticon](./gifs/340_96.gif)|  | `:eyebrow:`| ![emoticon](./gifs/341_96.gif)|  | `:closecall:`| ![emoticon](./gifs/342_96.gif)|  | `:aegis_2022:` |
-| ![emoticon](./gifs/343_96.gif)|  | `:shield_rune:`| ![emoticon](./gifs/344_96.gif)|  | `:xp_rune:` |
+| ![emoticon](./gifs/316_96.gif)|  | `:hot_cocoa:`| ![emoticon](./gifs/317_96.gif)|  | `:lip_bite:`| ![emoticon](./gifs/318_96.gif)|  | `:marci_omnom:` |
+| ![emoticon](./gifs/319_96.gif)|  | `:not_like_this:`| ![emoticon](./gifs/321_96.gif)|  | `:smoked_ya:`| ![emoticon](./gifs/322_96.gif)|  | `:snoozin:` |
+| ![emoticon](./gifs/323_96.gif)|  | `:power_runes:`| ![emoticon](./gifs/324_96.gif)|  | `:bucket:`| ![emoticon](./gifs/325_96.gif)|  | `:itsatrap:` |
+| ![emoticon](./gifs/326_96.gif)|  | `:itsfromprimal:`| ![emoticon](./gifs/327_96.gif)|  | `:flamescepter:`| ![emoticon](./gifs/328_96.gif)|  | `:apexmage:` |
+| ![emoticon](./gifs/329_96.gif)|  | `:sagan_sad:`| ![emoticon](./gifs/330_96.gif)|  | `:flaming_mad:`| ![emoticon](./gifs/331_96.gif)|  | `:shut_up:` |
+| ![emoticon](./gifs/332_96.gif)|  | `:wait_for_it:`| ![emoticon](./gifs/333_96.gif)|  | `:surprised_meepo:`| ![emoticon](./gifs/334_96.gif)|  | `:stupid_bruiser:` |
+| ![emoticon](./gifs/335_96.gif)|  | `:snowballing:`| ![emoticon](./gifs/336_96.gif)|  | `:smugstroke:`| ![emoticon](./gifs/337_96.gif)|  | `:shivers:` |
+| ![emoticon](./gifs/338_96.gif)|  | `:hungry_hellbear:`| ![emoticon](./gifs/339_96.gif)|  | `:furious:`| ![emoticon](./gifs/340_96.gif)|  | `:eyebrow:` |
+| ![emoticon](./gifs/341_96.gif)|  | `:closecall:`| ![emoticon](./gifs/342_96.gif)|  | `:aegis_2022:`| ![emoticon](./gifs/343_96.gif)|  | `:shield_rune:` |
+| ![emoticon](./gifs/344_96.gif)|  | `:xp_rune:`| ![emoticon](./gifs/345_96.gif)|  | `:cozy_courier:`| ![emoticon](./gifs/346_96.gif)|  | `:lancer_sour:` |
+| ![emoticon](./gifs/347_96.gif)|  | `:leshrac_cringe:`| ![emoticon](./gifs/349_96.gif)|  | `:party_phoenix:`| ![emoticon](./gifs/354_96.gif)|  | `:aegis_2023:` |
+| ![emoticon](./gifs/355_96.gif)|  | `:frostivus_spoonbox:`| ![emoticon](./gifs/356_96.gif)|  | `:frostivus_shardstocking:`| ![emoticon](./gifs/357_96.gif)|  | `:frostivus_meangreen:` |
+| ![emoticon](./gifs/358_96.gif)|  | `:frostivus_bauble:`| ![emoticon](./gifs/359_96.gif)|  | `:frostivus_stringlights:` |
 
 ## Teams
 
@@ -1685,4 +1690,496 @@ It doesn't matter if you don't own the emoticon pack.
 | preview | chr | alias | preview | chr | alias | preview | chr | alias |
 | ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
 | ![emoticon](./gifs/4118_96.gif)|  | `:fandom_OLG_8_0:`| ![emoticon](./gifs/4119_96.gif)|  | `:fandom_OLG_8_1:`| ![emoticon](./gifs/4120_96.gif)|  | `:fandom_OLG_8_2:` |
+
+## Teamfandom_9_36
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4121_96.gif)|  | `:fandom_NAVI_9_0:`| ![emoticon](./gifs/4122_96.gif)|  | `:fandom_NAVI_9_1:`| ![emoticon](./gifs/4123_96.gif)|  | `:fandom_NAVI_9_3:` |
+
+## Teamfandom_9_8606828
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4124_96.gif)|  | `:fandom_WC_9_0:`| ![emoticon](./gifs/4125_96.gif)|  | `:fandom_WC_9_1:`| ![emoticon](./gifs/4126_96.gif)|  | `:fandom_WC_9_2:` |
+
+## Teamfandom_9_8604954
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4127_96.gif)|  | `:fandom_Dog_9_0:`| ![emoticon](./gifs/4128_96.gif)|  | `:fandom_Dog_9_1:`| ![emoticon](./gifs/4129_96.gif)|  | `:fandom_Dog_9_3:` |
+
+## Teamfandom_9_8376426
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4130_96.gif)|  | `:fandom_B8_9_0:`| ![emoticon](./gifs/4131_96.gif)|  | `:fandom_B8_9_1:`| ![emoticon](./gifs/4132_96.gif)|  | `:fandom_B8_9_2:` |
+
+## Teamfandom_9_8728920
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4133_96.gif)|  | `:fandom_nou_9_1:`| ![emoticon](./gifs/4134_96.gif)|  | `:fandom_nou_9_2:`| ![emoticon](./gifs/4135_96.gif)|  | `:fandom_nou_9_3:` |
+
+## Teamfandom_9_8205424
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4136_96.gif)|  | `:fandom_TC_9_0:`| ![emoticon](./gifs/4137_96.gif)|  | `:fandom_TC_9_1:`| ![emoticon](./gifs/4138_96.gif)|  | `:fandom_TC_9_2:` |
+
+## Teamfandom_9_7626304
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4139_96.gif)|  | `:fandom_SKG_9_0:`| ![emoticon](./gifs/4140_96.gif)|  | `:fandom_SKG_9_1:`| ![emoticon](./gifs/4141_96.gif)|  | `:fandom_SKG_9_2:` |
+
+## Teamfandom_9_7119077
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4142_96.gif)|  | `:fandom_HKR_9_0:`| ![emoticon](./gifs/4143_96.gif)|  | `:fandom_HKR_9_1:`| ![emoticon](./gifs/4144_96.gif)|  | `:fandom_HKR_9_2:` |
+
+## Teamfandom_9_8740097
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4145_96.gif)|  | `:fandom_MK_9_0:`| ![emoticon](./gifs/4146_96.gif)|  | `:fandom_MK_9_1:`| ![emoticon](./gifs/4147_96.gif)|  | `:fandom_MK_9_2:` |
+
+## Teamfandom_9_8597976
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4148_96.gif)|  | `:fandom_TLN_9_0:`| ![emoticon](./gifs/4149_96.gif)|  | `:fandom_TLN_9_1:`| ![emoticon](./gifs/4150_96.gif)|  | `:fandom_TLN_9_3:` |
+
+## Teamfandom_9_8214850
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4151_96.gif)|  | `:fandom_BLD_9_0:`| ![emoticon](./gifs/4152_96.gif)|  | `:fandom_BLD_9_1:`| ![emoticon](./gifs/4153_96.gif)|  | `:fandom_BLD_9_2:` |
+
+## Teamfandom_9_8572181
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4154_96.gif)|  | `:fandom_UDV_9_0:`| ![emoticon](./gifs/4155_96.gif)|  | `:fandom_UDV_9_1:`| ![emoticon](./gifs/4156_96.gif)|  | `:fandom_UDV_9_2:` |
+
+## Teamfandom_9_8944302
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4157_96.gif)|  | `:fandom_MAG_9_0:`| ![emoticon](./gifs/4158_96.gif)|  | `:fandom_MAG_9_1:`| ![emoticon](./gifs/4159_96.gif)|  | `:fandom_MAG_9_2:` |
+
+## Teamfandom_9_7554697
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4160_96.gif)|  | `:fandom_NGX_9_0:`| ![emoticon](./gifs/4161_96.gif)|  | `:fandom_NGX_9_1:`| ![emoticon](./gifs/4162_96.gif)|  | `:fandom_NGX_9_2:` |
+
+## Teamfandom_9_8597391
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4163_96.gif)|  | `:fandom_D1H_9_0:`| ![emoticon](./gifs/4164_96.gif)|  | `:fandom_D1H_9_1:`| ![emoticon](./gifs/4165_96.gif)|  | `:fandom_D1H_9_2:` |
+
+## Teamfandom_9_1838315
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4166_96.gif)|  | `:fandom_SEC_9_0:`| ![emoticon](./gifs/4167_96.gif)|  | `:fandom_SEC_9_3:`| ![emoticon](./gifs/4168_96.gif)|  | `:fandom_SEC_9_5:` |
+
+## Teamfandom_9_8390848
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4169_96.gif)|  | `:fandom_ITB_9_0:`| ![emoticon](./gifs/4170_96.gif)|  | `:fandom_ITB_9_1:`| ![emoticon](./gifs/4171_96.gif)|  | `:fandom_ITB_9_2:` |
+
+## Teamfandom_9_8261648
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4172_96.gif)|  | `:fandom_OldG_9_0:`| ![emoticon](./gifs/4173_96.gif)|  | `:fandom_OldG_9_1:`| ![emoticon](./gifs/4174_96.gif)|  | `:fandom_OldG_9_2:` |
+
+## Teamfandom_9_8605863
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4175_96.gif)|  | `:fandom_ENT_9_0:`| ![emoticon](./gifs/4176_96.gif)|  | `:fandom_ENT_9_1:`| ![emoticon](./gifs/4177_96.gif)|  | `:fandom_ENT_9_2:` |
+
+## Teamfandom_9_8291895
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4178_96.gif)|  | `:fandom_TUN_9_0:`| ![emoticon](./gifs/4179_96.gif)|  | `:fandom_TUN_9_1:`| ![emoticon](./gifs/4180_96.gif)|  | `:fandom_TUN_9_2:` |
+
+## Teamfandom_9_111474
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4181_96.gif)|  | `:fandom_ALL_9_0:`| ![emoticon](./gifs/4182_96.gif)|  | `:fandom_ALL_9_1:`| ![emoticon](./gifs/4183_96.gif)|  | `:fandom_ALL_9_2:` |
+
+## Teamfandom_9_2163
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4184_96.gif)|  | `:fandom_LIQ_9_0:`| ![emoticon](./gifs/4185_96.gif)|  | `:fandom_LIQ_9_1:`| ![emoticon](./gifs/4186_96.gif)|  | `:fandom_LIQ_9_2:` |
+
+## Teamfandom_9_8894818
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4187_96.gif)|  | `:fandom_QST_9_0:`| ![emoticon](./gifs/4188_96.gif)|  | `:fandom_QST_9_1:`| ![emoticon](./gifs/4189_96.gif)|  | `:fandom_QST_9_2:` |
+
+## Teamfandom_9_8599101
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4190_96.gif)|  | `:fandom_GG_9_0:`| ![emoticon](./gifs/4191_96.gif)|  | `:fandom_GG_9_1:`| ![emoticon](./gifs/4192_96.gif)|  | `:fandom_GG_9_2:` |
+
+## Teamfandom_9_8686313
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4193_96.gif)|  | `:fandom_CDUB_9_0:`| ![emoticon](./gifs/4194_96.gif)|  | `:fandom_CDUB_9_1:`| ![emoticon](./gifs/4195_96.gif)|  | `:fandom_CDUB_9_2:` |
+
+## Teamfandom_9_7584152
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4196_96.gif)|  | `:fandom_TB_9_1:`| ![emoticon](./gifs/4197_96.gif)|  | `:fandom_TB_9_2:`| ![emoticon](./gifs/4198_96.gif)|  | `:fandom_TB_9_3:` |
+
+## Teamfandom_9_8856662
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4199_96.gif)|  | `:fandom_BLRG_9_0:`| ![emoticon](./gifs/4200_96.gif)|  | `:fandom_BLRG_9_1:`| ![emoticon](./gifs/4201_96.gif)|  | `:fandom_BLRG_9_2:` |
+
+## Teamfandom_9_5014799
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4202_96.gif)|  | `:fandom_NEM_9_0:`| ![emoticon](./gifs/4203_96.gif)|  | `:fandom_NEM_9_1:`| ![emoticon](./gifs/4204_96.gif)|  | `:fandom_NEM_9_2:` |
+
+## Teamfandom_9_8607159
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4205_96.gif)|  | `:fandom_NT_9_0:`| ![emoticon](./gifs/4206_96.gif)|  | `:fandom_NT_9_1:`| ![emoticon](./gifs/4207_96.gif)|  | `:fandom_NT_9_2:` |
+
+## Teamfandom_9_2586976
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4208_96.gif)|  | `:fandom_OG_9_0:`| ![emoticon](./gifs/4209_96.gif)|  | `:fandom_OG_9_2:`| ![emoticon](./gifs/4210_96.gif)|  | `:fandom_OG_9_3:` |
+
+## Teamfandom_9_7422789
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4211_96.gif)|  | `:fandom_9P_9_0:`| ![emoticon](./gifs/4212_96.gif)|  | `:fandom_9P_9_1:`| ![emoticon](./gifs/4213_96.gif)|  | `:fandom_9P_9_2:` |
+
+## Teamfandom_9_8261554
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4214_96.gif)|  | `:fandom_AGM_9_1:`| ![emoticon](./gifs/4215_96.gif)|  | `:fandom_AGM_9_3:`| ![emoticon](./gifs/4216_96.gif)|  | `:fandom_AGM_9_4:` |
+
+## Teamfandom_9_8254400
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4217_96.gif)|  | `:fandom_BC_9_5:`| ![emoticon](./gifs/4218_96.gif)|  | `:fandom_BC_9_6:`| ![emoticon](./gifs/4219_96.gif)|  | `:fandom_BC_9_7:` |
+
+## Teamfandom_9_8255888
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4220_96.gif)|  | `:fandom_BBT_9_0:`| ![emoticon](./gifs/4221_96.gif)|  | `:fandom_BBT_9_1:`| ![emoticon](./gifs/4222_96.gif)|  | `:fandom_BBT_9_2:` |
+
+## Teamfandom_9_7732977
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4223_96.gif)|  | `:fandom_BOOM_9_0:`| ![emoticon](./gifs/4224_96.gif)|  | `:fandom_BOOM_9_1:`| ![emoticon](./gifs/4225_96.gif)|  | `:fandom_BOOM_9_2:` |
+
+## Teamfandom_9_8545488
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4226_96.gif)|  | `:fandom_CC_9_0:`| ![emoticon](./gifs/4227_96.gif)|  | `:fandom_CC_9_1:`| ![emoticon](./gifs/4228_96.gif)|  | `:fandom_CC_9_2:` |
+
+## Teamfandom_9_8255756
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4229_96.gif)|  | `:fandom_EG_9_0:`| ![emoticon](./gifs/4230_96.gif)|  | `:fandom_EG_9_1:`| ![emoticon](./gifs/4231_96.gif)|  | `:fandom_EG_9_2:` |
+
+## Teamfandom_9_8254145
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4232_96.gif)|  | `:fandom_XCT_9_0:`| ![emoticon](./gifs/4233_96.gif)|  | `:fandom_XCT_9_1:`| ![emoticon](./gifs/4234_96.gif)|  | `:fandom_XCT_9_2:` |
+
+## Teamfandom_9_8261882
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4235_96.gif)|  | `:fandom_FELT_9_0:`| ![emoticon](./gifs/4236_96.gif)|  | `:fandom_FELT_9_1:`| ![emoticon](./gifs/4237_96.gif)|  | `:fandom_FELT_9_2:` |
+
+## Teamfandom_9_8588969
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4238_96.gif)|  | `:fandom_HYD_9_0:`| ![emoticon](./gifs/4239_96.gif)|  | `:fandom_HYD_9_1:`| ![emoticon](./gifs/4240_96.gif)|  | `:fandom_HYD_9_2:` |
+
+## Teamfandom_9_8118197
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4241_96.gif)|  | `:fandom_INF_9_0:`| ![emoticon](./gifs/4242_96.gif)|  | `:fandom_INF_9_1:`| ![emoticon](./gifs/4243_96.gif)|  | `:fandom_INF_9_2:` |
+
+## Teamfandom_9_8375259
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4244_96.gif)|  | `:fandom_IE_9_0:`| ![emoticon](./gifs/4245_96.gif)|  | `:fandom_IE_9_2:`| ![emoticon](./gifs/4246_96.gif)|  | `:fandom_IE_9_3:` |
+
+## Teamfandom_9_5
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4247_96.gif)|  | `:fandom_IG_9_0:`| ![emoticon](./gifs/4248_96.gif)|  | `:fandom_IG_9_1:`| ![emoticon](./gifs/4249_96.gif)|  | `:fandom_IG_9_2:` |
+
+## Teamfandom_9_8598633
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4250_96.gif)|  | `:fandom_MM_9_5:`| ![emoticon](./gifs/4251_96.gif)|  | `:fandom_MM_9_6:`| ![emoticon](./gifs/4252_96.gif)|  | `:fandom_MM_9_7:` |
+
+## Teamfandom_9_9017006
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4253_96.gif)|  | `:fandom_NVjr_9_0:`| ![emoticon](./gifs/4254_96.gif)|  | `:fandom_NVjr_9_1:`| ![emoticon](./gifs/4255_96.gif)|  | `:fandom_NVjr_9_4:` |
+
+## Teamfandom_9_2672298
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4256_96.gif)|  | `:fandom_NP_9_0:`| ![emoticon](./gifs/4257_96.gif)|  | `:fandom_NP_9_1:`| ![emoticon](./gifs/4258_96.gif)|  | `:fandom_NP_9_2:` |
+
+## Teamfandom_9_8376696
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4259_96.gif)|  | `:fandom_MOV_9_0:`| ![emoticon](./gifs/4260_96.gif)|  | `:fandom_MOV_9_1:`| ![emoticon](./gifs/4261_96.gif)|  | `:fandom_MOV_9_2:` |
+
+## Teamfandom_9_8525778
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4262_96.gif)|  | `:fandom_PLR_9_0:`| ![emoticon](./gifs/4263_96.gif)|  | `:fandom_PLR_9_2:`| ![emoticon](./gifs/4264_96.gif)|  | `:fandom_PLR_9_3:` |
+
+## Teamfandom_9_15
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4265_96.gif)|  | `:fandom_PLGD_9_0:`| ![emoticon](./gifs/4266_96.gif)|  | `:fandom_PLGD_9_1:`| ![emoticon](./gifs/4267_96.gif)|  | `:fandom_PLGD_9_2:` |
+
+## Teamfandom_9_39
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4268_96.gif)|  | `:fandom_SR_9_0:`| ![emoticon](./gifs/4269_96.gif)|  | `:fandom_SR_9_1:`| ![emoticon](./gifs/4270_96.gif)|  | `:fandom_SR_9_2:` |
+
+## Teamfandom_9_6209166
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4271_96.gif)|  | `:fandom_AST_9_0:`| ![emoticon](./gifs/4272_96.gif)|  | `:fandom_AST_9_1:`| ![emoticon](./gifs/4273_96.gif)|  | `:fandom_AST_9_2:` |
+
+## Teamfandom_9_8244493
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4274_96.gif)|  | `:fandom_SMG_9_0:`| ![emoticon](./gifs/4275_96.gif)|  | `:fandom_SMG_9_1:`| ![emoticon](./gifs/4276_96.gif)|  | `:fandom_SMG_9_2:` |
+
+## Teamfandom_9_7119388
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4277_96.gif)|  | `:fandom_TS_9_0:`| ![emoticon](./gifs/4278_96.gif)|  | `:fandom_TS_9_2:`| ![emoticon](./gifs/4279_96.gif)|  | `:fandom_TS_9_3:` |
+
+## Teamfandom_9_7391077
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4280_96.gif)|  | `:fandom_THU_9_1:`| ![emoticon](./gifs/4281_96.gif)|  | `:fandom_THU_9_2:`| ![emoticon](./gifs/4282_96.gif)|  | `:fandom_THU_9_3:` |
+
+## Teamfandom_9_1061269
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4283_96.gif)|  | `:fandom_VKS_9_0:`| ![emoticon](./gifs/4284_96.gif)|  | `:fandom_VKS_9_1:`| ![emoticon](./gifs/4285_96.gif)|  | `:fandom_VKS_9_2:` |
+
+## Teamfandom_9_8736661
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4286_96.gif)|  | `:fandom_Xerx_9_0:`| ![emoticon](./gifs/4287_96.gif)|  | `:fandom_Xerx_9_1:`| ![emoticon](./gifs/4288_96.gif)|  | `:fandom_Xerx_9_2:` |
+
+## Teamfandom_9_8261500
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4289_96.gif)|  | `:fandom_XG_9_0:`| ![emoticon](./gifs/4290_96.gif)|  | `:fandom_XG_9_1:`| ![emoticon](./gifs/4291_96.gif)|  | `:fandom_XG_9_2:` |
+
+## Teamfandom_9_8971308
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4292_96.gif)|  | `:fandom_X5_9_0:`| ![emoticon](./gifs/4293_96.gif)|  | `:fandom_X5_9_1:`| ![emoticon](./gifs/4294_96.gif)|  | `:fandom_X5_9_2:` |
+
+## Teamfandom_9_9019673
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4295_96.gif)|  | `:fandom_ULK_9_0:`| ![emoticon](./gifs/4296_96.gif)|  | `:fandom_ULK_9_1:`| ![emoticon](./gifs/4297_96.gif)|  | `:fandom_ULK_9_2:` |
+
+## Teamfandom_9_8975678
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4298_96.gif)|  | `:fandom_TSX_9_0:`| ![emoticon](./gifs/4299_96.gif)|  | `:fandom_TSX_9_1:`| ![emoticon](./gifs/4300_96.gif)|  | `:fandom_TSX_9_2:` |
+
+## Teamfandom_9_8574561
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4301_96.gif)|  | `:fandom_Ybb_9_0:`| ![emoticon](./gifs/4302_96.gif)|  | `:fandom_Ybb_9_1:`| ![emoticon](./gifs/4303_96.gif)|  | `:fandom_Ybb_9_2:` |
+
+## Teamfandom_9_8724984
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4304_96.gif)|  | `:fandom_VP_9_0:`| ![emoticon](./gifs/4305_96.gif)|  | `:fandom_VP_9_1:`| ![emoticon](./gifs/4306_96.gif)|  | `:fandom_VP_9_2:` |
+
+## Teamfandom_10_2163
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4307_96.gif)|  | `:fandom_LIQ_10_1:`| ![emoticon](./gifs/4308_96.gif)|  | `:fandom_LIQ_10_3:`| ![emoticon](./gifs/4309_96.gif)|  | `:fandom_LIQ_10_4:` |
+
+## Teamfandom_10_39
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4310_96.gif)|  | `:fandom_SR_10_0:`| ![emoticon](./gifs/4311_96.gif)|  | `:fandom_SR_10_1:`| ![emoticon](./gifs/4312_96.gif)|  | `:fandom_SR_10_2:` |
+
+## Teamfandom_10_8260983
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4313_96.gif)|  | `:fandom_TSM_10_0:`| ![emoticon](./gifs/4314_96.gif)|  | `:fandom_TSM_10_1:`| ![emoticon](./gifs/4315_96.gif)|  | `:fandom_TSM_10_2:` |
+
+## Teamfandom_10_1061269
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4316_96.gif)|  | `:fandom_VKS_10_1:`| ![emoticon](./gifs/4317_96.gif)|  | `:fandom_VKS_10_2:`| ![emoticon](./gifs/4318_96.gif)|  | `:fandom_VKS_10_3:` |
+
+## Teamfandom_10_7391077
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4319_96.gif)|  | `:fandom_THU_10_1:`| ![emoticon](./gifs/4320_96.gif)|  | `:fandom_THU_10_2:`| ![emoticon](./gifs/4321_96.gif)|  | `:fandom_THU_10_3:` |
+
+## Teamfandom_10_8728920
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4322_96.gif)|  | `:fandom_nou_10_0:`| ![emoticon](./gifs/4323_96.gif)|  | `:fandom_nou_10_1:`| ![emoticon](./gifs/4324_96.gif)|  | `:fandom_nou_10_2:` |
+
+## Teamfandom_10_8605863
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4325_96.gif)|  | `:fandom_ENT_10_0:`| ![emoticon](./gifs/4326_96.gif)|  | `:fandom_ENT_10_1:`| ![emoticon](./gifs/4327_96.gif)|  | `:fandom_ENT_10_2:` |
+
+## Teamfandom_10_8244493
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4328_96.gif)|  | `:fandom_SMG_10_1:`| ![emoticon](./gifs/4329_96.gif)|  | `:fandom_SMG_10_2:`| ![emoticon](./gifs/4330_96.gif)|  | `:fandom_SMG_10_3:` |
+
+## Teamfandom_10_8724984
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4331_96.gif)|  | `:fandom_VP_10_0:`| ![emoticon](./gifs/4332_96.gif)|  | `:fandom_VP_10_2:`| ![emoticon](./gifs/4333_96.gif)|  | `:fandom_VP_10_4:` |
+
+## Teamfandom_10_8894818
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4334_96.gif)|  | `:fandom_QST_10_0:`| ![emoticon](./gifs/4335_96.gif)|  | `:fandom_QST_10_1:`| ![emoticon](./gifs/4336_96.gif)|  | `:fandom_QST_10_2:` |
+
+## Teamfandom_10_7422789
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4337_96.gif)|  | `:fandom_9P_10_0:`| ![emoticon](./gifs/4338_96.gif)|  | `:fandom_9P_10_1:`| ![emoticon](./gifs/4339_96.gif)|  | `:fandom_9P_10_2:` |
+
+## Teamfandom_10_8254400
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4340_96.gif)|  | `:fandom_BC_10_0:`| ![emoticon](./gifs/4341_96.gif)|  | `:fandom_BC_10_1:`| ![emoticon](./gifs/4342_96.gif)|  | `:fandom_BC_10_3:` |
+
+## Teamfandom_10_8291895
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4343_96.gif)|  | `:fandom_TUN_10_0:`| ![emoticon](./gifs/4344_96.gif)|  | `:fandom_TUN_10_1:`| ![emoticon](./gifs/4345_96.gif)|  | `:fandom_TUN_10_2:` |
+
+## Teamfandom_10_8597976
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4346_96.gif)|  | `:fandom_TLN_10_0:`| ![emoticon](./gifs/4347_96.gif)|  | `:fandom_TLN_10_1:`| ![emoticon](./gifs/4348_96.gif)|  | `:fandom_TLN_10_2:` |
+
+## Teamfandom_10_8255888
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4349_96.gif)|  | `:fandom_BBT_10_0:`| ![emoticon](./gifs/4350_96.gif)|  | `:fandom_BBT_10_1:`| ![emoticon](./gifs/4351_96.gif)|  | `:fandom_BBT_10_4:` |
+
+## Teamfandom_10_8255756
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4352_96.gif)|  | `:fandom_EG_10_0:`| ![emoticon](./gifs/4353_96.gif)|  | `:fandom_EG_10_1:`| ![emoticon](./gifs/4354_96.gif)|  | `:fandom_EG_10_2:` |
+
+## Teamfandom_10_8574561
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4355_96.gif)|  | `:fandom_AR_10_0:`| ![emoticon](./gifs/4356_96.gif)|  | `:fandom_AR_10_1:`| ![emoticon](./gifs/4357_96.gif)|  | `:fandom_AR_10_2:` |
+
+## Teamfandom_10_7119388
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4358_96.gif)|  | `:fandom_TS_10_0:`| ![emoticon](./gifs/4359_96.gif)|  | `:fandom_TS_10_2:`| ![emoticon](./gifs/4360_96.gif)|  | `:fandom_TS_10_4:` |
+
+## Teamfandom_10_15
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4361_96.gif)|  | `:fandom_PLGD_10_0:`| ![emoticon](./gifs/4362_96.gif)|  | `:fandom_PLGD_10_2:`| ![emoticon](./gifs/4363_96.gif)|  | `:fandom_PLGD_10_3:` |
+
+## Teamfandom_10_8599101
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| ---     | --- | ---   | ---     | --- | ---   |     --- | --- |   --- |
+| ![emoticon](./gifs/4364_96.gif)|  | `:fandom_GG_10_0:`| ![emoticon](./gifs/4365_96.gif)|  | `:fandom_GG_10_1:`| ![emoticon](./gifs/4366_96.gif)|  | `:fandom_GG_10_2:` |
 

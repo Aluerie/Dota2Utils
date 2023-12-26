@@ -1,5 +1,0 @@
-vpk
-vdf
-ipykernel
-tqdm
-Pillow
