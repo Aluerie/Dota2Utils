@@ -1,7 +1,6 @@
 import click
 
 import time
-
 from utils import const, helpers
 
 import pyautogui
@@ -46,7 +45,8 @@ def refresh_dota_plus_quests(turbo: bool, resolution: str):
         helpers.mouse_left_click(resolution_data.progress_tab, repeat=3)
         for name in hero_list:
             helpers.mouse_left_click(resolution_data.refresh_button, 0.1, repeat=3)
-            pyautogui.press("right")
+            # pyautogui.press("right")
+            helpers.mouse_left_click(resolution_data.next_hero, 0.1) # ceown fall
             time.sleep(0.3)
 
         # easygui.msgbox('Done!', title=title, ok_button="OK!")
