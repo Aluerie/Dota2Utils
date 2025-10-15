@@ -2,61 +2,54 @@
 this is toned down non-async copy of code from my discord bot ;
 but we also need it there for some sandbox snippets
 """
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, Literal, TypedDict
+
 import requests
 
+if TYPE_CHECKING:
 
-def opendota_constants_heroes():
-    endpoint = 'https://api.opendota.com/api/constants/heroes'
+    class OpendotaConstantsHero(TypedDict):
+        id: int
+        name: str
+        primary_attr: Literal["str", "agi", "int", "all"]
+        img: str
+        localized_name: str
+
+
+__all__ = ("heroes",)
+
+
+@dataclass
+class Hero:
+    id: int
+    name: str
+    npc_name: str
+    icon: str
+    primary_attribute: Literal["str", "agi", "int", "all"]
+
+    def __repr__(self) -> str:
+        return f"<class Hero id={self.id} name={self.name}>"
+
+
+def fill_hero_list() -> dict[int, Hero]:
+    endpoint = "https://api.opendota.com/api/constants/heroes"
     response = requests.get(endpoint)
-    dic = response.json()
+    data: dict[str, OpendotaConstantsHero] = response.json()
 
-    data = {
-        'id_by_npcname':
-            {'': 0},
-        'id_by_name':
-            {'bot_game': 0},
-        'name_by_id':
-            {0: 'bot_game'},
-        'iconurl_by_id':
-            {0: "https://static.wikia.nocookie.net/dota2_gamepedia/images/3/3d/Greater_Mango_icon.png"}
+    return {
+        hero["id"]: Hero(
+            id=hero["id"],
+            name=hero["localized_name"],
+            npc_name=hero["name"],
+            icon=f"https://cdn.cloudflare.steamstatic.com/{hero['img']}",
+            primary_attribute=hero["primary_attr"],
+        )
+        for _, hero in data.items()
     }
-    for hero in dic:
-        data['id_by_npcname'][dic[hero]['name']] = dic[hero]['id']
-        data['id_by_name'][dic[hero]['localized_name']] = dic[hero]['id']
-        data['name_by_id'][dic[hero]['id']] = dic[hero]['localized_name']
-        data['iconurl_by_id'][dic[hero]['id']] = f"https://cdn.cloudflare.steamstatic.com/{dic[hero]['img']}"
-    return data
-
-hero_keys_cache = opendota_constants_heroes()
-
-def id_by_npcname(value: str) -> int:
-    """ Get hero id by npcname ;
-    example: 'npc_dota_hero_antimage' -> 1 
-    """
-    return hero_keys_cache['id_by_npcname'][value]
 
 
-def id_by_name(value: str) -> int:
-    """ Get hero id by localized to english name ;
-    example: 'Anti-Mage' -> 1 
-    """
-    return hero_keys_cache['id_by_name'][value]
-
-
-def name_by_id(value: int) -> str:
-    """ Get hero id by name ;
-    example: 1 -> 'Anti-Mage' 
-    """
-    return hero_keys_cache['name_by_id'][value]
-
-
-def iconurl_by_id(value: int) -> str:
-    """ Get hero icon utl id by id ;
-    example: 1 -> 'https://cdn.cloudflare.steamstatic.com//apps/dota2/images/dota_react/heroes/antimage.png?' 
-    """
-    return hero_keys_cache['iconurl_by_id'][value]
-
-
-def amount_of_dota_heroes() -> int:
-    """Get amount of heroes in Dota 2"""
-    return len(hero_keys_cache['id_by_name']) - 1 # minus one for that zero value
+heroes = fill_hero_list()
