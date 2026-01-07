@@ -12,7 +12,7 @@
 
 * [🖼️ HeroGrids](./HeroGrids)
   
-  Edit custom Hero Grids and align categories as you wish. The ipython notebook mostly makes my own hero grids sorted and properly aligned.
+  Edit custom Hero Grids and align categories as you wish. The hero grids the script is made to align/sort are personal but the code code is there.
 
 * [😳 ListEmoticons](./ListEmoticons)
 
@@ -20,4 +20,4 @@
 
 * [🧦 SocialFeed](./SocialFeed)
 
-  Send messages into your profile feed like it was possible a few years ago.
+  Send messages into your User Feed Profile Widget. Valve removed UI to do it in the client, but it's still possible with a script like here.
