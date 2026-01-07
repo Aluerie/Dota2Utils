@@ -1,31 +1,23 @@
 # 🔧 Dota2Utils
 
-🔧 Utilities and useful code snippets for Dota 2.
+🔧 Each folder in this repository is a small utility project for Dota 2
 
-* [⌨️ AHKScript](https://github.com/Aluerie/AhkScripts)
+---
 
-    GitHub copy of my personal AutoHotkey script. (Different repository)
+## 1. The list of utilities
 
-* [👻 BiweeklyQuestRefresh](./BiweeklyQuestRefresh)
+* [👻 DplusQuests](./DplusQuests)
   
   Script that auto-clicks "refresh challenges" for DotaPlus hero quests.
 
-* [⏰ D2RoshTimer](./D2RoshTimer)
-
-    Toned down `D2RoshTimer.exe` of [Fjara's project](https://github.com/Fjara-h/D2RoshTimer).
-
-* [🖼️ HeroGridEditing](./HeroGridEditing)
+* [🖼️ HeroGrids](./HeroGrids)
   
-  Edit Custom Hero Grids and align categories as you wish.
+  Edit custom Hero Grids and align categories as you wish. The ipython notebook mostly makes my own hero grids sorted and properly aligned.
 
 * [😳 ListEmoticons](./ListEmoticons)
 
-    Fully updated fork of [ListEmoticons.ipynb](https://github.com/rossengeorgiev/dota2_notebooks/blob/master/List%20Emoticons.ipynb) notebook by [rossengeorgiev](https://github.com/rossengeorgiev).
+    Updated fork of [ListEmoticons.ipynb](https://github.com/rossengeorgiev/dota2_notebooks/blob/master/List%20Emoticons.ipynb) notebook by [@rossengeorgiev](https://github.com/rossengeorgiev). You can see all the emotes at [aluerie.github.io/Dota2Utils/ListEmoticons/](https://aluerie.github.io/Dota2Utils/ListEmoticons/)
 
-* [🧦 SocialFeedPosting](./SocialFeedPosting)
+* [🧦 SocialFeed](./SocialFeed)
 
   Send messages into your profile feed like it was possible a few years ago.
-
-* [🎽 autoexec](./Autoexec)
-
-    GitHub copy of my `autoexec.cfg` file.

@@ -1,0 +1,64 @@
+[project]
+name = "listemoticons"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=12.1.0",
+    "vdf>=3.4",
+    "vpk>=1.4.0",
+]
+
+[tool.ruff]
+line-length = 125
+target-version = "py312"
+exclude = [".venv", "docs"]
+
+[tool.ruff.lint]
+preview = true
+select = ["ALL"]
+ignore = [
+    "W191",   # tab-indentation
+    "E111",   # indentation-with-invalid-multiple
+    "E114",   # indentation-with-invalid-multiple-comment 
+    "E117",   # over-indented
+    "D206",   # docstring-tab-indentation
+    "D300",   # triple-single-quotes 
+    "Q000",   # bad-quotes-inline-string
+    "Q001",   # bad-quotes-multiline-string
+    "Q002",   # bad-quotes-docstring
+    "Q003",   # avoidable-escaped-quote
+    "COM812", # missing-trailing-comma
+    "COM819", # prohibited-trailing-comma
+    "ISC002", # multi-line-implicit-string-concatenation
+
+    "CPY",
+    "D",
+    "DOC",
+
+    "F401",
+    "F402",
+    "F403",
+    "F405",
+]
+unfixable = ["E501", "ERA", "RUF100"]
+# Extra Options
+flake8-annotations.allow-star-arg-any = true
+flake8-quotes.inline-quotes = "double"
+
+[tool.ruff.lint.per-file-ignores]
+"ext/beta.py" = ["ANN201"]
+"*.ipynb" = ["ANN204", "D", "DOC", "ERA", "F404", "T20", "W391"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
