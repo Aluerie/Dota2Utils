@@ -28,6 +28,20 @@ __all__ = (
 
 @dataclass
 class Hero:
+    """
+    Represents a hero entry from OpenDota Constants API.
+
+    Attributes
+    -----------
+    id:
+        Dota 2 Hero ID
+    slug_name:
+        Slug name that Valve use in most places. Example, `"crystal_maiden"`.
+        This string is alphabetical, but can include underscores.
+    loc_name:
+        Localized name with proper English formatting. Example, `"Crystal Maiden"`
+    """
+
     id: int
     slug_name: str
     loc_name: str
@@ -37,6 +51,7 @@ class Hero:
 
 
 def fetch_heroes() -> dict[int, Hero]:
+    """Fetch Dota 2 Hero data from OpenDota Constants API."""
     endpoint = "https://api.opendota.com/api/constants/heroes"
     response = requests.get(endpoint, timeout=20)
     data: dict[str, OpendotaConstantsHero] = response.json()
@@ -52,6 +67,7 @@ def fetch_heroes() -> dict[int, Hero]:
 
 
 def backup(name: str, data: dict[Any, Any]) -> None:
+    """Backup existing data to `data` folder."""
     backup: dict[str, Any] = {
         "last_updated": datetime.datetime.now(tz=datetime.UTC),
         "data": {key: value.__dict__ for key, value in data.items()},
@@ -61,11 +77,17 @@ def backup(name: str, data: dict[Any, Any]) -> None:
 
 
 def restore(name: str) -> dict[str, Any]:
+    """Restore existing data from `data` folder."""
     with pathlib.Path(f"data/backup_{name}.json").open(encoding="utf-8") as f:
         return json.load(f)
 
 
 def get_or_fetch_heroes(*, force: bool = False) -> dict[int, Hero]:
+    """Get or fetch Dota 2 Hero Data.
+
+    This first checks if we have an up-to-date backup.
+    If the backup is outdated - it fetches the data from OpenDota Constants API to refresh it.
+    """
     restored = restore("heroes")
 
     now = datetime.datetime.now(tz=datetime.UTC)

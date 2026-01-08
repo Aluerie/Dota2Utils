@@ -40,34 +40,42 @@ CONSUMABLES: tuple[str, ...] = (
 
 
 def get_html(hero: api.Hero, role: enums.RoleEnum) -> tuple[str, str]:
+    """Get HTML content to be web-scraped later.
+
+    This loads meta page for the hero on Dota2ProTracker for the demanded role
+    and gets content for "Builds" and "Item Stats" sub-tabs.
+    """
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         url = f"https://dota2protracker.com/hero/{hero.loc_name}"
         page.goto(url, wait_until="networkidle")
 
+        # Select proper Role tab, it will open "Builds" sub-tab by default;
         # A bit hacky but it seems D2PT doubles labels for buttons so `f'{role} {role}'` works;
-        # Select proper Role, it will open "Builds" tab by default
         page.get_by_role("button", name=f"{role} {role}").click()
-        time.sleep(5.0)
+        time.sleep(5.0)  # This is needed, the data is slow to load.
         builds_html = page.content()
 
         # Item Stats tab
         page.get_by_role("button", name="Item Stats").click()
-        time.sleep(5.0)
+        time.sleep(5.0)  # This is needed, the data is slow to load.
         item_stats_html = page.content()
         browser.close()
     return builds_html, item_stats_html
 
 
 def save_soup(soup: BeautifulSoup) -> None:
+    """Save soup to a local file for easier inspection in a text editor."""
     with pathlib.Path("./.to_delete/out.html").open("w", encoding="utf-8") as f:
         print(soup.prettify(), file=f)
 
 
 def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
-    """
-    Docstring for web_scrape_meta_items
+    """Web-scrape meta items from supplied HTML content.
+
+    Meta Items should include item names, their purchase rate and average time of purchase.
+    This data is used to group and sort items into the Dota 2 item builds.
 
     Warning
     -------
@@ -109,7 +117,7 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
             # For some reason, D2PT does NOT include these items into Item Stats tab;
             # But I mean, they are still important;
             if item_name in {
-                "aghanims_shard",
+                "aghanims_shard",  # I'm not really sure how to handle Aghanims Shard situation `purchase_rate`` wise
                 "magic_wand",
                 "bracer",
                 "null_talisman",
@@ -135,29 +143,32 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
     return sorted(meta_items, key=itemgetter(1), reverse=True)
 
 
-def open_build_file(hero: api.Hero) -> tuple[vdf.VDFDict, pathlib.Path]:
-    # Find the `.build` file for our specific hero
+def open_item_build(hero: api.Hero) -> tuple[vdf.VDFDict, pathlib.Path]:
+    """Open local `.build` file for the hero."""
     for file in pathlib.Path(rf"C:\Program Files (x86)\Steam\userdata\{FRIEND_ID}\570\remote\guides").iterdir():
         if file.name.startswith(hero.slug_name):
             guide_path = file
             break
     else:
+        # I'm being extremely lazy with this one;
         msg = f"Please, create a hero guide for hero {hero.loc_name} manually first."
         raise errors.MyError(msg)
 
-    # Open `.build` file
     with guide_path.open(encoding="utf-8") as f:
         return vdf.parse(f, mapper=vdf.VDFDict), guide_path
 
 
 def get_patch_number() -> str:
+    """Get current patch number for future reference."""
     endpoint = "https://www.dota2.com/datafeed/patchnoteslist"
     response = requests.get(endpoint, timeout=20)
     data = response.json()
     return data["patches"][-1]["patch_number"]
 
 
-def edit_the_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleEnum) -> vdf.VDFDict:
+def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleEnum) -> vdf.VDFDict:
+    """Edit item build using meta items data."""
+
     # Title
     build["guidedata"][0, "Title"] = (
         f"Updated: {datetime.datetime.now(tz=datetime.UTC).strftime('%d %b %y')}; {get_patch_number()}"
@@ -195,11 +206,16 @@ def edit_the_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleEn
 
 
 def export(build: vdf.VDFDict, guide_path: pathlib.Path) -> None:
+    """Save the build to the local file in steam folder."""
     with guide_path.open("w", encoding="utf-8") as f:
         vdf.dump(build, f, pretty=True)
 
 
-def create_build(hero: api.Hero, role: enums.RoleEnum) -> None:
+def create_item_build(hero: api.Hero, role: enums.RoleEnum) -> None:
+    """Create the item build for the hero + role pairing.
+
+    This function calls other functions in a proper sequence.
+    """
     builds_html, item_stats_html = get_html(hero, role)
     try:
         meta_items = web_scrape_meta_items(builds_html, item_stats_html)
@@ -207,32 +223,44 @@ def create_build(hero: api.Hero, role: enums.RoleEnum) -> None:
         log.exception("Failed to make a build for hero %s: Meta items were not found", hero)
         raise
 
-    build, guide_path = open_build_file(hero)
-    build = edit_the_build(build, meta_items, role)
+    build, guide_path = open_item_build(hero)
+    build = edit_item_build(build, meta_items, role)
     export(build, guide_path)
 
 
-@click.group()
-def cli() -> None:
-    pass
+@click.group(invoke_without_command=True)
+@click.pass_context
+def cli(ctx: click.Context) -> None:
+    """Main CLI command.
+
+    Usage
+    -----
+    * uv run main.py
+    """
+    if ctx.invoked_subcommand is None:
+        all_heroes = api.get_or_fetch_heroes()
+
+        for hero, role in CONFIG_HEROES.items():
+            try:
+                create_item_build(all_heroes[hero], role)
+            except errors.MyError:
+                # if failed to make a build - skip the hero;
+                continue
+
+        log.info("✅ Done creating builds.")
 
 
 @cli.command()
-def main() -> None:
-    all_heroes = api.get_or_fetch_heroes()
-
-    for hero, role in CONFIG_HEROES:
-        try:
-            create_build(all_heroes[hero], role)
-        except errors.MyError:
-            continue
-
-    log.info("✅ Done creating builds.")
-
-
-@cli.command(name="draft")
 def draft() -> None:
-    pass
+    """Draft CLI command.
+
+    I lazily use it for some sandbox playground purposes.
+
+    Usage
+    -----
+    * uv run main.py draft
+    """
+    log.info("✅ Done executing draft.")
 
 
 if __name__ == "__main__":
