@@ -117,7 +117,8 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
             # For some reason, D2PT does NOT include these items into Item Stats tab;
             # But I mean, they are still important;
             if item_name in {
-                "aghanims_shard",  # I'm not really sure how to handle Aghanims Shard situation `purchase_rate`` wise
+                "aghanims_shard",  # I'm not really sure how to handle Aghanims Shard situation `purchase_rate` wise
+                "bottle",
                 "magic_wand",
                 "bracer",
                 "null_talisman",
