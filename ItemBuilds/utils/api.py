@@ -46,6 +46,9 @@ class Hero:
     slug_name: str
     loc_name: str
 
+    def __str__(self) -> str:
+        return self.loc_name
+
     def __repr__(self) -> str:
         return f"<class Hero id={self.id} name={self.loc_name}>"
 

@@ -12,6 +12,7 @@ import requests
 import vdf
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
+from tqdm import tqdm
 
 from config import CONFIG_HEROES, FRIEND_ID
 from utils import api, enums, errors
@@ -103,7 +104,7 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
             log.warning("tag is empty for item %s", item)
 
     if not meta_items:
-        msg = "Somehow found zero meta items."
+        msg = "Somehow Web Scraping failed to find meta items on the page."
         raise errors.MyError(msg)
 
     # 2. Builds
@@ -114,7 +115,7 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
             # 1. Item Name
             item_name = str(tag["src"]).removesuffix(".png").rsplit("/", 1)[-1]
 
-            # For some reason, D2PT does NOT include these items into Item Stats tab;
+            # For some reason(-s), D2PT does NOT include these items into Item Stats tab;
             # But I mean, they are still important;
             if item_name in {
                 "aghanims_shard",  # I'm not really sure how to handle Aghanims Shard situation `purchase_rate` wise
@@ -221,7 +222,7 @@ def create_item_build(hero: api.Hero, role: enums.RoleEnum) -> None:
     try:
         meta_items = web_scrape_meta_items(builds_html, item_stats_html)
     except errors.MyError:
-        log.exception("Failed to make a build for hero %s: Meta items were not found", hero)
+        log.warning("⚠️ Failed to make a build for hero %s: Meta items were not found", hero)
         raise
 
     build, guide_path = open_item_build(hero)
@@ -241,7 +242,8 @@ def cli(ctx: click.Context) -> None:
     if ctx.invoked_subcommand is None:
         all_heroes = api.get_or_fetch_heroes()
 
-        for hero, role in CONFIG_HEROES.items():
+        for hero, role in (progress_bar := tqdm(CONFIG_HEROES.items(), unit="hero", colour="#9678B6")):
+            progress_bar.set_postfix_str(f'Current hero: {hero.name}')
             try:
                 create_item_build(all_heroes[hero], role)
             except errors.MyError:
@@ -261,6 +263,7 @@ def draft() -> None:
     -----
     * uv run main.py draft
     """
+
     log.info("✅ Done executing draft.")
 
 
