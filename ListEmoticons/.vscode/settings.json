@@ -1,0 +1,9 @@
+{
+    // WARNING !
+    // DO NOT SHARE ANY SENSITIVE INFG (i.e. EXTENSION PASSWORD SETTINGS) IN THIS FILE.
+    // IT IS NOT GIT IGNORED.
+    "cSpell.words": [
+        "vtex",
+        "steamctl"
+    ]
+}

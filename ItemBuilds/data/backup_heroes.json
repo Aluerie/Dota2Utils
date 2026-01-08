@@ -1,0 +1,640 @@
+{
+    "last_updated": "2026-01-07 22:06:18.676950+00:00",
+    "data": {
+        "1": {
+            "id": 1,
+            "slug_name": "antimage",
+            "loc_name": "Anti-Mage"
+        },
+        "2": {
+            "id": 2,
+            "slug_name": "axe",
+            "loc_name": "Axe"
+        },
+        "3": {
+            "id": 3,
+            "slug_name": "bane",
+            "loc_name": "Bane"
+        },
+        "4": {
+            "id": 4,
+            "slug_name": "bloodseeker",
+            "loc_name": "Bloodseeker"
+        },
+        "5": {
+            "id": 5,
+            "slug_name": "crystal_maiden",
+            "loc_name": "Crystal Maiden"
+        },
+        "6": {
+            "id": 6,
+            "slug_name": "drow_ranger",
+            "loc_name": "Drow Ranger"
+        },
+        "7": {
+            "id": 7,
+            "slug_name": "earthshaker",
+            "loc_name": "Earthshaker"
+        },
+        "8": {
+            "id": 8,
+            "slug_name": "juggernaut",
+            "loc_name": "Juggernaut"
+        },
+        "9": {
+            "id": 9,
+            "slug_name": "mirana",
+            "loc_name": "Mirana"
+        },
+        "10": {
+            "id": 10,
+            "slug_name": "morphling",
+            "loc_name": "Morphling"
+        },
+        "11": {
+            "id": 11,
+            "slug_name": "nevermore",
+            "loc_name": "Shadow Fiend"
+        },
+        "12": {
+            "id": 12,
+            "slug_name": "phantom_lancer",
+            "loc_name": "Phantom Lancer"
+        },
+        "13": {
+            "id": 13,
+            "slug_name": "puck",
+            "loc_name": "Puck"
+        },
+        "14": {
+            "id": 14,
+            "slug_name": "pudge",
+            "loc_name": "Pudge"
+        },
+        "15": {
+            "id": 15,
+            "slug_name": "razor",
+            "loc_name": "Razor"
+        },
+        "16": {
+            "id": 16,
+            "slug_name": "sand_king",
+            "loc_name": "Sand King"
+        },
+        "17": {
+            "id": 17,
+            "slug_name": "storm_spirit",
+            "loc_name": "Storm Spirit"
+        },
+        "18": {
+            "id": 18,
+            "slug_name": "sven",
+            "loc_name": "Sven"
+        },
+        "19": {
+            "id": 19,
+            "slug_name": "tiny",
+            "loc_name": "Tiny"
+        },
+        "20": {
+            "id": 20,
+            "slug_name": "vengefulspirit",
+            "loc_name": "Vengeful Spirit"
+        },
+        "21": {
+            "id": 21,
+            "slug_name": "windrunner",
+            "loc_name": "Windranger"
+        },
+        "22": {
+            "id": 22,
+            "slug_name": "zuus",
+            "loc_name": "Zeus"
+        },
+        "23": {
+            "id": 23,
+            "slug_name": "kunkka",
+            "loc_name": "Kunkka"
+        },
+        "25": {
+            "id": 25,
+            "slug_name": "lina",
+            "loc_name": "Lina"
+        },
+        "26": {
+            "id": 26,
+            "slug_name": "lion",
+            "loc_name": "Lion"
+        },
+        "27": {
+            "id": 27,
+            "slug_name": "shadow_shaman",
+            "loc_name": "Shadow Shaman"
+        },
+        "28": {
+            "id": 28,
+            "slug_name": "slardar",
+            "loc_name": "Slardar"
+        },
+        "29": {
+            "id": 29,
+            "slug_name": "tidehunter",
+            "loc_name": "Tidehunter"
+        },
+        "30": {
+            "id": 30,
+            "slug_name": "witch_doctor",
+            "loc_name": "Witch Doctor"
+        },
+        "31": {
+            "id": 31,
+            "slug_name": "lich",
+            "loc_name": "Lich"
+        },
+        "32": {
+            "id": 32,
+            "slug_name": "riki",
+            "loc_name": "Riki"
+        },
+        "33": {
+            "id": 33,
+            "slug_name": "enigma",
+            "loc_name": "Enigma"
+        },
+        "34": {
+            "id": 34,
+            "slug_name": "tinker",
+            "loc_name": "Tinker"
+        },
+        "35": {
+            "id": 35,
+            "slug_name": "sniper",
+            "loc_name": "Sniper"
+        },
+        "36": {
+            "id": 36,
+            "slug_name": "necrolyte",
+            "loc_name": "Necrophos"
+        },
+        "37": {
+            "id": 37,
+            "slug_name": "warlock",
+            "loc_name": "Warlock"
+        },
+        "38": {
+            "id": 38,
+            "slug_name": "beastmaster",
+            "loc_name": "Beastmaster"
+        },
+        "39": {
+            "id": 39,
+            "slug_name": "queenofpain",
+            "loc_name": "Queen of Pain"
+        },
+        "40": {
+            "id": 40,
+            "slug_name": "venomancer",
+            "loc_name": "Venomancer"
+        },
+        "41": {
+            "id": 41,
+            "slug_name": "faceless_void",
+            "loc_name": "Faceless Void"
+        },
+        "42": {
+            "id": 42,
+            "slug_name": "skeleton_king",
+            "loc_name": "Wraith King"
+        },
+        "43": {
+            "id": 43,
+            "slug_name": "death_prophet",
+            "loc_name": "Death Prophet"
+        },
+        "44": {
+            "id": 44,
+            "slug_name": "phantom_assassin",
+            "loc_name": "Phantom Assassin"
+        },
+        "45": {
+            "id": 45,
+            "slug_name": "pugna",
+            "loc_name": "Pugna"
+        },
+        "46": {
+            "id": 46,
+            "slug_name": "templar_assassin",
+            "loc_name": "Templar Assassin"
+        },
+        "47": {
+            "id": 47,
+            "slug_name": "viper",
+            "loc_name": "Viper"
+        },
+        "48": {
+            "id": 48,
+            "slug_name": "luna",
+            "loc_name": "Luna"
+        },
+        "49": {
+            "id": 49,
+            "slug_name": "dragon_knight",
+            "loc_name": "Dragon Knight"
+        },
+        "50": {
+            "id": 50,
+            "slug_name": "dazzle",
+            "loc_name": "Dazzle"
+        },
+        "51": {
+            "id": 51,
+            "slug_name": "rattletrap",
+            "loc_name": "Clockwerk"
+        },
+        "52": {
+            "id": 52,
+            "slug_name": "leshrac",
+            "loc_name": "Leshrac"
+        },
+        "53": {
+            "id": 53,
+            "slug_name": "furion",
+            "loc_name": "Nature's Prophet"
+        },
+        "54": {
+            "id": 54,
+            "slug_name": "life_stealer",
+            "loc_name": "Lifestealer"
+        },
+        "55": {
+            "id": 55,
+            "slug_name": "dark_seer",
+            "loc_name": "Dark Seer"
+        },
+        "56": {
+            "id": 56,
+            "slug_name": "clinkz",
+            "loc_name": "Clinkz"
+        },
+        "57": {
+            "id": 57,
+            "slug_name": "omniknight",
+            "loc_name": "Omniknight"
+        },
+        "58": {
+            "id": 58,
+            "slug_name": "enchantress",
+            "loc_name": "Enchantress"
+        },
+        "59": {
+            "id": 59,
+            "slug_name": "huskar",
+            "loc_name": "Huskar"
+        },
+        "60": {
+            "id": 60,
+            "slug_name": "night_stalker",
+            "loc_name": "Night Stalker"
+        },
+        "61": {
+            "id": 61,
+            "slug_name": "broodmother",
+            "loc_name": "Broodmother"
+        },
+        "62": {
+            "id": 62,
+            "slug_name": "bounty_hunter",
+            "loc_name": "Bounty Hunter"
+        },
+        "63": {
+            "id": 63,
+            "slug_name": "weaver",
+            "loc_name": "Weaver"
+        },
+        "64": {
+            "id": 64,
+            "slug_name": "jakiro",
+            "loc_name": "Jakiro"
+        },
+        "65": {
+            "id": 65,
+            "slug_name": "batrider",
+            "loc_name": "Batrider"
+        },
+        "66": {
+            "id": 66,
+            "slug_name": "chen",
+            "loc_name": "Chen"
+        },
+        "67": {
+            "id": 67,
+            "slug_name": "spectre",
+            "loc_name": "Spectre"
+        },
+        "68": {
+            "id": 68,
+            "slug_name": "ancient_apparition",
+            "loc_name": "Ancient Apparition"
+        },
+        "69": {
+            "id": 69,
+            "slug_name": "doom_bringer",
+            "loc_name": "Doom"
+        },
+        "70": {
+            "id": 70,
+            "slug_name": "ursa",
+            "loc_name": "Ursa"
+        },
+        "71": {
+            "id": 71,
+            "slug_name": "spirit_breaker",
+            "loc_name": "Spirit Breaker"
+        },
+        "72": {
+            "id": 72,
+            "slug_name": "gyrocopter",
+            "loc_name": "Gyrocopter"
+        },
+        "73": {
+            "id": 73,
+            "slug_name": "alchemist",
+            "loc_name": "Alchemist"
+        },
+        "74": {
+            "id": 74,
+            "slug_name": "invoker",
+            "loc_name": "Invoker"
+        },
+        "75": {
+            "id": 75,
+            "slug_name": "silencer",
+            "loc_name": "Silencer"
+        },
+        "76": {
+            "id": 76,
+            "slug_name": "obsidian_destroyer",
+            "loc_name": "Outworld Devourer"
+        },
+        "77": {
+            "id": 77,
+            "slug_name": "lycan",
+            "loc_name": "Lycan"
+        },
+        "78": {
+            "id": 78,
+            "slug_name": "brewmaster",
+            "loc_name": "Brewmaster"
+        },
+        "79": {
+            "id": 79,
+            "slug_name": "shadow_demon",
+            "loc_name": "Shadow Demon"
+        },
+        "80": {
+            "id": 80,
+            "slug_name": "lone_druid",
+            "loc_name": "Lone Druid"
+        },
+        "81": {
+            "id": 81,
+            "slug_name": "chaos_knight",
+            "loc_name": "Chaos Knight"
+        },
+        "82": {
+            "id": 82,
+            "slug_name": "meepo",
+            "loc_name": "Meepo"
+        },
+        "83": {
+            "id": 83,
+            "slug_name": "treant",
+            "loc_name": "Treant Protector"
+        },
+        "84": {
+            "id": 84,
+            "slug_name": "ogre_magi",
+            "loc_name": "Ogre Magi"
+        },
+        "85": {
+            "id": 85,
+            "slug_name": "undying",
+            "loc_name": "Undying"
+        },
+        "86": {
+            "id": 86,
+            "slug_name": "rubick",
+            "loc_name": "Rubick"
+        },
+        "87": {
+            "id": 87,
+            "slug_name": "disruptor",
+            "loc_name": "Disruptor"
+        },
+        "88": {
+            "id": 88,
+            "slug_name": "nyx_assassin",
+            "loc_name": "Nyx Assassin"
+        },
+        "89": {
+            "id": 89,
+            "slug_name": "naga_siren",
+            "loc_name": "Naga Siren"
+        },
+        "90": {
+            "id": 90,
+            "slug_name": "keeper_of_the_light",
+            "loc_name": "Keeper of the Light"
+        },
+        "91": {
+            "id": 91,
+            "slug_name": "wisp",
+            "loc_name": "Io"
+        },
+        "92": {
+            "id": 92,
+            "slug_name": "visage",
+            "loc_name": "Visage"
+        },
+        "93": {
+            "id": 93,
+            "slug_name": "slark",
+            "loc_name": "Slark"
+        },
+        "94": {
+            "id": 94,
+            "slug_name": "medusa",
+            "loc_name": "Medusa"
+        },
+        "95": {
+            "id": 95,
+            "slug_name": "troll_warlord",
+            "loc_name": "Troll Warlord"
+        },
+        "96": {
+            "id": 96,
+            "slug_name": "centaur",
+            "loc_name": "Centaur Warrunner"
+        },
+        "97": {
+            "id": 97,
+            "slug_name": "magnataur",
+            "loc_name": "Magnus"
+        },
+        "98": {
+            "id": 98,
+            "slug_name": "shredder",
+            "loc_name": "Timbersaw"
+        },
+        "99": {
+            "id": 99,
+            "slug_name": "bristleback",
+            "loc_name": "Bristleback"
+        },
+        "100": {
+            "id": 100,
+            "slug_name": "tusk",
+            "loc_name": "Tusk"
+        },
+        "101": {
+            "id": 101,
+            "slug_name": "skywrath_mage",
+            "loc_name": "Skywrath Mage"
+        },
+        "102": {
+            "id": 102,
+            "slug_name": "abaddon",
+            "loc_name": "Abaddon"
+        },
+        "103": {
+            "id": 103,
+            "slug_name": "elder_titan",
+            "loc_name": "Elder Titan"
+        },
+        "104": {
+            "id": 104,
+            "slug_name": "legion_commander",
+            "loc_name": "Legion Commander"
+        },
+        "105": {
+            "id": 105,
+            "slug_name": "techies",
+            "loc_name": "Techies"
+        },
+        "106": {
+            "id": 106,
+            "slug_name": "ember_spirit",
+            "loc_name": "Ember Spirit"
+        },
+        "107": {
+            "id": 107,
+            "slug_name": "earth_spirit",
+            "loc_name": "Earth Spirit"
+        },
+        "108": {
+            "id": 108,
+            "slug_name": "abyssal_underlord",
+            "loc_name": "Underlord"
+        },
+        "109": {
+            "id": 109,
+            "slug_name": "terrorblade",
+            "loc_name": "Terrorblade"
+        },
+        "110": {
+            "id": 110,
+            "slug_name": "phoenix",
+            "loc_name": "Phoenix"
+        },
+        "111": {
+            "id": 111,
+            "slug_name": "oracle",
+            "loc_name": "Oracle"
+        },
+        "112": {
+            "id": 112,
+            "slug_name": "winter_wyvern",
+            "loc_name": "Winter Wyvern"
+        },
+        "113": {
+            "id": 113,
+            "slug_name": "arc_warden",
+            "loc_name": "Arc Warden"
+        },
+        "114": {
+            "id": 114,
+            "slug_name": "monkey_king",
+            "loc_name": "Monkey King"
+        },
+        "119": {
+            "id": 119,
+            "slug_name": "dark_willow",
+            "loc_name": "Dark Willow"
+        },
+        "120": {
+            "id": 120,
+            "slug_name": "pangolier",
+            "loc_name": "Pangolier"
+        },
+        "121": {
+            "id": 121,
+            "slug_name": "grimstroke",
+            "loc_name": "Grimstroke"
+        },
+        "123": {
+            "id": 123,
+            "slug_name": "hoodwink",
+            "loc_name": "Hoodwink"
+        },
+        "126": {
+            "id": 126,
+            "slug_name": "void_spirit",
+            "loc_name": "Void Spirit"
+        },
+        "128": {
+            "id": 128,
+            "slug_name": "snapfire",
+            "loc_name": "Snapfire"
+        },
+        "129": {
+            "id": 129,
+            "slug_name": "mars",
+            "loc_name": "Mars"
+        },
+        "131": {
+            "id": 131,
+            "slug_name": "ringmaster",
+            "loc_name": "Ring Master"
+        },
+        "135": {
+            "id": 135,
+            "slug_name": "dawnbreaker",
+            "loc_name": "Dawnbreaker"
+        },
+        "136": {
+            "id": 136,
+            "slug_name": "marci",
+            "loc_name": "Marci"
+        },
+        "137": {
+            "id": 137,
+            "slug_name": "primal_beast",
+            "loc_name": "Primal Beast"
+        },
+        "138": {
+            "id": 138,
+            "slug_name": "muerta",
+            "loc_name": "Muerta"
+        },
+        "145": {
+            "id": 145,
+            "slug_name": "kez",
+            "loc_name": "Kez"
+        },
+        "155": {
+            "id": 155,
+            "slug_name": "largo",
+            "loc_name": "Largo"
+        }
+    }
+}
