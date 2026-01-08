@@ -21,3 +21,7 @@
 * [🧦 SocialFeed](./SocialFeed)
 
   Send messages into your User Feed Profile Widget. Valve removed UI to do it in the client, but it's still possible with a script like here.
+
+* [🔨 ItemBuilds](./ItemBuilds)
+
+  Import meta item builds from Dota 2 ProTracker right into your Dota 2 Client hero builds.
