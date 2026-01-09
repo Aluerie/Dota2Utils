@@ -110,6 +110,8 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
     # 2. Builds
     soup = BeautifulSoup(builds_html, "html.parser")
     soup_items = soup.find_all("div", attrs={"class": "flex p-2 items-center justify-start svelte-zh3yuz"})
+
+    start_core_assumption: float = 60.0
     for item in soup_items:
         if tag := item.find("img"):
             # 1. Item Name
@@ -127,9 +129,15 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
             }:
                 siblings = item.find_next_siblings()
                 # 2. Purchase Rate
+                # D2PT hides purchase rate for items that are marked as "CORE".
+                # Therefore let's make a bald assumption about their purchase rate.
+                # It doesn't match well with Item Stats tab, but it still lands just fine in the item builds.
                 purchase_rate = (
-                    55.0 if "CORE" in (pr := str(siblings[0].contents[0])) else float(pr.strip().removesuffix("%"))
+                    start_core_assumption
+                    if "CORE" in (pr := str(siblings[0].contents[0]))
+                    else float(pr.strip().removesuffix("%"))
                 )
+                start_core_assumption -= 1
                 # 3. Avg Time
                 if average_time_div := siblings[1].find("div"):
                     average_time = int(str(average_time_div.contents[0]).strip().removesuffix("m")) * 60
@@ -243,7 +251,7 @@ def cli(ctx: click.Context) -> None:
         all_heroes = api.get_or_fetch_heroes()
 
         for hero, role in (progress_bar := tqdm(CONFIG_HEROES.items(), unit="hero", colour="#9678B6")):
-            progress_bar.set_postfix_str(f'Current hero: {hero.name}')
+            progress_bar.set_postfix_str(f"Current hero: {hero.name}")
             try:
                 create_item_build(all_heroes[hero], role)
             except errors.MyError:

@@ -3,7 +3,7 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from steam.ext.dota2 import Client
+from steam.ext.dota2 import Client  # pyright: ignore[reportMissingTypeStubs]
 
 from config import STEAM_PASSWORD, STEAM_USERNAME
 
@@ -21,6 +21,19 @@ Colors your eyes with what's not there
 Fade into you
 Strange you never knew
 Fade into you
+I think it's strange you never knew
+A stranger light comes on slowly
+A stranger's heart without a home
+You put your hands into your head
+And then its smiles cover your heart
+Fade into you
+Strange you never knew
+Fade into you
+I think it's strange you never knew
+Fade into you
+Strange you never knew
+Fade into you
+I think it's strange you never knew
 I think it's strange you never knew"""
 
 MESSAGES_TO_POST = LYRICS.splitlines()[::-1]
