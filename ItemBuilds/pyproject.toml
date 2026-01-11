@@ -60,7 +60,7 @@ flake8-quotes.inline-quotes = "double"
 quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false
-line-ending = "auto"
+line-ending = "lf"
 
 [dependency-groups]
 dev = [

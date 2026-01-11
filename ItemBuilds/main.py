@@ -52,22 +52,37 @@ def get_html(hero: api.Hero, role: enums.RoleEnum) -> tuple[str, str]:
         url = f"https://dota2protracker.com/hero/{hero.loc_name}"
         page.goto(url, wait_until="networkidle")
 
-        # Select proper Role tab, it will open "Builds" sub-tab by default;
-        # A bit hacky but it seems D2PT doubles labels for buttons so `f'{role} {role}'` works;
+        # So currently a page like https://dota2protracker.com/hero/Luna
+        # looks like this
+        # --------------------------------------------------------------
+        #                          LUNA
+        # 6 Tole Buttons: All Roles |*Carry*| Mid | Offlane | Support | Hard Support
+        # --------------------------------------------------------------
+        # * Some Stats *
+        # --------------------------------------------------------------
+        # 5 Analysis-related Sub-tabs: Builds | Meta Analysis | Matchups & Synergies | Item Stats | Off-Meta Builds
+        # --------------------------------------------------------------
+        #
+        # We are interested in clicking those things:
+        #   1. A proper Role button;
+        #   2. "Builds" (loads by default) and "Item Stats" sub-tabs;
+
+        # 1. Select proper Role button, it will open "Builds" sub-tab by default;
+        # A bit hacky but it seems D2PT doubles labels for buttons so `f"{role} {role}"` works;
         page.get_by_role("button", name=f"{role} {role}").click()
-        time.sleep(5.0)  # This is needed, the data is slow to load.
+        time.sleep(5.0)  # Needed, the data is slow to load (Otherwise shows "Loading" string instead of the data).
         builds_html = page.content()
 
-        # Item Stats tab
+        # 2. Item Stats sub-tab
         page.get_by_role("button", name="Item Stats").click()
-        time.sleep(5.0)  # This is needed, the data is slow to load.
+        time.sleep(5.0)  # Needed, the data is slow to load.
         item_stats_html = page.content()
         browser.close()
     return builds_html, item_stats_html
 
 
 def save_soup(soup: BeautifulSoup) -> None:
-    """Save soup to a local file for easier inspection in a text editor."""
+    """Save soup to a local file (i.e. for an easier inspection in a text editor)."""
     with pathlib.Path("./.to_delete/out.html").open("w", encoding="utf-8") as f:
         print(soup.prettify(), file=f)
 
@@ -75,15 +90,16 @@ def save_soup(soup: BeautifulSoup) -> None:
 def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
     """Web-scrape meta items from supplied HTML content.
 
-    Meta Items should include item names, their purchase rate and average time of purchase.
-    This data is used to group and sort items into the Dota 2 item builds.
+    Meta Items data should include item names, their purchase rate and average time of purchase.
+    It is used to group and sort items in the Dota 2's in-game item build guides.
 
     Warning
     -------
-    EXTREMELY VOLATILE CODE. IF D2PT CHANGES ANYTHING - IT'S COOKED.
+    EXTREMELY VOLATILE CODE.
+    IF D2PT CHANGES ANYTHING - IT'S COOKED.
     """
 
-    # 1. Item Stats
+    # 1. "Item Stats" sub-tab
     soup = BeautifulSoup(item_stats_html, "html.parser")
     soup_items = soup.find_all("div", attrs={"class": "flex p-2 items-center justify-start items-center svelte-zh3yuz"})
 
@@ -96,8 +112,8 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
             # 2. Purchase Rate
             purchase_rate = float(str(siblings[1].contents[0]).strip().removesuffix("%"))
             # 3. Avg Time
-            m, s = str(siblings[3].contents[0]).strip().split(":")
-            avg_time = 60 * int(m) + int(s)
+            minutes, seconds = str(siblings[3].contents[0]).strip().split(":")
+            avg_time = 60 * int(minutes) + int(seconds)
             log.debug("%s", (f"item_{item_name}", purchase_rate, avg_time))
             meta_items.append((f"item_{item_name}", purchase_rate, avg_time))
         else:
@@ -107,7 +123,7 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
         msg = "Somehow Web Scraping failed to find meta items on the page."
         raise errors.MyError(msg)
 
-    # 2. Builds
+    # 2. "Builds" sub-tab
     soup = BeautifulSoup(builds_html, "html.parser")
     soup_items = soup.find_all("div", attrs={"class": "flex p-2 items-center justify-start svelte-zh3yuz"})
 
@@ -117,10 +133,9 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
             # 1. Item Name
             item_name = str(tag["src"]).removesuffix(".png").rsplit("/", 1)[-1]
 
-            # For some reason(-s), D2PT does NOT include these items into Item Stats tab;
-            # But I mean, they are still important;
+            # For some reason(-s), D2PT does NOT include these items into "Item Stats" sub-tab;
             if item_name in {
-                "aghanims_shard",  # I'm not really sure how to handle Aghanims Shard situation `purchase_rate` wise
+                "aghanims_shard",  # Not sure how to handle Aghanims Shard situation `purchase_rate` wise
                 "bottle",
                 "magic_wand",
                 "bracer",
@@ -196,6 +211,7 @@ def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleE
     meta: list[str] = []
     low_percent: list[str] = []
     for item_name, purchase_rate, avg_time in meta_items:
+        # The numbers in the following conditions are subject to change
         if avg_time < 15 * 60 + 30 and purchase_rate > 5:
             # Items bought before 15:30 will be considered as "Early"
             early.append(item_name)
@@ -203,7 +219,7 @@ def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleE
             # Items belonging to (1.3%, 3%) group are "Low Percent";
             low_percent.append(item_name)
         elif purchase_rate < 1.3:
-            # Items below 1.3% are ignored;
+            # Items below 1.3% are ignored; People start buying all kinds of crap here.
             continue
         else:
             # The rest are meta;
