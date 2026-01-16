@@ -24,7 +24,7 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
 
-CONSUMABLES: tuple[str, ...] = (
+CONSUMABLES: list[str] = [
     "item_tpscroll",
     "item_flask",
     "item_tango",
@@ -37,7 +37,7 @@ CONSUMABLES: tuple[str, ...] = (
     "item_ward_sentry",
     "item_dust",
     "item_smoke_of_deceit",
-)
+]
 
 
 def get_html(hero: api.Hero, role: enums.RoleEnum) -> tuple[str, str]:
@@ -52,16 +52,16 @@ def get_html(hero: api.Hero, role: enums.RoleEnum) -> tuple[str, str]:
         url = f"https://dota2protracker.com/hero/{hero.loc_name}"
         page.goto(url, wait_until="networkidle")
 
-        # So currently a page like https://dota2protracker.com/hero/Luna
+        # So currently a hero page (for example, https://dota2protracker.com/hero/Luna)
         # looks like this
-        # --------------------------------------------------------------
-        #                          LUNA
-        # 6 Tole Buttons: All Roles |*Carry*| Mid | Offlane | Support | Hard Support
-        # --------------------------------------------------------------
+        # ---------------------------------------------------------------------
+        #                                  LUNA
+        #      All Roles | *Carry* | Mid | Offlane | Support | Hard Support     <-- 6 Role Buttons
+        # ---------------------------------------------------------------------
         # * Some Stats *
-        # --------------------------------------------------------------
-        # 5 Analysis-related Sub-tabs: Builds | Meta Analysis | Matchups & Synergies | Item Stats | Off-Meta Builds
-        # --------------------------------------------------------------
+        # ---------------------------------------------------------------------
+        # Builds | Meta Analysis | Matchups & Synergies | Item Stats | Off-Meta <-- 5 Analysis-related Sub-tabs
+        # ---------------------------------------------------------------------
         #
         # We are interested in clicking those things:
         #   1. A proper Role button;
@@ -127,7 +127,7 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
     soup = BeautifulSoup(builds_html, "html.parser")
     soup_items = soup.find_all("div", attrs={"class": "flex p-2 items-center justify-start svelte-zh3yuz"})
 
-    start_core_assumption: float = 60.0
+    start_core_assumption: float = 60.0  # let's assume that the highest "core" item has 60% purchase rate;
     for item in soup_items:
         if tag := item.find("img"):
             # 1. Item Name
@@ -135,7 +135,13 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
 
             # For some reason(-s), D2PT does NOT include these items into "Item Stats" sub-tab;
             if item_name in {
-                "aghanims_shard",  # Not sure how to handle Aghanims Shard situation `purchase_rate` wise
+                # Not sure how to handle Aghanims Shard situation `purchase_rate` wise
+                # It's unclear how to separate actual purchases versus tormentor drops stats-wise.
+                # It's also useless to separate them because people may force tormentor
+                # because it drops good shards as one of the reasons.
+                # So usually high purchase rate for aghanims shard means that
+                # the shard is either bought or dropped by tormentor often enough.
+                "aghanims_shard",
                 "bottle",
                 "magic_wand",
                 "bracer",
@@ -146,7 +152,7 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
                 # 2. Purchase Rate
                 # D2PT hides purchase rate for items that are marked as "CORE".
                 # Therefore let's make a bald assumption about their purchase rate.
-                # It doesn't match well with Item Stats tab, but it still lands just fine in the item builds.
+                # It doesn't match well with "Item Stats" tab, but it still lands just fine in the item builds.
                 purchase_rate = (
                     start_core_assumption
                     if "CORE" in (pr := str(siblings[0].contents[0]))
@@ -204,30 +210,34 @@ def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleE
 
     # Item Build
     build["guidedata"]["ItemBuild"][0, "Items"] = vdf.VDFDict([])
-    build["guidedata"]["ItemBuild"]["Items"]["Consumables"] = render_vdf_dict(CONSUMABLES)
+
+    meta_name = f"Meta: {role}"
+    categories: dict[str, list[str]] = {
+        "Consumables": CONSUMABLES,
+        "Early": [],
+        meta_name: [],
+        "Low Percent": [],
+    }
 
     # Sort Meta Items
-    early: list[str] = []
-    meta: list[str] = []
-    low_percent: list[str] = []
     for item_name, purchase_rate, avg_time in meta_items:
         # The numbers in the following conditions are subject to change
         if avg_time < 15 * 60 + 30 and purchase_rate > 5:
             # Items bought before 15:30 will be considered as "Early"
-            early.append(item_name)
+            categories["Early"].append(item_name)
         elif 1.3 < purchase_rate < 3:
             # Items belonging to (1.3%, 3%) group are "Low Percent";
-            low_percent.append(item_name)
+            categories["Low Percent"].append(item_name)
         elif purchase_rate < 1.3:
             # Items below 1.3% are ignored; People start buying all kinds of crap here.
             continue
         else:
             # The rest are meta;
-            meta.append(item_name)
+            categories[meta_name].append(item_name)
 
-    build["guidedata"]["ItemBuild"]["Items"]["Early"] = render_vdf_dict(early)
-    build["guidedata"]["ItemBuild"]["Items"][f"Meta: {role}"] = render_vdf_dict(meta)
-    build["guidedata"]["ItemBuild"]["Items"]["Low Percent"] = render_vdf_dict(low_percent)
+    for category, items in categories.items():
+        build["guidedata"]["ItemBuild"]["Items"][category] = render_vdf_dict(items)
+
     return build
 
 
