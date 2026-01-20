@@ -163,7 +163,7 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
                 if average_time_div := siblings[1].find("div"):
                     average_time = int(str(average_time_div.contents[0]).strip().removesuffix("m")) * 60
                 else:
-                    msg = "Empty"
+                    msg = "average_time appears to be empty"
                     raise errors.MyError(msg)
 
                 log.debug("%s", (f"item_{item_name}", purchase_rate, average_time))
@@ -253,12 +253,7 @@ def create_item_build(hero: api.Hero, role: enums.RoleEnum) -> None:
     This function calls other functions in a proper sequence.
     """
     builds_html, item_stats_html = get_html(hero, role)
-    try:
-        meta_items = web_scrape_meta_items(builds_html, item_stats_html)
-    except errors.MyError:
-        log.warning("⚠️ Failed to make a build for hero %s: Meta items were not found", hero)
-        raise
-
+    meta_items = web_scrape_meta_items(builds_html, item_stats_html)
     build, guide_path = open_item_build(hero)
     build = edit_item_build(build, meta_items, role)
     export(build, guide_path)
@@ -276,12 +271,20 @@ def cli(ctx: click.Context) -> None:
     if ctx.invoked_subcommand is None:
         all_heroes = api.get_or_fetch_heroes()
 
-        for hero, role in (progress_bar := tqdm(CONFIG_HEROES.items(), unit="hero", colour="#9678B6")):
+        for hero, role in (
+            progress_bar := tqdm(
+                CONFIG_HEROES.items(),
+                unit="hero",
+                colour="#9678B6",
+                bar_format="{l_bar}{bar:20}{r_bar}{bar:-20b}\n",
+            )
+        ):
             progress_bar.set_postfix_str(f"Current hero: {hero.name}")
             try:
                 create_item_build(all_heroes[hero], role)
-            except errors.MyError:
+            except errors.MyError as error:
                 # if failed to make a build - skip the hero;
+                log.warning("⚠️ Failed to make a build for hero %s: %s", hero, error)
                 continue
 
         log.info("✅ Done creating builds.")
