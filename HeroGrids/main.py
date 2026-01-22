@@ -149,21 +149,24 @@ class DefaultRolesGrid(HeroGridBase):
 
         # DELTA BETWEEN POSITIONS
         delta_pos = (MAX_Y - height * rows - last_row_h - ban_space) / (rows - 1)
+        arcana_y = (height + delta_pos) * 1 + 20
 
         super().__init__(
             hero_grid_json,
             config_index=0,
-            new_positions=(
-                {f"pos{i + 1}": Position(0, (height + delta_pos) * i, sep, height) for i in range(rows)}
-                | {
-                    "Turbo bans": Position(0, MAX_Y - last_row_h, turbo_bans_w, last_row_h),
-                    "Grind/Arcana/Style/D+/Etc": Position(turbo_bans_w, MAX_Y - last_row_h, sep - turbo_bans_w, last_row_h),
-                }
-            ),
+            new_positions={
+                "pos1": Position(0, 0, sep, height),
+                "pos2": Position(0, (height + delta_pos) * 1, sep / 2, height),
+                "pos3": Position(0, (height + delta_pos) * 2, sep / 2, height),
+                "pos4": Position(0, (height + delta_pos) * 3, sep / 2, height),
+                "pos5": Position(0, (height + delta_pos) * 4, sep / 2, height),
+                "Turbo bans": Position(0, MAX_Y - last_row_h, turbo_bans_w, last_row_h),
+                "Arcana Grind": Position(sep / 2, arcana_y, sep / 2, MAX_Y - arcana_y),
+            },
         )
 
     def fix_attribute_categories(self) -> None:
-        indexes = {"str": 5, "agi": 6, "int": 7, "all": -1}
+        indexes = {"str": 5, "agi": 6, "int": 7, "all": -2}
 
         all_hero_ids: list[int] = []
 

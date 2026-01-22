@@ -20,9 +20,9 @@ from utils import api, enums, errors
 if TYPE_CHECKING:
     type MetaItems = list[tuple[str, float, int]]
 
-log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-
+log = logging.getLogger(__name__)
+log.setLevel(logging.INFO)
 
 CONSUMABLES: list[str] = [
     "item_tpscroll",
@@ -191,19 +191,36 @@ def open_item_build(hero: api.Hero) -> tuple[vdf.VDFDict, pathlib.Path]:
 
 def get_patch_number() -> str:
     """Get current patch number for future reference."""
+    log.info("Getting Dota 2 current patch number")
     endpoint = "https://www.dota2.com/datafeed/patchnoteslist"
-    response = requests.get(endpoint, timeout=20)
+    for _ in range(3):
+        # why it loves erroring on the very first request ?!
+        try:
+            response = requests.get(endpoint, timeout=10)
+            break
+        except requests.ReadTimeout:
+            time.sleep(0.49)
+            continue
+    else:
+        msg = "Could not reach dota2.com to get the current patch number."
+        raise errors.MyError(msg)
+
     data = response.json()
     return data["patches"][-1]["patch_number"]
 
 
-def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleEnum) -> vdf.VDFDict:
+def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleEnum, current_patch: str) -> vdf.VDFDict:
     """Edit item build using meta items data."""
+    log.info("Editing the item build")
 
     # Title
     build["guidedata"][0, "Title"] = (
-        f"Updated: {datetime.datetime.now(tz=datetime.UTC).strftime('%d %b %y')}; {get_patch_number()}"
+        f"Updated: {datetime.datetime.now(tz=datetime.UTC).strftime('%d %b %y')}; {current_patch}"
     )
+    try:
+        my_saved: list[str] = build["guidedata"]["ItemBuild"]["Items"]["My additions"].get_all_for("item")
+    except KeyError:
+        my_saved = []
 
     def render_vdf_dict(items: list[str] | tuple[str, ...]) -> vdf.VDFDict:
         return vdf.VDFDict([("item", item) for item in items])
@@ -217,9 +234,11 @@ def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleE
         "Early": [],
         meta_name: [],
         "Low Percent": [],
+        "My additions": my_saved,
     }
 
-    # Sort Meta Items
+    # Sort Meta Items and assign them into either
+    # Early, meta_name or Low Percent category;
     for item_name, purchase_rate, avg_time in meta_items:
         # The numbers in the following conditions are subject to change
         if avg_time < 15 * 60 + 30 and purchase_rate > 5:
@@ -247,7 +266,7 @@ def export(build: vdf.VDFDict, guide_path: pathlib.Path) -> None:
         vdf.dump(build, f, pretty=True)
 
 
-def create_item_build(hero: api.Hero, role: enums.RoleEnum) -> None:
+def create_item_build(hero: api.Hero, role: enums.RoleEnum, current_patch: str) -> None:
     """Create the item build for the hero + role pairing.
 
     This function calls other functions in a proper sequence.
@@ -255,7 +274,7 @@ def create_item_build(hero: api.Hero, role: enums.RoleEnum) -> None:
     builds_html, item_stats_html = get_html(hero, role)
     meta_items = web_scrape_meta_items(builds_html, item_stats_html)
     build, guide_path = open_item_build(hero)
-    build = edit_item_build(build, meta_items, role)
+    build = edit_item_build(build, meta_items, role, current_patch)
     export(build, guide_path)
 
 
@@ -270,18 +289,19 @@ def cli(ctx: click.Context) -> None:
     """
     if ctx.invoked_subcommand is None:
         all_heroes = api.get_or_fetch_heroes()
+        current_patch = get_patch_number()
 
         for hero, role in (
             progress_bar := tqdm(
                 CONFIG_HEROES.items(),
                 unit="hero",
                 colour="#9678B6",
-                bar_format="{l_bar}{bar:20}{r_bar}{bar:-20b}\n",
+                bar_format="{l_bar}{bar:30}{r_bar}{bar:-30b}\n",
             )
         ):
             progress_bar.set_postfix_str(f"Current hero: {hero.name}")
             try:
-                create_item_build(all_heroes[hero], role)
+                create_item_build(all_heroes[hero], role, current_patch)
             except errors.MyError as error:
                 # if failed to make a build - skip the hero;
                 log.warning("⚠️ Failed to make a build for hero %s: %s", hero, error)
