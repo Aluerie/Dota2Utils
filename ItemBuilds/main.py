@@ -14,7 +14,6 @@ import requests
 import vdf
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
-from tqdm import tqdm
 
 from config import CONFIG_HEROES, FRIEND_ID
 from utils import api, enums, errors
@@ -231,7 +230,7 @@ def open_item_build(hero: api.OpendotaHero) -> tuple[vdf.VDFDict, pathlib.Path]:
 
 def get_patch_number() -> str:
     """Get current patch number for future reference."""
-    log.info("Getting Dota 2 current patch number")
+    log.info("🔴 Getting Dota 2 current patch number")
     endpoint = "https://www.dota2.com/datafeed/patchnoteslist"
     for _ in range(5):
         # why it loves erroring on the very first request ?! Valve, please.
@@ -246,6 +245,7 @@ def get_patch_number() -> str:
         raise errors.MyError(msg)
 
     data = response.json()
+    log.info("🔴 Fetched Dota 2 current patch number")
     return data["patches"][-1]["patch_number"]
 
 
@@ -320,21 +320,15 @@ def create_item_build(hero: api.OpendotaHero, role: enums.Role, current_patch: s
 
 def loop_over_heroes(
     heroes_roles: dict[enums.Hero, enums.Role],
-    colour: str,
     all_heroes: dict[int, api.OpendotaHero],
     current_patch: str,
 ) -> dict[enums.Hero, enums.Role]:
     """Loop over heroes and make Dota 2 item builds."""
     failed: dict[enums.Hero, enums.Role] = {}
-    for hero, role in (
-        progress_bar := tqdm(
-            heroes_roles.items(),
-            unit="hero",
-            colour=colour,
-            bar_format="{l_bar}{bar:30}{r_bar}{bar:-30b}",
-        )
-    ):
-        progress_bar.set_postfix_str(f"Current hero: {hero.name}")
+    total_heroes = len(heroes_roles)
+    log.info("Total Heroes: %s", total_heroes)
+    for counter, (hero, role) in enumerate(heroes_roles.items(), start=1):
+        log.info("[%s/%s] Current Hero: %r - Role %s", counter, total_heroes, hero, role)
         try:
             create_item_build(all_heroes[hero], role, current_patch)
         except errors.MyError as error:
@@ -356,21 +350,31 @@ def cli(ctx: click.Context) -> None:
     """
     if ctx.invoked_subcommand is None:
         with setup_logging():
-            all_heroes = api.get_or_fetch_heroes()
-            current_patch = get_patch_number()
+            try:
+                start_msg = (
+                    "-------------------------\n"
+                    "-------------------------------------------------------------------------------------------------------"
+                    "--------------"
+                )
+                log.info(start_msg)
+                all_heroes = api.get_or_fetch_heroes()
+                current_patch = get_patch_number()
 
-            # Loop once
-            failed = loop_over_heroes(CONFIG_HEROES, "#9678B6", all_heroes, current_patch)
+                # Loop once
+                failed = loop_over_heroes(CONFIG_HEROES, all_heroes, current_patch)
 
-            # It's fine if it failed somewhere - try one more time
-            if failed:
-                log.info("🟨 Retrying creating a build for failed hero-role pairs: %s.", failed)
-                failed = loop_over_heroes(failed, "#A6B64C", all_heroes, current_patch)
+                # It's fine if it failed somewhere - try one more time
+                if failed:
+                    log.info("🟨 Retrying creating a build for failed hero-role pairs: %s.", failed)
+                    failed = loop_over_heroes(failed, all_heroes, current_patch)
 
-            if failed:
-                log.info("🟥 Failed twice to make a build for hero-role pairs: %s.", failed)
+                if failed:
+                    log.info("🟥 Failed twice to make a build for hero-role pairs: %s.", failed)
 
-            log.info("✅ Done creating builds.")
+                log.info("✅ Done creating builds.")
+            except Exception:
+                log.exception("Error")
+                raise
 
 
 @cli.command()

@@ -31,4 +31,4 @@ Some short instructions
     * Add arguments `"D:\CODE\Dota2Utils\ItemBuilds\main.py"` - with quotes;
     * Start in `D:\CODE\Dota2Utils\ItemBuilds`
 3. Important thing - on general tab, we need to choose a proper user (i.e. I have `"Me"`), otherwise it puts some `Medium Mandatory Level` group (???).
-4. If we encounter any errors -> Open Event Viewer -> Application and Services Logs -> Microsoft -> Task Scheduler -> Operational -> Right-Click + `Enable Log` and work with it, i.e. `Refresh`. I also left some screenshots in `assets` folder for future me.
+4. If we encounter any errors -> Open Event Viewer -> Application and Services Logs -> Microsoft -> Windows -> Task Scheduler -> Operational -> Right-Click + `Enable Log` and work with it, i.e. `Refresh`. I also left some screenshots in `assets` folder for future me.

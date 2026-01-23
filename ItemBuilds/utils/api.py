@@ -20,6 +20,7 @@ if TYPE_CHECKING:
 
 
 log = logging.getLogger(__name__)
+log.setLevel(logging.INFO)
 __all__ = (
     "OpendotaHero",
     "get_or_fetch_heroes",
@@ -91,6 +92,7 @@ def get_or_fetch_heroes(*, force: bool = False) -> dict[int, OpendotaHero]:
     This first checks if we have an up-to-date backup.
     If the backup is outdated - it fetches the data from OpenDota Constants API to refresh it.
     """
+    log.info("🔵 Getting Dota 2 Heroes info from Opendota")
     restored = restore("heroes")
 
     now = datetime.datetime.now(tz=datetime.UTC)
@@ -106,4 +108,5 @@ def get_or_fetch_heroes(*, force: bool = False) -> dict[int, OpendotaHero]:
     log.debug("Fetching heroes data from OpenDota.")
     to_backup = fetch_heroes()
     backup("heroes", to_backup)
+    log.info("🔵 Finished getting Dota 2 Heroes info from Opendota")
     return to_backup
