@@ -4,8 +4,10 @@ import datetime
 import logging
 import pathlib
 import time
+from contextlib import contextmanager
+from logging.handlers import RotatingFileHandler
 from operator import itemgetter
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import click
 import requests
@@ -19,10 +21,48 @@ from utils import api, enums, errors
 
 if TYPE_CHECKING:
     type MetaItems = list[tuple[str, float, int]]
+    from collections.abc import Generator
 
-logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-log = logging.getLogger(__name__)
+log = logging.getLogger()
 log.setLevel(logging.INFO)
+
+
+@contextmanager
+def setup_logging() -> Generator[Any, Any, Any]:
+    """Setup logging."""
+
+    try:
+        fmt = logging.Formatter(
+            "%(asctime)s %(levelname)-4.4s %(name)-30s %(lineno)-4d %(funcName)-35s %(message)s",
+            "%H:%M:%S %d/%m",
+        )
+
+        # Stream Handler
+        handler = logging.StreamHandler()
+        handler.setFormatter(fmt)
+        log.addHandler(handler)
+
+        # ensure logs folder
+        pathlib.Path(".temp/").mkdir(parents=True, exist_ok=True)
+        # File Handler
+        file_handler = RotatingFileHandler(
+            filename=".temp/items.log",
+            encoding="utf-8",
+            mode="w",
+            maxBytes=7 * 1024 * 1024,
+            backupCount=1,
+        )
+        file_handler.setFormatter(fmt)
+        log.addHandler(file_handler)
+
+        yield
+    finally:
+        # __exit__
+        handlers = log.handlers[:]
+        for h in handlers:
+            h.close()
+            log.removeHandler(h)
+
 
 CONSUMABLES: list[str] = [
     "item_tpscroll",
@@ -40,7 +80,7 @@ CONSUMABLES: list[str] = [
 ]
 
 
-def get_html(hero: api.Hero, role: enums.RoleEnum) -> tuple[str, str]:
+def get_html(hero: api.OpendotaHero, role: enums.Role) -> tuple[str, str]:
     """Get HTML content to be web-scraped later.
 
     This loads meta page for the hero on Dota2ProTracker for the demanded role
@@ -70,12 +110,12 @@ def get_html(hero: api.Hero, role: enums.RoleEnum) -> tuple[str, str]:
         # 1. Select proper Role button, it will open "Builds" sub-tab by default;
         # A bit hacky but it seems D2PT doubles labels for buttons so `f"{role} {role}"` works;
         page.get_by_role("button", name=f"{role} {role}").click()
-        time.sleep(5.0)  # Needed, the data is slow to load (Otherwise shows "Loading" string instead of the data).
+        time.sleep(5.1)  # Needed, the data is slow to load (Otherwise shows "Loading" string instead of the data).
         builds_html = page.content()
 
         # 2. Item Stats sub-tab
         page.get_by_role("button", name="Item Stats").click()
-        time.sleep(5.0)  # Needed, the data is slow to load.
+        time.sleep(5.1)  # Needed, the data is slow to load.
         item_stats_html = page.content()
         browser.close()
     return builds_html, item_stats_html
@@ -174,7 +214,7 @@ def web_scrape_meta_items(builds_html: str, item_stats_html: str) -> MetaItems:
     return sorted(meta_items, key=itemgetter(1), reverse=True)
 
 
-def open_item_build(hero: api.Hero) -> tuple[vdf.VDFDict, pathlib.Path]:
+def open_item_build(hero: api.OpendotaHero) -> tuple[vdf.VDFDict, pathlib.Path]:
     """Open local `.build` file for the hero."""
     for file in pathlib.Path(rf"C:\Program Files (x86)\Steam\userdata\{FRIEND_ID}\570\remote\guides").iterdir():
         if file.name.startswith(hero.slug_name):
@@ -193,8 +233,8 @@ def get_patch_number() -> str:
     """Get current patch number for future reference."""
     log.info("Getting Dota 2 current patch number")
     endpoint = "https://www.dota2.com/datafeed/patchnoteslist"
-    for _ in range(3):
-        # why it loves erroring on the very first request ?!
+    for _ in range(5):
+        # why it loves erroring on the very first request ?! Valve, please.
         try:
             response = requests.get(endpoint, timeout=10)
             break
@@ -209,9 +249,9 @@ def get_patch_number() -> str:
     return data["patches"][-1]["patch_number"]
 
 
-def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleEnum, current_patch: str) -> vdf.VDFDict:
+def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.Role, current_patch: str) -> vdf.VDFDict:
     """Edit item build using meta items data."""
-    log.info("Editing the item build")
+    log.debug("Editing the item build")
 
     # Title
     build["guidedata"][0, "Title"] = (
@@ -233,7 +273,7 @@ def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleE
         "Consumables": CONSUMABLES,
         "Early": [],
         meta_name: [],
-        "Low Percent": [],
+        "Low Percent (<5%)": [],
         "My additions": my_saved,
     }
 
@@ -241,12 +281,12 @@ def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.RoleE
     # Early, meta_name or Low Percent category;
     for item_name, purchase_rate, avg_time in meta_items:
         # The numbers in the following conditions are subject to change
-        if avg_time < 15 * 60 + 30 and purchase_rate > 5:
-            # Items bought before 15:30 will be considered as "Early"
+        if avg_time < 15 * 60 + 30 and purchase_rate > 10.3:
+            # Items bought before 15:30 and commonly bought will be considered as "Early"
             categories["Early"].append(item_name)
-        elif 1.3 < purchase_rate < 3:
-            # Items belonging to (1.3%, 3%) group are "Low Percent";
-            categories["Low Percent"].append(item_name)
+        elif 1.3 < purchase_rate < 5:
+            # Items belonging to (1.3%, 5%) group are "Low Percent";
+            categories["Low Percent (<5%)"].append(item_name)
         elif purchase_rate < 1.3:
             # Items below 1.3% are ignored; People start buying all kinds of crap here.
             continue
@@ -266,7 +306,7 @@ def export(build: vdf.VDFDict, guide_path: pathlib.Path) -> None:
         vdf.dump(build, f, pretty=True)
 
 
-def create_item_build(hero: api.Hero, role: enums.RoleEnum, current_patch: str) -> None:
+def create_item_build(hero: api.OpendotaHero, role: enums.Role, current_patch: str) -> None:
     """Create the item build for the hero + role pairing.
 
     This function calls other functions in a proper sequence.
@@ -276,6 +316,33 @@ def create_item_build(hero: api.Hero, role: enums.RoleEnum, current_patch: str) 
     build, guide_path = open_item_build(hero)
     build = edit_item_build(build, meta_items, role, current_patch)
     export(build, guide_path)
+
+
+def loop_over_heroes(
+    heroes_roles: dict[enums.Hero, enums.Role],
+    colour: str,
+    all_heroes: dict[int, api.OpendotaHero],
+    current_patch: str,
+) -> dict[enums.Hero, enums.Role]:
+    """Loop over heroes and make Dota 2 item builds."""
+    failed: dict[enums.Hero, enums.Role] = {}
+    for hero, role in (
+        progress_bar := tqdm(
+            heroes_roles.items(),
+            unit="hero",
+            colour=colour,
+            bar_format="{l_bar}{bar:30}{r_bar}{bar:-30b}",
+        )
+    ):
+        progress_bar.set_postfix_str(f"Current hero: {hero.name}")
+        try:
+            create_item_build(all_heroes[hero], role, current_patch)
+        except errors.MyError as error:
+            # if failed to make a build - skip the hero;
+            failed[hero] = role
+            log.warning("⚠️ Failed to make a build for hero %r: %s", hero, error)
+            continue
+    return failed
 
 
 @click.group(invoke_without_command=True)
@@ -288,26 +355,22 @@ def cli(ctx: click.Context) -> None:
     * uv run main.py
     """
     if ctx.invoked_subcommand is None:
-        all_heroes = api.get_or_fetch_heroes()
-        current_patch = get_patch_number()
+        with setup_logging():
+            all_heroes = api.get_or_fetch_heroes()
+            current_patch = get_patch_number()
 
-        for hero, role in (
-            progress_bar := tqdm(
-                CONFIG_HEROES.items(),
-                unit="hero",
-                colour="#9678B6",
-                bar_format="{l_bar}{bar:30}{r_bar}{bar:-30b}\n",
-            )
-        ):
-            progress_bar.set_postfix_str(f"Current hero: {hero.name}")
-            try:
-                create_item_build(all_heroes[hero], role, current_patch)
-            except errors.MyError as error:
-                # if failed to make a build - skip the hero;
-                log.warning("⚠️ Failed to make a build for hero %s: %s", hero, error)
-                continue
+            # Loop once
+            failed = loop_over_heroes(CONFIG_HEROES, "#9678B6", all_heroes, current_patch)
 
-        log.info("✅ Done creating builds.")
+            # It's fine if it failed somewhere - try one more time
+            if failed:
+                log.info("🟨 Retrying creating a build for failed hero-role pairs: %s.", failed)
+                failed = loop_over_heroes(failed, "#A6B64C", all_heroes, current_patch)
+
+            if failed:
+                log.info("🟥 Failed twice to make a build for hero-role pairs: %s.", failed)
+
+            log.info("✅ Done creating builds.")
 
 
 @cli.command()

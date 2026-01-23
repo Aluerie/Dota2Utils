@@ -149,19 +149,24 @@ class DefaultRolesGrid(HeroGridBase):
 
         # DELTA BETWEEN POSITIONS
         delta_pos = (MAX_Y - height * rows - last_row_h - ban_space) / (rows - 1)
-        arcana_y = (height + delta_pos) * 1 + 20
+
+        # Arcana related stuff
+        gap_between_arcana_and_1_4 = 30
+        arcana_y = (height + delta_pos) * 1 + gap_between_arcana_and_1_4
+        arcana_x = sep / 2 - gap_between_arcana_and_1_4
+        pos_arcana_sep = sep / 2 - gap_between_arcana_and_1_4
 
         super().__init__(
             hero_grid_json,
             config_index=0,
             new_positions={
                 "pos1": Position(0, 0, sep, height),
-                "pos2": Position(0, (height + delta_pos) * 1, sep / 2, height),
-                "pos3": Position(0, (height + delta_pos) * 2, sep / 2, height),
-                "pos4": Position(0, (height + delta_pos) * 3, sep / 2, height),
-                "pos5": Position(0, (height + delta_pos) * 4, sep / 2, height),
+                "pos2": Position(0, (height + delta_pos) * 1, pos_arcana_sep, height),
+                "pos3": Position(0, (height + delta_pos) * 2, pos_arcana_sep, height),
+                "pos4": Position(0, (height + delta_pos) * 3, pos_arcana_sep, height),
+                "pos5": Position(0, (height + delta_pos) * 4, pos_arcana_sep, height),
                 "Turbo bans": Position(0, MAX_Y - last_row_h, turbo_bans_w, last_row_h),
-                "Arcana Grind": Position(sep / 2, arcana_y, sep / 2, MAX_Y - arcana_y),
+                "Arcana Grind": Position(arcana_x, arcana_y, sep - arcana_x, MAX_Y - arcana_y),
             },
         )
 
@@ -240,6 +245,7 @@ def main() -> None:
     DefaultRolesGrid(hero_grid_json).update_categories()
 
     write_and_copy(hero_grid_json)
+    log.info("Finished")
 
 
 if __name__ == "__main__":

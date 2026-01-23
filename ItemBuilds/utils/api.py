@@ -21,13 +21,13 @@ if TYPE_CHECKING:
 
 log = logging.getLogger(__name__)
 __all__ = (
-    "Hero",
+    "OpendotaHero",
     "get_or_fetch_heroes",
 )
 
 
 @dataclass
-class Hero:
+class OpendotaHero:
     """
     Represents a hero entry from OpenDota Constants API.
 
@@ -53,14 +53,14 @@ class Hero:
         return f"<class Hero id={self.id} name={self.loc_name}>"
 
 
-def fetch_heroes() -> dict[int, Hero]:
+def fetch_heroes() -> dict[int, OpendotaHero]:
     """Fetch Dota 2 Hero data from OpenDota Constants API."""
     endpoint = "https://api.opendota.com/api/constants/heroes"
     response = requests.get(endpoint, timeout=20)
     data: dict[str, OpendotaConstantsHero] = response.json()
 
     return {
-        hero["id"]: Hero(
+        hero["id"]: OpendotaHero(
             id=hero["id"],
             slug_name=hero["name"].removeprefix("npc_dota_hero_"),
             loc_name=hero["localized_name"],
@@ -85,7 +85,7 @@ def restore(name: str) -> dict[str, Any]:
         return json.load(f)
 
 
-def get_or_fetch_heroes(*, force: bool = False) -> dict[int, Hero]:
+def get_or_fetch_heroes(*, force: bool = False) -> dict[int, OpendotaHero]:
     """Get or fetch Dota 2 Hero Data.
 
     This first checks if we have an up-to-date backup.
@@ -99,7 +99,7 @@ def get_or_fetch_heroes(*, force: bool = False) -> dict[int, Hero]:
         # API rate limit measures
         log.debug("Using the backup for heroes data.")
         return {
-            hero["id"]: Hero(id=hero["id"], slug_name=hero["slug_name"], loc_name=hero["loc_name"])
+            hero["id"]: OpendotaHero(id=hero["id"], slug_name=hero["slug_name"], loc_name=hero["loc_name"])
             for hero in restored["data"].values()
         }
 

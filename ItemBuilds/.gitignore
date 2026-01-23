@@ -3,3 +3,4 @@
 config.py
 
 .to_delete
+.temp

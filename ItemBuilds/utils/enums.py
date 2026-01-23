@@ -2,13 +2,13 @@
 from enum import IntEnum, StrEnum
 
 __all__ = (
-    "HeroEnum",
-    "RoleEnum",
+    "Hero",
+    "Role",
 )
 
 
 # fmt: off
-class RoleEnum(StrEnum):
+class Role(StrEnum):
     Carry       = "Carry"
     Mid         = "Mid"
     Offlane     = "Offlane"
@@ -16,7 +16,7 @@ class RoleEnum(StrEnum):
     HardSupport = "Hard Support"
 
 
-class HeroEnum(IntEnum):
+class Hero(IntEnum):
     AntiMage          = 1
     Axe               = 2
     Bane              = 3

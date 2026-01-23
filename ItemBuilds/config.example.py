@@ -1,4 +1,4 @@
-from utils.enums import HeroEnum as Hero, RoleEnum as Role
+from utils.enums import Hero as Hero, Role as Role
 
 # Your Steam ID in Steam 32 format
 # You can find it as "Friend ID" in the Dota client under your own profile.
