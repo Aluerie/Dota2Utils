@@ -4,10 +4,8 @@ import datetime
 import logging
 import pathlib
 import time
-from contextlib import contextmanager
-from logging.handlers import RotatingFileHandler
 from operator import itemgetter
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 import click
 import requests
@@ -16,51 +14,13 @@ from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 
 from config import CONFIG_HEROES, FRIEND_ID
-from utils import api, enums, errors
+from utils import api, enums, errors, logs
 
 if TYPE_CHECKING:
     type MetaItems = list[tuple[str, float, int]]
-    from collections.abc import Generator
 
 log = logging.getLogger()
 log.setLevel(logging.INFO)
-
-
-@contextmanager
-def setup_logging() -> Generator[Any, Any, Any]:
-    """Setup logging."""
-
-    try:
-        fmt = logging.Formatter(
-            "%(asctime)s %(levelname)-4.4s %(name)-30s %(lineno)-4d %(funcName)-35s %(message)s",
-            "%H:%M:%S %d/%m",
-        )
-
-        # Stream Handler
-        handler = logging.StreamHandler()
-        handler.setFormatter(fmt)
-        log.addHandler(handler)
-
-        # ensure logs folder
-        pathlib.Path(".temp/").mkdir(parents=True, exist_ok=True)
-        # File Handler
-        file_handler = RotatingFileHandler(
-            filename=".temp/items.log",
-            encoding="utf-8",
-            mode="w",
-            maxBytes=7 * 1024 * 1024,
-            backupCount=1,
-        )
-        file_handler.setFormatter(fmt)
-        log.addHandler(file_handler)
-
-        yield
-    finally:
-        # __exit__
-        handlers = log.handlers[:]
-        for h in handlers:
-            h.close()
-            log.removeHandler(h)
 
 
 CONSUMABLES: list[str] = [
@@ -78,6 +38,8 @@ CONSUMABLES: list[str] = [
     "item_smoke_of_deceit",
 ]
 
+# TODO: https://github.com/wjdenn/Dota2D2PTHeroLists/blob/main/utils/parsing.py save somewhere
+
 
 def get_html(hero: api.OpendotaHero, role: enums.Role) -> tuple[str, str]:
     """Get HTML content to be web-scraped later.
@@ -87,7 +49,19 @@ def get_html(hero: api.OpendotaHero, role: enums.Role) -> tuple[str, str]:
     """
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
+        context = browser.new_context(java_script_enabled=True)
+        context.add_cookies(
+            [
+                {
+                    "domain": ".dota2protracker.com",
+                    "name": "cf_clearance",
+                    "value": "_DFlCJlrIECsPIMd7YQoIztxqIZdRFEPht6b.HmKQmI-1774406402-1.2.1.1-d1j1XWu7RrEc_c.le__maHgzm8oAEEL1cS7ArTDLUQ8AekGTQMUQQfFm86jinF0oSOq4BqBxYKeG254TLnzXa7Yzykq5vFn.sWAIjDJNKx2P_yhDC6RDNWysBF2Dnr9hAl.rFabmk89Cyy4uCozjBAh.I0QZwbYBRU8iXh41L4E35cfOm_vmB1JVhXps8K7YRQUqeyI.shEwrBizWZr8xKHIVSXYxWaugzE.xK5jjy0",
+                    "expires": 1805942405,
+                    "path": "/",
+                }
+            ]
+        )
+        page = context.new_page()
         url = f"https://dota2protracker.com/hero/{hero.loc_name}"
         page.goto(url, wait_until="networkidle")
 
@@ -108,6 +82,8 @@ def get_html(hero: api.OpendotaHero, role: enums.Role) -> tuple[str, str]:
 
         # 1. Select proper Role button, it will open "Builds" sub-tab by default;
         # A bit hacky but it seems D2PT doubles labels for buttons so `f"{role} {role}"` works;
+        with pathlib.Path(".to_delete/file.html").open("w") as f:
+            print(page.content(), file=f)
         page.get_by_role("button", name=f"{role} {role}").click()
         time.sleep(5.1)  # Needed, the data is slow to load (Otherwise shows "Loading" string instead of the data).
         builds_html = page.content()
@@ -116,6 +92,7 @@ def get_html(hero: api.OpendotaHero, role: enums.Role) -> tuple[str, str]:
         page.get_by_role("button", name="Item Stats").click()
         time.sleep(5.1)  # Needed, the data is slow to load.
         item_stats_html = page.content()
+        context.close()
         browser.close()
     return builds_html, item_stats_html
 
@@ -232,20 +209,20 @@ def get_patch_number() -> str:
     """Get current patch number for future reference."""
     log.info("🔴 Getting Dota 2 current patch number")
     endpoint = "https://www.dota2.com/datafeed/patchnoteslist"
-    for _ in range(5):
+    for _ in range(10):
         # why it loves erroring on the very first request ?! Valve, please.
         try:
             response = requests.get(endpoint, timeout=10)
             break
         except requests.ReadTimeout:
-            time.sleep(0.49)
+            time.sleep(1.0)
             continue
     else:
         msg = "Could not reach dota2.com to get the current patch number."
         raise errors.MyError(msg)
 
     data = response.json()
-    log.info("🔴 Fetched Dota 2 current patch number")
+    log.info("🔴 Finished getting Dota 2 current patch number")
     return data["patches"][-1]["patch_number"]
 
 
@@ -271,7 +248,7 @@ def edit_item_build(build: vdf.VDFDict, meta_items: MetaItems, role: enums.Role,
     meta_name = f"Meta: {role}"
     categories: dict[str, list[str]] = {
         "Consumables": CONSUMABLES,
-        "Early": [],
+        "Early": ["item_boots"],  # Boots are always there;
         meta_name: [],
         "Low Percent (<5%)": [],
         "My additions": my_saved,
@@ -349,7 +326,7 @@ def cli(ctx: click.Context) -> None:
     * uv run main.py
     """
     if ctx.invoked_subcommand is None:
-        with setup_logging():
+        with logs.setup_logging():
             try:
                 start_msg = (
                     "-------------------------\n"

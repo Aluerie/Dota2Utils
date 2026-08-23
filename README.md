@@ -2,9 +2,7 @@
 
 🔧 Each folder in this repository is a small utility project for Dota 2
 
----
-
-## 1. The list of utilities
+## List of utilities
 
 * [👻 DplusQuests](./DplusQuests)
   
@@ -13,7 +11,7 @@
 * [🖼️ HeroGrids](./HeroGrids)
   
   Edit custom Hero Grids and align categories as you wish. The hero grids the script is made to align/sort are personal and
-  based of my own hero pool but the code code is there.
+  based of my own hero pool and my current existing hero-grids, but hey, the code is there.
 
 * [🔨 ItemBuilds](./ItemBuilds)
 
@@ -30,4 +28,4 @@
 * [🧦 SocialFeed](./SocialFeed)
 
   Send messages into your User Feed Profile Widget.
-  Valve removed UI to do it in the client, but it's still possible with a script like here.
+  Valve removed UI to do it directly in the client, but it's still possible with a script like this.

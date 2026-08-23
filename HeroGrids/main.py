@@ -29,7 +29,12 @@ if TYPE_CHECKING:
         hero_ids: list[int]
 
 
-class Position(NamedTuple):
+class Box(NamedTuple):
+    """Just a rectangle mirroring a category in Dota 2 Hero Grids.
+
+    In the json file they stored as X-Y-W-H rectangles so we mirror that.
+    """
+
     x: int | float  # X
     y: int | float  # Y
     w: int | float  # Width
@@ -53,11 +58,11 @@ class HeroGridBase:
         self,
         hero_grid_json: HeroGridConfigJson,
         config_index: int,
-        new_positions: dict[str, Position],
+        new_positions: dict[str, Box],
     ) -> None:
         self.hero_grid_json: HeroGridConfigJson = hero_grid_json
         self.config_index: int = config_index
-        self.new_positions: dict[str, Position] = new_positions
+        self.new_positions: dict[str, Box] = new_positions
 
     def update_categories(self) -> None:
         for name, position in self.new_positions.items():
@@ -95,15 +100,15 @@ class DotaPlusGrid(HeroGridBase):
             hero_grid_json=hero_grid_json,
             config_index=1,
             new_positions={  # match these names with the ones you have in the hero grid
-                "Grandmaster": Position(0, 0, sep / 2, h),
-                "Master": Position(sep / 2, 0, sep / 2, h),
-                "Platinum": Position(0, h + d, sep, h),
-                "Gold": Position(0, 2 * (h + d), sep, h),
-                "Silver": Position(0, 3 * (h + d), sep, MAX_Y - 3 * (h + d)),
-                "Bronze 5, 475<=Xp": Position(sep, 0, right_w / 3, bronze5_h),
-                "Bronze 5, 300<=Xp<475": Position(sep + right_w / 3, 0, right_w / 3, bronze5_h),
-                "Bronze 5, XP<300": Position(sep + right_w * 2 / 3, 0, right_w / 3, bronze5_h),
-                "Bronze 4-": Position(sep, bronze_delta + bronze5_h, right_w, MAX_Y - bronze_delta - bronze5_h),
+                "Grandmaster": Box(0, 0, sep / 2, h),
+                "Master": Box(sep / 2, 0, sep / 2, h),
+                "Platinum": Box(0, h + d, sep, h),
+                "Gold": Box(0, 2 * (h + d), sep, h),
+                "Silver": Box(0, 3 * (h + d), sep, MAX_Y - 3 * (h + d)),
+                "Bronze 5, 475<=Xp": Box(sep, 0, right_w / 3, bronze5_h),
+                "Bronze 5, 300<=Xp<475": Box(sep + right_w / 3, 0, right_w / 3, bronze5_h),
+                "Bronze 5, XP<300": Box(sep + right_w * 2 / 3, 0, right_w / 3, bronze5_h),
+                "Bronze 4-": Box(sep, bronze_delta + bronze5_h, right_w, MAX_Y - bronze_delta - bronze5_h),
             },
         )
 
@@ -138,50 +143,51 @@ class DefaultRolesGrid(HeroGridBase):
         self.sep = sep
 
         # POSITIONS
-        height = 95
-        rows = 5  # 5 positions in dota
-        ban_space = 12
+        pos_box_height = 95
+        total_positions = 5  # 5 positions in dota
 
-        # LAST ROW DETAILS
-        last_row_h = 69
-        last_row_w_ratio = 3 / 9
-        turbo_bans_w = math.ceil(last_row_w_ratio * sep)  # if it's not an integer then it might bug out with 1 pixel lines
+        # EXTRA ROW (Turbo bans, some event grind) DETAILS
+        last_row_y_extra_space = 12
+        last_row_box_height = 69
+        turbo_bans_box_width = math.ceil(3 / 9 * sep)  # if it's not an integer then it might bug out with 1 pixel lines
 
         # DELTA BETWEEN POSITIONS
-        delta_pos = (MAX_Y - height * rows - last_row_h - ban_space) / (rows - 1)
+        delta_y_between_pos = int(
+            (MAX_Y - pos_box_height * total_positions - last_row_box_height - last_row_y_extra_space) / (total_positions - 1)
+        )
 
         # Arcana related stuff
-        gap_between_arcana_and_1_4 = 30
-        arcana_y = (height + delta_pos) * 1 + gap_between_arcana_and_1_4
-        arcana_x = sep / 2 - gap_between_arcana_and_1_4
-        pos_arcana_sep = sep / 2 - gap_between_arcana_and_1_4
+        arcana_y = int((pos_box_height + delta_y_between_pos) + 15)
+        pos_2_till_5_width = int(1 / 2 * sep - 20)
+        arcana_x = pos_2_till_5_width
 
         super().__init__(
             hero_grid_json,
             config_index=0,
             new_positions={
-                "pos1": Position(0, 0, sep, height),
-                "pos2": Position(0, (height + delta_pos) * 1, pos_arcana_sep, height),
-                "pos3": Position(0, (height + delta_pos) * 2, pos_arcana_sep, height),
-                "pos4": Position(0, (height + delta_pos) * 3, pos_arcana_sep, height),
-                "pos5": Position(0, (height + delta_pos) * 4, pos_arcana_sep, height),
-                "Turbo bans": Position(0, MAX_Y - last_row_h, turbo_bans_w, last_row_h),
-                "Arcana Grind": Position(arcana_x, arcana_y, sep - arcana_x, MAX_Y - arcana_y),
+                "pos1": Box(0, 0, sep, pos_box_height),
+                "pos2": Box(0, (pos_box_height + delta_y_between_pos) * 1, pos_2_till_5_width, pos_box_height),
+                "pos3": Box(0, (pos_box_height + delta_y_between_pos) * 2, pos_2_till_5_width, pos_box_height),
+                "pos4": Box(0, (pos_box_height + delta_y_between_pos) * 3, pos_2_till_5_width, pos_box_height),
+                "pos5": Box(0, (pos_box_height + delta_y_between_pos) * 4, pos_2_till_5_width, pos_box_height),
+                "Turbo bans": Box(0, MAX_Y - last_row_box_height, turbo_bans_box_width, last_row_box_height),
+                "Arcana Grind": Box(arcana_x, arcana_y, sep - arcana_x, MAX_Y - arcana_y - 1),
             },
         )
 
     def fix_attribute_categories(self) -> None:
-        indexes = {"str": 5, "agi": 6, "int": 7, "all": -2}
+        indexes = {"str": 5, "agi": 6, "int": 7, "all": -2}  # hardcoded indexes - uh oh
 
         all_hero_ids: list[int] = []
 
         for count, (primary_attribute, idx) in enumerate(indexes.items()):
             category = self.hero_grid_json["configs"][self.config_index]["categories"][idx]
 
+            box_height = MAX_Y / 4
             category["x_position"] = self.sep
-            category["y_position"] = count * MAX_Y / 4
             category["width"] = MAX_X - self.sep
-            category["height"] = MAX_Y / 4
+            category["y_position"] = count * box_height
+            category["height"] = box_height
 
             # Fix alphabet if needed.
             category["hero_ids"] = sorted(category["hero_ids"], key=lambda x: api.heroes[x].name.casefold())
