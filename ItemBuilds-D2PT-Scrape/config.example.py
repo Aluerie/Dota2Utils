@@ -17,5 +17,3 @@ CONFIG_HEROES: dict[Hero, Role] = {
     # Hard Support
     Hero.Chen: Role.HardSupport,
 }
-
-

@@ -1,0 +1,44 @@
+[project]
+name = "itembuilds-d2pt-api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Aluerie", email = "aluerie@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "aiohttp",
+    "click>=8.5.0",
+    "orjson>=3.12.0",
+    "steamio>=1.2.0",
+]
+
+[tool.uv.sources]
+steamio = { git = "https://github.com/Aluerie/steam.py", rev = "introduce-ext.dota2" }
+
+[tool.pyright]
+reportAny = "none"
+reportExplicitAny = "none"
+reportMissingTypeStubs = "none"
+
+[tool.ruff]
+line-length = 125
+target-version = "py314"
+preview = false
+exclude = [".venv", "docs"]
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "ANN401",
+    "CPY",
+    "D",
+    "T201",
+    "F401",
+    "F403",
+    "PLR2004",
+    "ASYNC230"
+]
+unfixable = ["E501", "ERA", "RUF100", ]

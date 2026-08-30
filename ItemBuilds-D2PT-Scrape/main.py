@@ -63,7 +63,7 @@ def get_html(hero: api.OpendotaHero, role: enums.Role) -> tuple[str, str]:
         )
         page = context.new_page()
         url = f"https://dota2protracker.com/hero/{hero.loc_name}"
-        page.goto(url, wait_until="networkidle")
+        _ = page.goto(url, wait_until="networkidle")
 
         # So currently a hero page (for example, https://dota2protracker.com/hero/Luna)
         # looks like this

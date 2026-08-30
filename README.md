@@ -4,17 +4,29 @@
 
 ## List of utilities
 
-* [👻 DplusQuests](./DplusQuests)
+* [➕ DotaPlusQuests](./DotaPlusQuests)
   
   Script that auto-clicks "refresh challenges" for DotaPlus hero quests.
 
-* [🖼️ HeroGrids](./HeroGrids)
+* [🖼️ HeroGrids-Personal](./HeroGrids-Personal)
   
-  Edit custom Hero Grids and align categories as you wish. The hero grids the script is made to align/sort are personal and
-  based of my own hero pool and my current existing hero-grids, but hey, the code is there.
+  Edit custom Hero Grids and align categories as you wish. The hero grids the Python script are personal, but hey, the code is there.
 
-* [🔨 ItemBuilds](./ItemBuilds)
+  > [!TIP]
+  > If you want some meta hero grids - use something like [dota2protracker.com/meta-hero-grids](<https://dota2protracker.com/meta-hero-grids>), [github.com/maybewewill/metagrid](<https://github.com/maybewewill/metagrid>), etc.
 
+* [🔨 ItemBuilds-D2PT-API](./ItemBuilds-D2PT-API)
+
+  Import meta item builds from Dota 2 ProTracker right into your Dota 2 Client hero builds.
+
+  > [!NOTE]
+  > Uses D2PT's somewhat public API hence it should be fine with their ToS.
+
+* [🔨 ItemBuilds-D2PT-Scrape](./ItemBuilds-D2PT-Scrape)
+
+  > [!CAUTION]
+  > Currently, does not work due to Dota 2 Protracker anti-scrape protection (after all scraping is against their ToS). Use the API version above (🔨 ItemBuilds-D2PT-API)
+  
   Import meta item builds from Dota 2 ProTracker right into your Dota 2 Client hero builds.
 
 * [😳 ListEmoticons](./ListEmoticons)
