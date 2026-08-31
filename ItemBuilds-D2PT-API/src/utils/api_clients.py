@@ -56,6 +56,8 @@ class D2PTClient:
 
     async def item_overview(self, hero: Hero, position: int) -> api_schemas.ItemOverview:
         """
+        Item Overview for a hero. It seems the data is from high+elite mmr.
+        This somewhat mirrors pages like this: https://dota2protracker.com/hero/Dark%20Willow?section=items
 
         Example:
         * https://dota2protracker.com/hero/Dark%20Willow/api/item-overview?heroId=119&position=pos+4&period=full
@@ -74,6 +76,8 @@ class D2PTClient:
 
     async def hero_matches(self, hero: Hero, position: int) -> api_schemas.Matches:
         """
+        Hero matches for a given hero in last ~2 months. It seems these matches are elite mmr only.
+        This somewhat mirrors pages like this: https://dota2protracker.com/hero/Dark%20Willow?section=matches&role=support
 
         Example:
         * https://dota2protracker.com/api/hero-matches?hero_id=119&position=pos+4&sort_by=mmr
