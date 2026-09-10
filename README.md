@@ -10,7 +10,7 @@ Script that auto-clicks "refresh challenges" for DotaPlus hero quests.
 
 ### [2.🖼️ HeroGrids-Personal](./HeroGrids-Personal)
 
-Edit custom Hero Grids and align categories as you wish. The hero grids the Python script are personal, but hey, the code is there.
+Edit custom Hero Grids and align categories as you wish. The hero grids it builds are personal (my preferences, my heroes), but hey, the code is there.
 
 > [!TIP]
 > If you want some meta hero grids - use something like [dota2protracker.com/meta-hero-grids](<https://dota2protracker.com/meta-hero-grids>), [github.com/maybewewill/metagrid](<https://github.com/maybewewill/metagrid>), etc.
