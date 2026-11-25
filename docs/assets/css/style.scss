@@ -1,14 +1,17 @@
 --- 
 --- 
 
-// Wide enough for the 9-column emoticon tables, but shrinks on smaller screens (tables scroll on their own there);
-.main-content {
-    max-width: 96rem;
-}
-
 @import "{{ site.theme }}";
 
-// Emoticons page: search box, results grid and click-to-copy (assets/js/emoticon-search.js)
+// A bit wider than the theme's 64rem, so more emoticon cards fit per row. It has to come after the theme:
+// the theme sets its width in a media query, which would win over an earlier rule;
+@media screen and (min-width: 64em) {
+    .main-content {
+        max-width: 80rem;
+    }
+}
+
+// Emoticons page: card grids, search box and click-to-copy (assets/js/emoticon-search.js)
 // The theme's color variables (`--bg-color`, `--code-bg-color`, ...) switch with light/dark mode.
 .emoticon-search-box {
     position: sticky;
@@ -45,11 +48,12 @@
     color: var(--blockquote-text-color);
 }
 
-#emoticon-results {
+// Every category (and the search results) is a grid of cards: as many per row as fit the screen;
+.emoticon-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .emoticon-card {
@@ -72,16 +76,10 @@
     }
 
     code {
+        padding: 0;
         font-size: 0.8rem;
         word-break: break-all;
-    }
-}
-
-.emoticon-copy {
-    cursor: pointer;
-
-    &:hover {
-        background: rgba(21, 153, 87, 0.12);
+        background: none;
     }
 }
 

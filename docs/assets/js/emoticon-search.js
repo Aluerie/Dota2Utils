@@ -1,5 +1,6 @@
-// Search box and click-to-copy for the Dota 2 emoticons page (docs/ListEmoticons/index.md).
-// Reads the emoticons from the page's Markdown tables, so the page itself stays plain Markdown.
+// Card grids, search box and click-to-copy for the Dota 2 emoticons page (docs/ListEmoticons/index.md).
+// The page itself is plain Markdown tables (so it also reads fine on GitHub); this script reads the emoticons
+// from them and turns every table into a grid of cards that fits any screen width.
 (() => {
   "use strict";
 
@@ -7,37 +8,6 @@
   const results = document.getElementById("emoticon-results");
   const status = document.getElementById("emoticon-status");
   if (!input || !results || !status) return;
-
-  // Each table row holds three emoticons as (preview, chr, alias) cell triples, under a category heading.
-  const emoticons = [];
-  for (const table of document.querySelectorAll("#content table")) {
-    let heading = table.previousElementSibling;
-    while (heading && heading.tagName !== "H2") heading = heading.previousElementSibling;
-    const category = heading ? heading.textContent.trim() : "";
-
-    for (const row of table.querySelectorAll("tbody tr")) {
-      const cells = row.querySelectorAll("td");
-      for (let i = 0; i + 2 < cells.length; i += 3) {
-        const img = cells[i].querySelector("img");
-        const chr = cells[i + 1].textContent.trim();
-        const alias = cells[i + 2].textContent.trim();
-        if (!img || !chr || !alias) continue;
-
-        emoticons.push({
-          src: img.getAttribute("src"),
-          chr,
-          alias,
-          name: alias.replace(/:/g, "").toLowerCase(),
-          category,
-        });
-        // Click-to-copy also works in the full tables;
-        const chrCell = cells[i + 1];
-        chrCell.classList.add("emoticon-copy");
-        chrCell.title = `Click to copy ${alias}`;
-        chrCell.addEventListener("click", () => copy(chr, alias));
-      }
-    }
-  }
 
   let toastTimer;
   const toast = document.createElement("div");
@@ -53,13 +23,13 @@
     toastTimer = setTimeout(() => (toast.hidden = true), 1600);
   }
 
-  async function copy(chr, alias) {
+  async function copy(emoticon) {
     try {
-      await navigator.clipboard.writeText(chr);
+      await navigator.clipboard.writeText(emoticon.chr);
     } catch {
       // Older browsers / insecure context: fall back to a hidden textarea;
       const area = document.createElement("textarea");
-      area.value = chr;
+      area.value = emoticon.chr;
       area.style.position = "fixed";
       area.style.opacity = "0";
       document.body.append(area);
@@ -67,7 +37,66 @@
       document.execCommand("copy");
       area.remove();
     }
-    showToast(`Copied ${alias} - paste it into Dota 2`);
+    showToast(`Copied ${emoticon.alias} - paste it into Dota 2`);
+  }
+
+  function card(emoticon) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "emoticon-card";
+    button.title = `${emoticon.category}: click to copy ${emoticon.alias}`;
+
+    const img = document.createElement("img");
+    img.src = emoticon.src;
+    img.alt = emoticon.alias;
+    img.loading = "lazy";
+    img.width = 64;
+    img.height = 64;
+
+    const label = document.createElement("code");
+    label.textContent = emoticon.alias;
+
+    button.append(img, label);
+    button.addEventListener("click", () => copy(emoticon));
+    return button;
+  }
+
+  function grid(items) {
+    const container = document.createElement("div");
+    container.className = "emoticon-grid";
+    container.append(...items.map(card));
+    return container;
+  }
+
+  // Each table row holds three emoticons as (preview, chr, alias) cell triples, under a category heading.
+  const emoticons = [];
+  for (const table of document.querySelectorAll("#content table")) {
+    let heading = table.previousElementSibling;
+    while (heading && heading.tagName !== "H2") heading = heading.previousElementSibling;
+    const category = heading ? heading.textContent.trim() : "";
+
+    const found = [];
+    for (const row of table.querySelectorAll("tbody tr")) {
+      const cells = row.querySelectorAll("td");
+      for (let i = 0; i + 2 < cells.length; i += 3) {
+        const img = cells[i].querySelector("img");
+        const chr = cells[i + 1].textContent.trim();
+        const alias = cells[i + 2].textContent.trim();
+        if (!img || !chr || !alias) continue;
+        found.push({
+          src: img.getAttribute("src"),
+          chr,
+          alias,
+          name: alias.replace(/:/g, "").toLowerCase(),
+          category,
+        });
+      }
+    }
+    // Only emoticon tables become grids (the "Last Updated" stats table has no emoticons);
+    if (found.length) {
+      table.replaceWith(grid(found));
+      emoticons.push(...found);
+    }
   }
 
   function rank(emoticon, query) {
@@ -100,27 +129,7 @@
     status.textContent = found.length
       ? `${found.length} of ${emoticons.length} emoticons match "${query}". Click one to copy it.`
       : `No emoticons match "${query}".`;
-
-    for (const emoticon of found) {
-      const card = document.createElement("button");
-      card.type = "button";
-      card.className = "emoticon-card";
-      card.title = `${emoticon.category}: click to copy ${emoticon.alias}`;
-
-      const img = document.createElement("img");
-      img.src = emoticon.src;
-      img.alt = emoticon.alias;
-      img.loading = "lazy";
-      img.width = 48;
-      img.height = 48;
-
-      const label = document.createElement("code");
-      label.textContent = emoticon.alias;
-
-      card.append(img, label);
-      card.addEventListener("click", () => copy(emoticon.chr, emoticon.alias));
-      results.append(card);
-    }
+    if (found.length) results.append(grid(found));
   }
 
   input.addEventListener("input", render);
