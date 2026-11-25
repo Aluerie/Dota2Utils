@@ -13,6 +13,10 @@ jobs:
     # The tools are Windows-only (Steam paths, registry, pyautogui), so check them where they run.
     runs-on: windows-latest
     steps:
+      # Windows runners check files out with CRLF by default; keep LF like in the repo (ruff formats with LF).
+      - name: Keep LF line endings
+        run: git config --global core.autocrlf false
+
       - uses: actions/checkout@v5
 
       - uses: astral-sh/setup-uv@v6
