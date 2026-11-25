@@ -26,6 +26,7 @@ from PIL import Image
 from dota2utils_common import Dota2UtilsError, config
 from dota2utils_common.logs import logger, setup_logging
 
+from .team_names import category_title, resolve_team_names
 from .vpk_files import LocalVPK, SteamVPK, steam_login
 
 if TYPE_CHECKING:
@@ -54,6 +55,8 @@ PNG_DIR = TEMP_DIR / "cache_png"
 PAGE_DIR = TOOL_DIR.parent / "docs" / "ListEmoticons"
 GIFS_DIR = PAGE_DIR / "gifs"
 INDEX_FILE = PAGE_DIR / "index.md"
+# Team names looked up on dota2.com (Valve's files don't name every team), so each is looked up only once;
+TEAM_NAMES_FILE = TOOL_DIR / "team_names.json"
 
 DEFINITIONS_FILE = "scripts/emoticons_definitions.txt"
 # Where `--from-steam` looks for the Steam login: these environment variables (CI), then config.toml;
@@ -235,12 +238,15 @@ def generate_gifs(data: dict[str, EmoticonsCategory]) -> int:
     return created
 
 
-def render_tables(data: dict[str, EmoticonsCategory]) -> tuple[str, int]:
-    """Markdown tables (one per emoticon category, three emoticons per row) and the total number of emoticons."""
+def render_tables(data: dict[str, EmoticonsCategory], team_names: dict[int, str] | None = None) -> tuple[str, int]:
+    """Markdown tables (one per emoticon category, three emoticons per row) and the total number of emoticons.
+
+    `team_names` (team ID -> name) names the "team fandom" categories.
+    """
     markdown = ""
     total = 0
     for name, category in data.items():
-        markdown += f"## {name.capitalize()}\n\n{TABLE_HEADER}"
+        markdown += f"## {category_title(name, category, team_names or {})}\n\n{TABLE_HEADER}"
         cells = [
             f"| ![emoticon](./gifs/{gif_name(emote_id)}) | {chr(0xE000 + int(emote_id)):s} | `:{emote['aliases']['0']:s}:` "
             for emote_id, emote in category["emoticons"].items()
@@ -292,7 +298,8 @@ async def update(files: VPKFiles) -> None:
     else:
         logger.info("✨ Every emoticon already has a gif")
 
-    tables, total = render_tables(data)
+    team_names = await resolve_team_names(files, data, TEAM_NAMES_FILE)
+    tables, total = render_tables(data, team_names)
     if build_index(tables, total):
         logger.success("💖💖💖 Done! index.md updated: {} emoticons listed. 💖💖💖", total)
     else:

@@ -1,34 +1,48 @@
 --- 
 --- 
 
+// Wide enough for the 9-column emoticon tables, but shrinks on smaller screens (tables scroll on their own there);
 .main-content {
-    min-width: 96rem;
     max-width: 96rem;
 }
 
 @import "{{ site.theme }}";
 
 // Emoticons page: search box, results grid and click-to-copy (assets/js/emoticon-search.js)
+// The theme's color variables (`--bg-color`, `--code-bg-color`, ...) switch with light/dark mode.
 .emoticon-search-box {
     position: sticky;
     top: 0;
     z-index: 2;
     padding: 0.75rem 0;
-    background: var(--body-background-color, #fff);
+    background: var(--bg-color);
 }
 
 #emoticon-search {
     width: 100%;
     box-sizing: border-box;
     padding: 0.6rem 0.9rem;
+    font: inherit;
     font-size: 1.1rem;
-    border: 2px solid #159957;
+    color: var(--body-text-color);
+    background: var(--code-bg-color);
+    border: 1px solid var(--border-color);
     border-radius: 0.4rem;
+    outline: none;
+
+    &::placeholder {
+        color: var(--blockquote-text-color);
+    }
+
+    &:focus {
+        border-color: #159957;
+        box-shadow: 0 0 0 3px rgba(21, 153, 87, 0.35);
+    }
 }
 
 #emoticon-status {
     margin: 0.4rem 0 0;
-    opacity: 0.75;
+    color: var(--blockquote-text-color);
 }
 
 #emoticon-results {
@@ -46,8 +60,8 @@
     padding: 0.5rem;
     font: inherit;
     color: inherit;
-    background: transparent;
-    border: 1px solid rgba(127, 127, 127, 0.35);
+    background: var(--code-bg-color);
+    border: 1px solid var(--border-color);
     border-radius: 0.4rem;
     cursor: pointer;
 

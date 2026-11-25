@@ -57,7 +57,9 @@ jobs:
         with:
           branch: emoticons/update
           delete-branch: true
-          add-paths: docs/ListEmoticons
+          add-paths: |
+            docs/ListEmoticons
+            ListEmoticons/team_names.json
           commit-message: "🍱 Add new Dota 2 emoticons"
           title: "🍱 Add new Dota 2 emoticons"
           body: |

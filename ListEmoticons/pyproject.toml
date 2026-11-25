@@ -8,6 +8,7 @@ dependencies = [
     "click>=8.5.0",
     "dota2utils-common",
     "pillow>=12.1.0",
+    "requests>=2.32.5",
     "steamio>=1.2.0",
     "vdf>=3.4",
     "vpk>=1.4.0",
