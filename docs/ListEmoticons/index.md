@@ -4,7 +4,7 @@ Fork of [ListEmoticons.ipynb](https://github.com/rossengeorgiev/dota2_notebooks/
 
 ---
 
-Scroll down the table (or Ctrl+F), choose emote you like — copy&paste the unicode character from `chr` column into:
+Search for an emoticon below (or scroll the tables) and click it to copy its character, then paste it:
 
 * into console for such binds as `bind o "say_team "` — this one is `:pa_kiss:`.  
 * into your nickname — note that then emoticons only show up in system-messages during the game such as "Player paused the game". It will not show in chat, kill-feed or anywhere else really, only system messages.
@@ -12,6 +12,13 @@ Scroll down the table (or Ctrl+F), choose emote you like — copy&paste the unic
 ![example](./example.png)
 
 It doesn't matter if you don't own the emoticon pack.
+
+<div class="emoticon-search-box">
+  <input id="emoticon-search" type="search" placeholder="Search emoticons, e.g. kiss or :pa_ (press / to focus)" autocomplete="off" aria-label="Search emoticons">
+  <p id="emoticon-status"></p>
+</div>
+<div id="emoticon-results"></div>
+<script src="../assets/js/emoticon-search.js" defer></script>
 
 ## Table of Dota 2 Emoticons
 
