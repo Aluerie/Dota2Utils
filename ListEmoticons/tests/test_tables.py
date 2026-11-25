@@ -76,3 +76,10 @@ def test_source2_viewer_failure_shows_its_output(tmp_path: pathlib.Path, monkeyp
     with pytest.raises(Dota2UtilsError, match=r"exit code 1\)[\s\S]*Unhandled exception: boom") as error:
         main.decompile_vtex_c_into_png_series()
     assert "noise 0" not in str(error.value)  # only the last lines
+
+
+def test_page_files_exist() -> None:
+    # The page is published from `docs/` - catch the paths drifting away from the real files;
+    assert main.INDEX_FILE.is_file()
+    assert main.INDEX_TABLE_HEADING in main.INDEX_FILE.read_text(encoding="utf-8")
+    assert (main.GIFS_DIR / "001.gif").is_file()

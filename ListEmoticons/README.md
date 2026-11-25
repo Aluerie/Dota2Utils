@@ -9,7 +9,7 @@ Scroll down the table, choose an emoticon you like - copy&paste the unicode char
 * into console for such binds as `bind o "say_team "` - this one is `:pa_kiss:`.  
 * into your nickname - note that in this case emoticons will only show up in system-messages such as "Player paused the game". They will not show in chat, kill-feed or anywhere else really, only system messages.
 
-![example](./example.png)
+![example](../docs/ListEmoticons/example.png)
 
 It doesn't matter if you don't own the emoticon pack.
 
@@ -30,4 +30,4 @@ You can find the table with all emoticons here:
 uv run ListEmoticons
 ```
 
-It creates gifs that are missing from [gifs/](./gifs/) and rebuilds the table in [index.md](./index.md).
+It creates gifs that are missing from [docs/ListEmoticons/gifs/](../docs/ListEmoticons/gifs/) and rebuilds the table in [docs/ListEmoticons/index.md](../docs/ListEmoticons/index.md).

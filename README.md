@@ -71,6 +71,7 @@ uv run ItemBuilds
 
 The repository is a [uv workspace](https://docs.astral.sh/uv/concepts/projects/workspaces/): each tool folder is a package,
 and [dota2utils-common](./dota2utils-common) holds the code they share (config, Steam paths, Valve's hero/item lists, hero guide files).
+[docs/](./docs) is the GitHub Pages site (served from `main` + `/docs`); ListEmoticons writes its page and gifs there.
 
 Checks (the same ones CI runs):
 

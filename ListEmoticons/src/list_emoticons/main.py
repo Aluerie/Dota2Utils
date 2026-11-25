@@ -45,8 +45,10 @@ if TYPE_CHECKING:
 # ListEmoticons/src/list_emoticons/main.py -> ListEmoticons/
 TOOL_DIR = pathlib.Path(__file__).resolve().parents[2]
 TEMP_DIR = TOOL_DIR / ".temp"
-GIFS_DIR = TOOL_DIR / "gifs"
-INDEX_FILE = TOOL_DIR / "index.md"
+# The page lives in the GitHub Pages folder: docs/ListEmoticons/ -> aluerie.github.io/Dota2Utils/ListEmoticons/
+PAGE_DIR = TOOL_DIR.parent / "docs" / "ListEmoticons"
+GIFS_DIR = PAGE_DIR / "gifs"
+INDEX_FILE = PAGE_DIR / "index.md"
 
 FRAME_SIZE = 32  # emoticon sprite sheets are rows of 32x32 frames;
 OUT_SIZE = 96
