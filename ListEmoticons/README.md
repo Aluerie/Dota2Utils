@@ -19,7 +19,7 @@ You can find the table with all emoticons here:
 
 ## 🔗 [aluerie.github.io/Dota2Utils/ListEmoticons](https://aluerie.github.io/Dota2Utils/ListEmoticons)
 
-🤖 The table updates itself: every week a [GitHub Actions workflow](../.github/workflows/emoticons.yml) checks Dota 2 for new emoticons and opens a PR with them. If it's still outdated, hit me up with an issue or PR.
+🤖 The table updates itself: every week a [GitHub Actions workflow](../.github/workflows/emoticons.yml) checks Dota 2 for new emoticons and opens a PR with them, which merges by itself once CI passes. If it's still outdated, hit me up with an issue or PR.
 
 ## 🔄 Updating the table
 

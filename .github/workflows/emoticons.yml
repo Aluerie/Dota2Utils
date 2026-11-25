@@ -3,6 +3,9 @@ name: Emoticons
 # Checks Dota 2 for new emoticons and opens a PR with their gifs and the updated page.
 # Needs the STEAM_USERNAME and STEAM_PASSWORD secrets: a (throwaway) Steam account with Dota 2 in its library
 # and Steam Guard turned off - a fresh runner can't answer a Steam Guard code.
+#
+# With the DEPENDENCIES_TOKEN secret (the same token the Dependencies workflow uses), the PR is opened with it,
+# so CI runs on the PR, and it merges by itself once CI passes. Without it, the PR waits for you.
 
 on:
   schedule:
@@ -18,6 +21,8 @@ concurrency: emoticons
 jobs:
   update:
     runs-on: windows-latest
+    env:
+      HAS_TOKEN: ${{ secrets.DEPENDENCIES_TOKEN != '' }}
     steps:
       # Windows runners check files out with CRLF by default; keep LF like in the repo.
       - name: Keep LF line endings
@@ -53,8 +58,10 @@ jobs:
 
       # Does nothing when there are no changes;
       - name: Open a pull request
+        id: pr
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ secrets.DEPENDENCIES_TOKEN || github.token }}
           branch: emoticons/update
           delete-branch: true
           add-paths: |
@@ -66,3 +73,11 @@ jobs:
             New emoticons found in the current Dota 2 build: their gifs and the updated table in `docs/ListEmoticons/index.md`.
 
             Made by the [Emoticons workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/emoticons.yml).
+
+      # GitHub merges it as soon as CI passes on the PR (CI runs because the token above isn't the workflow's own);
+      - name: Merge when CI passes
+        if: steps.pr.outputs.pull-request-number && env.HAS_TOKEN == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.DEPENDENCIES_TOKEN }}
+          PR: ${{ steps.pr.outputs.pull-request-number }}
+        run: gh pr merge "$env:PR" --auto --squash --delete-branch

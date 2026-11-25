@@ -94,7 +94,8 @@ uv run pytest
 ### 🤖 Automation
 
 - [CI](./.github/workflows/ci.yml) runs the checks above on every push and PR.
-- [Emoticons](./.github/workflows/emoticons.yml) checks Dota 2 for new emoticons every week and opens a PR with them.
+- [Emoticons](./.github/workflows/emoticons.yml) checks Dota 2 for new emoticons every week and opens a PR with them,
+  which merges by itself once CI passes (with the `DEPENDENCIES_TOKEN` secret), so new emoticons go live on their own.
 - [Dependencies](./.github/workflows/dependencies.yml) upgrades the locked Python packages every month and opens a PR,
   with the check results in its description. [Dependabot](./.github/dependabot.yml) does the same for GitHub Actions.
   Dependabot's PRs merge by themselves once CI passes. The Python ones do too if the `DEPENDENCIES_TOKEN` secret is set
