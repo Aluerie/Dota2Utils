@@ -68,7 +68,7 @@ jobs:
       # Does nothing when uv.lock didn't change;
       - name: Open a pull request
         id: pr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: dependencies/update
           delete-branch: true

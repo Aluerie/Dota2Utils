@@ -53,7 +53,7 @@ jobs:
 
       # Does nothing when there are no changes;
       - name: Open a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: emoticons/update
           delete-branch: true
