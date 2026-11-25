@@ -1,20 +1,29 @@
 name: Dependabot auto-merge
 
-# Sets Dependabot's PRs (GitHub Actions updates) to merge automatically once CI passes on them.
+# Merges Dependabot's PRs (GitHub Actions updates) once CI passes on them.
+# It waits for the checks itself instead of using GitHub's auto-merge, which switches off
+# whenever Dependabot rebases the PR (i.e. after another of its PRs is merged).
 
 on: pull_request
 
 permissions:
   contents: write
   pull-requests: write
+  checks: read
 
 jobs:
   automerge:
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Merge when CI passes
+      - name: Wait for CI, then merge
         env:
           GH_TOKEN: ${{ github.token }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
-        run: gh pr merge "$PR_URL" --auto --squash --delete-branch
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          # Fails (and so doesn't merge) if a required check fails;
+          gh pr checks "$PR" --watch --required --interval 20
+          # Only the commit whose checks passed - a newer push gets its own run of this workflow;
+          gh pr merge "$PR" --squash --delete-branch --match-head-commit "$HEAD"

@@ -97,4 +97,5 @@ uv run pytest
 - [Emoticons](./.github/workflows/emoticons.yml) checks Dota 2 for new emoticons every week and opens a PR with them.
 - [Dependencies](./.github/workflows/dependencies.yml) upgrades the locked Python packages every month and opens a PR,
   with the check results in its description. [Dependabot](./.github/dependabot.yml) does the same for GitHub Actions.
-  Both kinds of PRs merge by themselves once CI passes on them (`main` requires the CI check; admins can push directly).
+  Dependabot's PRs merge by themselves once CI passes. The Python ones do too if the `DEPENDENCIES_TOKEN` secret is set
+  (see the comment at the top of the workflow); otherwise they wait for you. `main` requires the CI check; admins can push directly.

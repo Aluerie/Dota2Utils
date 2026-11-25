@@ -1,8 +1,12 @@
 name: Dependencies
 
-# Upgrades every locked Python dependency (including the steam.py fork) and opens a PR when anything changed.
-# It runs the checks itself and puts the result into the PR. If they pass, the PR is set to merge automatically
-# once CI passes on it too (CI is started explicitly: GitHub doesn't run workflows for PRs a workflow opens).
+# Upgrades every locked Python dependency (including the steam.py fork) and opens a PR when anything changed,
+# with the results of the checks (run here on the new versions) in its description.
+#
+# With the DEPENDENCIES_TOKEN secret (a fine-grained personal access token for this repo with "Contents" and
+# "Pull requests" read/write), the PR is opened with that token, so CI runs on it like on any PR, and it merges
+# by itself once CI passes - if the checks here passed too. Without the secret, the PR waits for you:
+# GitHub holds CI for PRs opened with the workflow's own token until someone approves it.
 
 on:
   schedule:
@@ -12,13 +16,14 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  actions: write # to start CI on the PR branch
 
 concurrency: dependencies
 
 jobs:
   upgrade:
     runs-on: windows-latest
+    env:
+      HAS_TOKEN: ${{ secrets.DEPENDENCIES_TOKEN != '' }}
     steps:
       # Windows runners check files out with CRLF by default; keep LF like in the repo.
       - name: Keep LF line endings
@@ -70,6 +75,7 @@ jobs:
         id: pr
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ secrets.DEPENDENCIES_TOKEN || github.token }}
           branch: dependencies/update
           delete-branch: true
           add-paths: uv.lock
@@ -77,16 +83,14 @@ jobs:
           title: "⬆️ Upgrade dependencies"
           body-path: ${{ runner.temp }}/body.md
 
-      # Only when the checks passed here: then GitHub merges the PR as soon as CI passes on it as well;
-      - name: Merge automatically when CI passes
-        if: steps.checks.outcome == 'success' && steps.pr.outputs.pull-request-number
+      # GitHub merges it as soon as CI passes on the PR (CI runs because the token above isn't the workflow's own);
+      - name: Merge when CI passes
+        if: steps.checks.outcome == 'success' && steps.pr.outputs.pull-request-number && env.HAS_TOKEN == 'true'
         shell: bash
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.DEPENDENCIES_TOKEN }}
           PR: ${{ steps.pr.outputs.pull-request-number }}
-        run: |
-          gh pr merge "$PR" --auto --squash --delete-branch
-          gh workflow run ci.yml --ref dependencies/update
+        run: gh pr merge "$PR" --auto --squash --delete-branch
 
       - name: Fail if the checks failed
         if: steps.checks.outcome != 'success'
