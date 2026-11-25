@@ -102,14 +102,19 @@
   }
 
   // Table of contents: the main categories, then team fandom categories grouped by season (collapsed).
+  // On wide screens it's a sidebar that stays in view and highlights the category you're looking at.
+  const linkByHeading = new Map();
+
   function tocLink(heading, label, count) {
     const link = document.createElement("a");
     link.className = "emoticon-toc-link";
     link.href = `#${heading.id}`;
-    link.textContent = label;
-    const badge = document.createElement("span");
+    const text = document.createElement("span");
+    text.textContent = label;
+    const badge = document.createElement("small");
     badge.textContent = count;
-    link.append(badge);
+    link.append(text, badge);
+    linkByHeading.set(heading, link);
     return link;
   }
 
@@ -124,7 +129,7 @@
     main.className = "emoticon-toc-row";
     nav.append(title, main);
 
-    const seasons = new Map(); // season -> [{heading, team, count}]
+    const seasons = new Map(); // season -> [{heading, name, count}]
     for (const { heading, count } of categories) {
       const team = heading.textContent.match(/^Team fandom: (.+) \(season (\d+)\)$/);
       if (team) {
@@ -136,11 +141,16 @@
       }
     }
 
+    if (seasons.size) {
+      const teamsTitle = document.createElement("h4");
+      teamsTitle.textContent = "Team fandom";
+      nav.append(teamsTitle);
+    }
     // Newest season first - recent teams are what most people look for;
     for (const [season, teams] of [...seasons].sort((a, b) => Number(b[0]) - Number(a[0]))) {
       const details = document.createElement("details");
       const summary = document.createElement("summary");
-      summary.textContent = `Team fandom: season ${season} (${teams.length} teams)`;
+      summary.textContent = `Season ${season} (${teams.length} teams)`;
       const row = document.createElement("div");
       row.className = "emoticon-toc-row";
       teams.sort((a, b) => a.name.localeCompare(b.name));
@@ -151,7 +161,63 @@
     return nav;
   }
 
-  if (categories.length) categories[0].heading.before(tableOfContents());
+  // Layout: [contents | search box + categories]. Everything from the search box down moves into the right column;
+  // CSS turns it into two columns on wide screens and stacks them (contents on top) on narrow ones.
+  const searchBox = document.querySelector(".emoticon-search-box");
+  if (categories.length && searchBox) {
+    const nav = tableOfContents();
+    const layout = document.createElement("div");
+    layout.className = "emoticon-layout";
+    const body = document.createElement("div");
+    body.className = "emoticon-body";
+    searchBox.before(layout);
+    let node = searchBox;
+    while (node && !(node.nodeType === Node.ELEMENT_NODE && node.matches(".site-footer"))) {
+      const next = node.nextSibling;
+      body.append(node);
+      node = next;
+    }
+    layout.append(nav, body);
+
+    // Highlight the category at the top of the screen, open its season and keep its link in view;
+    const headings = categories.map(({ heading }) => heading);
+    let active = null;
+    function highlight() {
+      let current = headings[0];
+      for (const heading of headings) {
+        if (heading.getBoundingClientRect().top > 160) break;
+        current = heading;
+      }
+      const link = linkByHeading.get(current);
+      if (link === active) return;
+      active?.classList.remove("active");
+      link.classList.add("active");
+      active = link;
+      // Only as a sidebar: above the content, opening a season would push the page down while scrolling;
+      if (getComputedStyle(nav).position === "sticky") {
+        const season = link.closest("details");
+        if (season && !season.open) season.open = true;
+        // Scroll only the sidebar (not the page) when the link is out of its view;
+        const top = link.offsetTop;
+        if (top < nav.scrollTop || top > nav.scrollTop + nav.clientHeight - 40) {
+          nav.scrollTop = top - nav.clientHeight / 3;
+        }
+      }
+    }
+    // At most every 50ms while scrolling;
+    let timer = null;
+    addEventListener(
+      "scroll",
+      () => {
+        timer ??= setTimeout(() => {
+          timer = null;
+          highlight();
+        }, 50);
+      },
+      { passive: true },
+    );
+    highlight();
+  }
 
   function rank(emoticon, query) {
     if (emoticon.name === query) return 0;

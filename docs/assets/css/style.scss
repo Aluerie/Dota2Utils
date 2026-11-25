@@ -3,11 +3,17 @@
 
 @import "{{ site.theme }}";
 
-// A bit wider than the theme's 64rem, so more emoticon cards fit per row. It has to come after the theme:
-// the theme sets its width in a media query, which would win over an earlier rule;
+// Wider than the theme's 64rem, so more emoticon cards fit per row (and, on big screens, the contents sidebar).
+// It has to come after the theme: the theme sets its width in a media query, which would win over an earlier rule;
 @media screen and (min-width: 64em) {
     .main-content {
         max-width: 80rem;
+    }
+}
+
+@media screen and (min-width: 80em) {
+    .main-content {
+        max-width: 100rem;
     }
 }
 
@@ -60,8 +66,16 @@
         margin: 0 0 0.75rem;
     }
 
+    h4 {
+        margin: 1rem 0 0.25rem;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--blockquote-text-color);
+    }
+
     details {
-        margin-top: 0.6rem;
+        margin-top: 0.4rem;
     }
 
     summary {
@@ -108,9 +122,60 @@
         text-decoration: none;
     }
 
-    span {
+    small {
         font-size: 0.75rem;
         color: var(--blockquote-text-color);
+    }
+
+    // The category at the top of the screen;
+    &.active {
+        border-color: #159957;
+        background: rgba(21, 153, 87, 0.18);
+    }
+}
+
+// Wide screens: contents as a sidebar that stays in view, emoticons next to it.
+// Narrow screens: the contents box sits above the emoticons;
+@media screen and (min-width: 80em) {
+    .emoticon-layout {
+        display: grid;
+        grid-template-columns: 16rem minmax(0, 1fr);
+        gap: 2rem;
+        align-items: start;
+    }
+
+    .emoticon-layout > .emoticon-toc {
+        position: sticky;
+        top: 1rem;
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+        margin: 0;
+        padding: 0.75rem;
+
+        // A list instead of wrapping chips;
+        .emoticon-toc-row {
+            flex-direction: column;
+            flex-wrap: nowrap;
+            gap: 0.1rem;
+        }
+
+        .emoticon-toc-link {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.15rem 0.5rem;
+            border-color: transparent;
+            border-radius: 0.3rem;
+
+            span {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        details .emoticon-toc-row {
+            margin: 0.25rem 0 0.5rem 0.75rem;
+        }
     }
 }
 
