@@ -1,0 +1,15 @@
+[project]
+name = "dota2utils-common"
+version = "0.1.0"
+description = "Shared helpers for the Dota2Utils tools: config, Steam/Dota paths, OpenDota constants, hero guides."
+readme = "README.md"
+requires-python = ">=3.15"
+dependencies = [
+    "loguru>=0.7.3",
+    "requests>=2.32.5",
+    "vdf>=3.4",
+]
+
+[build-system]
+requires = ["uv_build>=0.13,<0.14"]
+build-backend = "uv_build"

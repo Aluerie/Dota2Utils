@@ -1,0 +1,20 @@
+[project]
+name = "HeroGrids"
+version = "0.1.0"
+description = "Align Dota 2 hero grid categories pixel-perfectly."
+readme = "README.md"
+requires-python = ">=3.15"
+dependencies = [
+    "dota2utils-common",
+]
+
+[project.scripts]
+HeroGrids = "hero_grids.main:main"
+
+[tool.uv.build-backend]
+# The import name stays snake_case (`import hero_grids`), only the project/command name matches the folder;
+module-name = "hero_grids"
+
+[build-system]
+requires = ["uv_build>=0.13,<0.14"]
+build-backend = "uv_build"

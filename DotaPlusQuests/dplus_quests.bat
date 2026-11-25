@@ -1,2 +1,2 @@
-uv run main.py
+uv run DotaPlusQuests
 :: pause >nul

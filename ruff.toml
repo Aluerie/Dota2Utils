@@ -1,0 +1,64 @@
+line-length = 125
+target-version = "py315"
+extend-exclude = ["typings"]
+# First-party code of every workspace member (for import sorting).
+src = [
+    "dota2utils-common/src",
+    "DotaPlusQuests/src",
+    "HeroGrids/src",
+    "ItemBuilds/src",
+    "ListEmoticons/src",
+    "SocialFeed/src",
+]
+
+[lint]
+preview = true
+select = ["ALL"]
+ignore = [
+    # Conflict with the formatter
+    "tab-indentation",
+    "indentation-with-invalid-multiple",
+    "indentation-with-invalid-multiple-comment",
+    "over-indented",
+    "bad-quotes-inline-string",
+    "bad-quotes-multiline-string",
+    "bad-quotes-docstring",
+    "avoidable-escaped-quote",
+    "missing-trailing-comma",
+    "prohibited-trailing-comma",
+    "multi-line-implicit-string-concatenation",
+
+    "any-type",               # `Any` is fine for raw API responses
+    "magic-value-comparison",
+    "print",
+
+    # Whole linters - ruff only accepts codes (not names) for these
+    "CPY", # flake8-copyright
+    "D",   # pydocstyle
+    "DOC", # pydoclint
+]
+unfixable = ["line-too-long", "ERA", "unused-noqa"]
+flake8-annotations.allow-star-arg-any = true
+flake8-quotes.inline-quotes = "double"
+
+[lint.per-file-ignores]
+"{conftest.py,**/tests/**}" = [
+    "pytest-fixture-autouse",     # used on purpose: isolate every test from the real config and network
+    "assert",                   # `assert` is how pytest works
+    "implicit-namespace-package", # tests are not a package
+    "import-private-name",      # tests may poke at private helpers
+    "suspicious-subprocess-import", # tests only build fake `CompletedProcess` results
+]
+
+[lint.isort]
+combine-as-imports = true
+
+[lint.pydocstyle]
+convention = "numpy"
+
+[format]
+preview = true
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "lf"

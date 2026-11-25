@@ -1,0 +1,28 @@
+[project]
+name = "ItemBuilds"
+version = "0.1.0"
+description = "Import meta item builds from Dota 2 ProTracker into your Dota 2 hero guides."
+readme = "README.md"
+authors = [
+    { name = "Aluerie", email = "aluerie@gmail.com" }
+]
+requires-python = ">=3.15"
+dependencies = [
+    "aiohttp",
+    "click>=8.5.0",
+    "dota2utils-common",
+    "orjson>=3.12.0",
+    "steamio>=1.2.0",
+    "vdf>=3.4",
+]
+
+[project.scripts]
+ItemBuilds = "item_builds.main:cli"
+
+[tool.uv.build-backend]
+# The import name stays snake_case (`import item_builds`), only the project/command name matches the folder;
+module-name = "item_builds"
+
+[build-system]
+requires = ["uv_build>=0.13,<0.14"]
+build-backend = "uv_build"

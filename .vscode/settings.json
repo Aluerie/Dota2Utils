@@ -1,0 +1,17 @@
+{
+    // WARNING !
+    // DO NOT SHARE ANY SENSITIVE INFO (i.e. EXTENSION PASSWORD SETTINGS) IN THIS FILE.
+    // IT IS NOT GIT IGNORED.
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    "cSpell.words": [
+        "datafeed",
+        "Dplus",
+        "guidedata",
+        "Matchups",
+        "pydoclint",
+        "rossengeorgiev",
+        "steamctl",
+        "tpscroll",
+        "vtex"
+    ]
+}

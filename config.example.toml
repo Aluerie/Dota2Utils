@@ -1,0 +1,41 @@
+# Copy this file to `config.toml` (next to it, in the repository root) and edit it.
+# `config.toml` is git-ignored. Every setting is optional unless a tool says otherwise.
+
+[steam]
+# Steam install folder. Auto-detected from the Windows registry if not set.
+# path = 'C:\Program Files (x86)\Steam'
+
+# Your Steam ID in Steam32 format ("Friend ID" on your Dota 2 profile).
+# Auto-detected (logged-in Steam user, or the only account in `Steam\userdata`) if not set.
+# friend_id = 123456789
+
+# Login for SocialFeed. Steam Guard codes are asked for in the terminal.
+# username = ""
+# password = ""
+
+[stratz]
+# Free API token from https://stratz.com/api (log in with Steam). Used by ItemBuilds when D2PT
+# refuses its match data, to decide on wand/bottle/bracer-like early items.
+# token = ""
+
+[item_builds]
+# Hero = "Role" pairs to update guides for. Hero names are steam.py `Hero` names (PascalCase).
+# Roles: "Carry", "Mid", "Offlane", "Support", "HardSupport".
+# A guide is created automatically for a hero that has none yet.
+[item_builds.heroes]
+# Carry
+DrowRanger = "Carry"
+PhantomAssassin = "Carry"
+# Mid
+Invoker = "Mid"
+# Offlane
+Mars = "Offlane"
+# Support
+Tusk = "Support"
+# Hard Support
+Chen = "HardSupport"
+
+[list_emoticons]
+# Required by ListEmoticons. Downloads: https://s2v.app/ and https://imagemagick.org/script/download.php
+source2_viewer_cli = 'C:\Tools\Source2Viewer-CLI.exe'
+image_magick = 'C:\Tools\ImageMagick\magick.exe'

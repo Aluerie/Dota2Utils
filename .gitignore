@@ -1,2 +1,11 @@
 __pycache__
 .venv
+.ruff_cache
+.pytest_cache
+
+# Personal config (Steam login, hero lists, tool paths) - see `config.example.toml`
+config.toml
+
+# Runtime files
+.temp
+ItemBuilds/state.json

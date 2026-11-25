@@ -1,0 +1,44 @@
+# Workspace root - every tool folder is a member with its own `pyproject.toml`.
+# One lock file, one `.venv`. Install everything once with `uv sync --all-packages`,
+# then run a tool by its name, e.g. `uv run ItemBuilds`.
+
+[tool.uv.workspace]
+members = [
+    "dota2utils-common",
+    "DotaPlusQuests",
+    "HeroGrids",
+    "ItemBuilds",
+    "ListEmoticons",
+    "SocialFeed",
+]
+
+[tool.uv.sources]
+dota2utils-common = { workspace = true }
+steamio = { git = "https://github.com/Aluerie/steam.py", rev = "main" }
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0",
+    "ruff>=0.16",
+    "ty",
+]
+
+[tool.ty.environment]
+python-version = "3.15"
+python-platform = "win32"
+# Hand-written stubs for packages without type hints (i.e. `vdf`);
+extra-paths = ["typings"]
+
+[tool.ty.src]
+# The stubs mirror the libraries as they are, Liskov violations included;
+exclude = ["typings"]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "dota2utils-common/tests",
+    "DotaPlusQuests/tests",
+    "HeroGrids/tests",
+    "ItemBuilds/tests",
+    "ListEmoticons/tests",
+]
+addopts = ["--import-mode=importlib"]
