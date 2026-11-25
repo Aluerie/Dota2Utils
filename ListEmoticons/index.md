@@ -16,8 +16,8 @@ It doesn't matter if you don't own the emoticon pack.
 ## Table of Dota 2 Emoticons
 
 <table>
-    <tr><td>Last Updated</td><td>07/January/2026</td></tr>
-    <tr><td>Amount of emoticons listed</td><td>1906</td></tr>
+    <tr><td>Last Updated</td><td>24/November/2026</td></tr>
+    <tr><td>Amount of emoticons listed</td><td>1970</td></tr>
 </table>
 
 ## Default
@@ -157,7 +157,12 @@ It doesn't matter if you don't own the emoticon pack.
 | ![emoticon](./gifs/410.gif) |  | `:silence_bobble:` | ![emoticon](./gifs/411.gif) |  | `:hamshank:` | ![emoticon](./gifs/412.gif) |  | `:wei_to_go:` |
 | ![emoticon](./gifs/413.gif) |  | `:sneaky_bounty:` | ![emoticon](./gifs/414.gif) |  | `:poogie:` | ![emoticon](./gifs/415.gif) |  | `:palico:` |
 | ![emoticon](./gifs/416.gif) |  | `:blink_dagger:` | ![emoticon](./gifs/417.gif) |  | `:going_down:` | ![emoticon](./gifs/418.gif) |  | `:bug:` |
-| ![emoticon](./gifs/419.gif) |  | `:toxic:` |
+| ![emoticon](./gifs/419.gif) |  | `:toxic:` | ![emoticon](./gifs/420.gif) |  | `:atlas_complete:` | ![emoticon](./gifs/421.gif) |  | `:bloodlust:` |
+| ![emoticon](./gifs/422.gif) |  | `:hypnosis:` | ![emoticon](./gifs/423.gif) |  | `:surrender:` | ![emoticon](./gifs/424.gif) |  | `:snappy:` |
+| ![emoticon](./gifs/425.gif) |  | `:too_old:` | ![emoticon](./gifs/426.gif) |  | `:winner:` | ![emoticon](./gifs/427.gif) |  | `:troll_rage:` |
+| ![emoticon](./gifs/428.gif) |  | `:watchout:` | ![emoticon](./gifs/429.gif) |  | `:shout:` | ![emoticon](./gifs/430.gif) |  | `:jam_out:` |
+| ![emoticon](./gifs/431.gif) |  | `:cud:` | ![emoticon](./gifs/432.gif) |  | `:ill_have_that:` | ![emoticon](./gifs/433.gif) |  | `:slark_squint:` |
+| ![emoticon](./gifs/434.gif) |  | `:aegis_2026:` | ![emoticon](./gifs/435.gif) |  | `:jester:` |
 
 ## Teams
 
@@ -2396,4 +2401,100 @@ It doesn't matter if you don't own the emoticon pack.
 | preview | chr | alias | preview | chr | alias | preview | chr | alias |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | ![emoticon](./gifs/4466.gif) |  | `:fandom_YB_12_0:` | ![emoticon](./gifs/4467.gif) |  | `:fandom_YB_12_1:` | ![emoticon](./gifs/4468.gif) |  | `:fandom_YB_12_3:` |
+
+## Teamfandom_13_9247354
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4470.gif) |  | `:fandom_FLCN_13_1:` | ![emoticon](./gifs/4471.gif) |  | `:fandom_FLCN_13_2:` | ![emoticon](./gifs/4472.gif) |  | `:fandom_FLCN_13_3:` |
+
+## Teamfandom_13_10136357
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4473.gif) |  | `:fandom_NGX_13_0:` | ![emoticon](./gifs/4474.gif) |  | `:fandom_NGX_13_1:` | ![emoticon](./gifs/4475.gif) |  | `:fandom_NGX_13_2:` |
+
+## Teamfandom_13_9964962
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4476.gif) |  | `:fandom_GL_13_0:` | ![emoticon](./gifs/4477.gif) |  | `:fandom_GL_13_2:` | ![emoticon](./gifs/4478.gif) |  | `:fandom_GL_13_3:` |
+
+## Teamfandom_13_2586976
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4479.gif) |  | `:fandom_OG_13_0:` | ![emoticon](./gifs/4480.gif) |  | `:fandom_OG_13_2:` | ![emoticon](./gifs/4481.gif) |  | `:fandom_OG_13_4:` |
+
+## Teamfandom_13_9467224
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4482.gif) |  | `:fandom_AUR_13_0:` | ![emoticon](./gifs/4483.gif) |  | `:fandom_AUR_13_4:` | ![emoticon](./gifs/4484.gif) |  | `:fandom_AUR_13_6:` |
+
+## Teamfandom_13_2163
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4485.gif) |  | `:fandom_LIQ_13_4:` | ![emoticon](./gifs/4486.gif) |  | `:fandom_LIQ_13_1:` | ![emoticon](./gifs/4487.gif) |  | `:fandom_LIQ_13_0:` |
+
+## Teamfandom_13_8255888
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4488.gif) |  | `:fandom_BB_13_0:` | ![emoticon](./gifs/4489.gif) |  | `:fandom_BB_13_1:` | ![emoticon](./gifs/4490.gif) |  | `:fandom_BB_13_3:` |
+
+## Teamfandom_13_10149530
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4491.gif) |  | `:fandom_HU_13_0:` | ![emoticon](./gifs/4492.gif) |  | `:fandom_HU_13_1:` | ![emoticon](./gifs/4493.gif) |  | `:fandom_HU_13_2:` |
+
+## Teamfandom_13_9572001
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4494.gif) |  | `:fandom_VSN_13_0:` | ![emoticon](./gifs/4495.gif) |  | `:fandom_VSN_13_1:` | ![emoticon](./gifs/4496.gif) |  | `:fandom_VSN_13_2:` |
+
+## Teamfandom_13_7119388
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4497.gif) |  | `:fandom_TS_13_0:` | ![emoticon](./gifs/4498.gif) |  | `:fandom_TS_13_1:` | ![emoticon](./gifs/4499.gif) |  | `:fandom_TS_13_6:` |
+
+## Teamfandom_13_9823272
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4500.gif) |  | `:fandom_YAN_13_1:` | ![emoticon](./gifs/4501.gif) |  | `:fandom_YAN_13_2:` | ![emoticon](./gifs/4502.gif) |  | `:fandom_YAN_13_4:` |
+
+## Teamfandom_13_726228
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4503.gif) |  | `:fandom_VG_13_0:` | ![emoticon](./gifs/4504.gif) |  | `:fandom_VG_13_1:` | ![emoticon](./gifs/4505.gif) |  | `:fandom_VG_13_2:` |
+
+## Teamfandom_13_8261500
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4506.gif) |  | `:fandom_XG_13_0:` | ![emoticon](./gifs/4507.gif) |  | `:fandom_XG_13_2:` | ![emoticon](./gifs/4508.gif) |  | `:fandom_XG_13_4:` |
+
+## Teamfandom_13_5017210
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4509.gif) |  | `:fandom_RES_13_0:` | ![emoticon](./gifs/4510.gif) |  | `:fandom_RES_13_4:` | ![emoticon](./gifs/4511.gif) |  | `:fandom_RES_13_8:` |
+
+## Teamfandom_13_10150538
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4512.gif) |  | `:fandom_LGD_13_0:` | ![emoticon](./gifs/4513.gif) |  | `:fandom_LGD_13_2:` | ![emoticon](./gifs/4514.gif) |  | `:fandom_LGD_13_4:` |
+
+## Teamfandom_13_10150413
+
+| preview | chr | alias | preview | chr | alias | preview | chr | alias |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ![emoticon](./gifs/4515.gif) |  | `:fandom_IW_13_0:` | ![emoticon](./gifs/4516.gif) |  | `:fandom_IW_13_4:` | ![emoticon](./gifs/4517.gif) |  | `:fandom_IW_13_5:` |
 
