@@ -27,3 +27,11 @@ uv run ItemBuilds
 
 Heroes are processed least-recently-updated first, and progress is saved to `ItemBuilds/state.json` after each hero,
 so a run interrupted by D2PT rate limits picks up where it left off next time.
+
+To only see what would change, without writing any guide:
+
+```sh
+uv run ItemBuilds --dry-run
+```
+
+It prints the items each category would gain (`+`) and lose (`-`), e.g. `Early: +magic_wand -bracer`.

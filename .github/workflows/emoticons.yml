@@ -6,7 +6,7 @@ name: Emoticons
 
 on:
   schedule:
-    - cron: "17 6 1 * *" # monthly
+    - cron: "17 6 * * 1" # weekly, on Mondays
   workflow_dispatch:
 
 permissions:

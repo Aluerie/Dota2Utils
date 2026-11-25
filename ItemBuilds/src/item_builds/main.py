@@ -97,6 +97,8 @@ class Run:
     stratz: StratzClient | None
     gameplay_version: str
     item_names: dict[int, str]
+    # Only show what would change, don't write guides;
+    dry_run: bool = False
 
 
 async def process_hero(hero: Hero, role: Role, run: Run) -> None:
@@ -110,7 +112,8 @@ async def process_hero(hero: Hero, role: Role, run: Run) -> None:
     if path is None:
         path = guides.new_guide_path(guides_dir, hero.slug_name)
         build = guides.new_guide(hero.slug_name, friend_id=steam.friend_id(), gameplay_version=run.gameplay_version)
-        logger.info("📝 No guide for {} yet - creating {} (restart Dota 2 to see it)", hero.display_name, path.name)
+        if not run.dry_run:
+            logger.info("📝 No guide for {} yet - creating {} (restart Dota 2 to see it)", hero.display_name, path.name)
     else:
         build = guides.load_guide(path)
 
@@ -121,11 +124,18 @@ async def process_hero(hero: Hero, role: Role, run: Run) -> None:
         run.item_names,
         item_build.saved_additions(build),
     )
+    if run.dry_run:
+        changes = item_build.describe_changes(item_build.current_categories(build), categories)
+        logger.info("🧪 {}: {}", hero.display_name, "would change:" if changes else "no item changes")
+        for line in changes:
+            logger.info("🧪     {}", line)
+        return
+
     item_build.write_categories(build, categories, run.gameplay_version)
     guides.save_guide(build, path)
 
 
-async def main() -> None:
+async def main(*, dry_run: bool = False) -> None:
     hero_roles = load_hero_roles()
     guides_dir = steam.guides_dir()
     if not guides_dir.is_dir():
@@ -148,25 +158,31 @@ async def main() -> None:
         stratz=StratzClient(token) if (token := config.section("stratz").get("token")) else None,
         gameplay_version=patches[0]["version"],
         item_names=datafeed.get_item_names(),
+        dry_run=dry_run,
     )
 
     for hero, role in sorted(hero_roles.items(), key=last_updated):
         await process_hero(hero, role, run)
-        state[str(hero.id)] = dt.datetime.now(dt.UTC).isoformat()
-        save_state(state)
+        if not dry_run:  # a dry run doesn't change the order of the next real run;
+            state[str(hero.id)] = dt.datetime.now(dt.UTC).isoformat()
+            save_state(state)
         await asyncio.sleep(SLEEP_BETWEEN_HEROES)
 
-    logger.success("🎉 Done - updated {} guides.", len(hero_roles))
+    if dry_run:
+        logger.success("🧪 Dry run done - checked {} guides, nothing was written.", len(hero_roles))
+    else:
+        logger.success("🎉 Done - updated {} guides.", len(hero_roles))
 
 
 @click.group(invoke_without_command=True)
+@click.option("--dry-run", is_flag=True, help="Only show which items would change in each guide; write nothing.")
 @click.pass_context
-def cli(ctx: click.Context) -> None:
+def cli(ctx: click.Context, *, dry_run: bool) -> None:
     """Update Dota 2 hero guides with meta item builds from Dota 2 ProTracker."""
     setup_logging()
     if ctx.invoked_subcommand is None:
         try:
-            asyncio.run(main())
+            asyncio.run(main(dry_run=dry_run))
         except Dota2UtilsError as exc:
             logger.error(str(exc))
             raise SystemExit(1) from exc

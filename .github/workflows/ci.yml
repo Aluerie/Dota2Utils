@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
+  # The Dependencies workflow starts CI on its PR branch this way: GitHub doesn't run workflows
+  # for PRs that a workflow opens, but it does allow a workflow to start another one explicitly;
+  workflow_dispatch:
 
 permissions:
   contents: read

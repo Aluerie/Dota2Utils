@@ -118,6 +118,27 @@ def common_shared_items(shares: dict[int, float]) -> list[int]:
     return [item_id for _, item_id in sorted(common, reverse=True)]
 
 
+def current_categories(build: vdf.VDFDict) -> dict[str, list[str]]:
+    """The guide's item build as it is now: category name -> `item_*` names, in order."""
+    try:
+        items = build["guidedata"]["ItemBuild"]["Items"]
+    except KeyError:
+        return {}
+    return {category: items[category].get_all_for("item") for category in items}
+
+
+def describe_changes(old: dict[str, list[str]], new: dict[str, list[str]]) -> list[str]:
+    """One line per category whose items change, i.e. `Early: +magic_wand -bracer`."""
+    lines: list[str] = []
+    for category in dict.fromkeys([*new, *old]):  # new order first, then categories that disappear
+        before, after = old.get(category, []), new.get(category, [])
+        added = [f"+{item.removeprefix('item_')}" for item in after if item not in before]
+        removed = [f"-{item.removeprefix('item_')}" for item in before if item not in after]
+        if added or removed:
+            lines.append(f"{category}: {' '.join(added + removed)}")
+    return lines
+
+
 def write_categories(build: vdf.VDFDict, categories: dict[str, list[str]], gameplay_version: str) -> None:
     """Replace the guide's item build with `categories` and stamp the title with today's date and the patch."""
     today = dt.datetime.now(tz=dt.UTC).strftime("%d %b %y")

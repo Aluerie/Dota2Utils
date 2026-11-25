@@ -19,7 +19,7 @@ You can find the table with all emoticons here:
 
 ## 🔗 [aluerie.github.io/Dota2Utils/ListEmoticons](https://aluerie.github.io/Dota2Utils/ListEmoticons)
 
-🤖 The table updates itself: once a month a [GitHub Actions workflow](../.github/workflows/emoticons.yml) checks Dota 2 for new emoticons and opens a PR with them. If it's still outdated, hit me up with an issue or PR.
+🤖 The table updates itself: every week a [GitHub Actions workflow](../.github/workflows/emoticons.yml) checks Dota 2 for new emoticons and opens a PR with them. If it's still outdated, hit me up with an issue or PR.
 
 ## 🔄 Updating the table
 
@@ -49,7 +49,7 @@ It needs a Steam account with Dota 2 in its library (anonymous Steam accounts ca
   steam_password = "..."
   ```
 
-- For the monthly workflow, save the same as GitHub secrets (each command asks you to paste the value):
+- For the weekly workflow, save the same as GitHub secrets (each command asks you to paste the value):
 
 ```sh
 gh secret set STEAM_USERNAME

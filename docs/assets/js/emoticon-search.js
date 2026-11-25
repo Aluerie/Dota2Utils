@@ -70,6 +70,7 @@
 
   // Each table row holds three emoticons as (preview, chr, alias) cell triples, under a category heading.
   const emoticons = [];
+  const categories = []; // {heading, count} in page order, for the table of contents
   for (const table of document.querySelectorAll("#content table")) {
     let heading = table.previousElementSibling;
     while (heading && heading.tagName !== "H2") heading = heading.previousElementSibling;
@@ -96,8 +97,61 @@
     if (found.length) {
       table.replaceWith(grid(found));
       emoticons.push(...found);
+      if (heading?.id) categories.push({ heading, count: found.length });
     }
   }
+
+  // Table of contents: the main categories, then team fandom categories grouped by season (collapsed).
+  function tocLink(heading, label, count) {
+    const link = document.createElement("a");
+    link.className = "emoticon-toc-link";
+    link.href = `#${heading.id}`;
+    link.textContent = label;
+    const badge = document.createElement("span");
+    badge.textContent = count;
+    link.append(badge);
+    return link;
+  }
+
+  function tableOfContents() {
+    const nav = document.createElement("nav");
+    nav.className = "emoticon-toc";
+    nav.setAttribute("aria-label", "Emoticon categories");
+
+    const title = document.createElement("h3");
+    title.textContent = "Contents";
+    const main = document.createElement("div");
+    main.className = "emoticon-toc-row";
+    nav.append(title, main);
+
+    const seasons = new Map(); // season -> [{heading, team, count}]
+    for (const { heading, count } of categories) {
+      const team = heading.textContent.match(/^Team fandom: (.+) \(season (\d+)\)$/);
+      if (team) {
+        const [, name, season] = team;
+        if (!seasons.has(season)) seasons.set(season, []);
+        seasons.get(season).push({ heading, name, count });
+      } else {
+        main.append(tocLink(heading, heading.textContent, count));
+      }
+    }
+
+    // Newest season first - recent teams are what most people look for;
+    for (const [season, teams] of [...seasons].sort((a, b) => Number(b[0]) - Number(a[0]))) {
+      const details = document.createElement("details");
+      const summary = document.createElement("summary");
+      summary.textContent = `Team fandom: season ${season} (${teams.length} teams)`;
+      const row = document.createElement("div");
+      row.className = "emoticon-toc-row";
+      teams.sort((a, b) => a.name.localeCompare(b.name));
+      row.append(...teams.map(({ heading, name, count }) => tocLink(heading, name, count)));
+      details.append(summary, row);
+      nav.append(details);
+    }
+    return nav;
+  }
+
+  if (categories.length) categories[0].heading.before(tableOfContents());
 
   function rank(emoticon, query) {
     if (emoticon.name === query) return 0;

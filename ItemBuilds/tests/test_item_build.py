@@ -175,3 +175,48 @@ def test_early_items_skipped_when_both_fail() -> None:
     assert early_items(FakeD2PT(error=FORBIDDEN), None) == []  # no token
     assert early_items(FakeD2PT(error=FORBIDDEN), FakeStratz(error=TimeoutError())) == []
     assert early_items(FakeD2PT(error=FORBIDDEN), FakeStratz({})) == []  # Stratz has no data
+
+
+def test_describe_changes() -> None:
+    guide = guides.new_guide("lina", friend_id=1, gameplay_version="7.41e")
+    item_build.write_categories(guide, {"Early": ["item_boots", "item_bracer"], "Old": ["item_blink"]}, "7.41e")
+    old = item_build.current_categories(guide)
+    assert old == {"Early": ["item_boots", "item_bracer"], "Old": ["item_blink"]}
+
+    new = {"Early": ["item_boots", "item_magic_wand"], "Meta: Mid": ["item_manta"]}
+    assert item_build.describe_changes(old, new) == [
+        "Early: +magic_wand -bracer",
+        "Meta: Mid: +manta",
+        "Old: -blink",
+    ]
+    assert item_build.describe_changes(new, new) == []
+    assert item_build.current_categories(vdf.VDFDict([("guidedata", vdf.VDFDict())])) == {}
+
+
+class FakeOverviewD2PT(FakeD2PT):
+    @staticmethod
+    async def item_overview(_hero: Any, _role: Any) -> Any:
+        return overview(overview_row(116, 0.5))  # BKB in the "Meta" category
+
+
+@pytest.mark.parametrize("dry_run", [True, False])
+def test_dry_run_writes_nothing(tmp_path: pathlib.Path, monkeypatch: pytest.MonkeyPatch, *, dry_run: bool) -> None:
+    monkeypatch.setattr(main.steam, "guides_dir", lambda: tmp_path)
+    guide = guides.new_guide("lina", friend_id=1, gameplay_version="7.41e")
+    path = tmp_path / "lina_1.build"
+    guides.save_guide(guide, path)
+    before = path.read_bytes()
+
+    run: Any = main.Run(
+        d2pt=FakeOverviewD2PT(matches([])),  # ty: ignore[invalid-argument-type]
+        stratz=None,
+        gameplay_version="7.41e",
+        item_names=ITEM_NAMES,
+        dry_run=dry_run,
+    )
+    asyncio.run(main.process_hero(Hero.Lina, Role.Mid, run))
+
+    if dry_run:
+        assert path.read_bytes() == before
+    else:
+        assert "item_black_king_bar" in item_build.current_categories(guides.load_guide(path))["Meta: Mid"]

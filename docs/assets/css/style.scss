@@ -48,6 +48,77 @@
     color: var(--blockquote-text-color);
 }
 
+// Table of contents: main categories, then team fandom seasons as collapsible lists;
+.emoticon-toc {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    background: var(--code-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.4rem;
+
+    h3 {
+        margin: 0 0 0.75rem;
+    }
+
+    details {
+        margin-top: 0.6rem;
+    }
+
+    summary {
+        cursor: pointer;
+        font-weight: bold;
+        color: var(--section-headings-color);
+        list-style: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::before {
+            content: "\25B8\00a0\00a0";
+        }
+    }
+
+    details[open] summary::before {
+        content: "\25BE\00a0\00a0";
+    }
+
+    details .emoticon-toc-row {
+        margin-top: 0.5rem;
+    }
+}
+
+.emoticon-toc-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.emoticon-toc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+
+    &:hover {
+        border-color: #159957;
+        text-decoration: none;
+    }
+
+    span {
+        font-size: 0.75rem;
+        color: var(--blockquote-text-color);
+    }
+}
+
+// Jumping to a category shouldn't hide its heading under the sticky search box;
+.main-content h2 {
+    scroll-margin-top: 7rem;
+}
+
 // Every category (and the search results) is a grid of cards: as many per row as fit the screen;
 .emoticon-grid {
     display: grid;

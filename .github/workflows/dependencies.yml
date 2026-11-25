@@ -1,0 +1,93 @@
+name: Dependencies
+
+# Upgrades every locked Python dependency (including the steam.py fork) and opens a PR when anything changed.
+# It runs the checks itself and puts the result into the PR. If they pass, the PR is set to merge automatically
+# once CI passes on it too (CI is started explicitly: GitHub doesn't run workflows for PRs a workflow opens).
+
+on:
+  schedule:
+    - cron: "37 6 2 * *" # monthly
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write # to start CI on the PR branch
+
+concurrency: dependencies
+
+jobs:
+  upgrade:
+    runs-on: windows-latest
+    steps:
+      # Windows runners check files out with CRLF by default; keep LF like in the repo.
+      - name: Keep LF line endings
+        run: git config --global core.autocrlf false
+
+      - uses: actions/checkout@v5
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Upgrade the lock file
+        shell: bash
+        run: |
+          uv lock --upgrade 2>&1 | tee "$RUNNER_TEMP/upgrade.txt"
+          # Only the "Updated x v1 -> v2" lines, for the PR description;
+          { grep -E "^(Updated|Added|Removed) " "$RUNNER_TEMP/upgrade.txt" | sed 's/^/- /' || true; } > "$RUNNER_TEMP/changes.md"
+
+      - name: Install
+        run: uv sync --all-packages --locked
+
+      - name: Checks
+        id: checks
+        continue-on-error: true
+        shell: bash
+        run: |
+          uv run ruff check --output-format github
+          uv run ruff format --check
+          uv run ty check
+          uv run pytest
+
+      - name: Describe the update
+        shell: bash
+        run: |
+          {
+            if [ "${{ steps.checks.outcome }}" = "success" ]; then
+              echo "✅ Ruff, ty and pytest pass with the new versions."
+            else
+              echo "❌ Checks fail with the new versions - see the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})."
+            fi
+            echo
+            echo "### Updated"
+            echo
+            cat "$RUNNER_TEMP/changes.md"
+            echo
+            echo "Made by the [Dependencies workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/dependencies.yml)."
+          } > "$RUNNER_TEMP/body.md"
+
+      # Does nothing when uv.lock didn't change;
+      - name: Open a pull request
+        id: pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: dependencies/update
+          delete-branch: true
+          add-paths: uv.lock
+          commit-message: "⬆️ Upgrade dependencies"
+          title: "⬆️ Upgrade dependencies"
+          body-path: ${{ runner.temp }}/body.md
+
+      # Only when the checks passed here: then GitHub merges the PR as soon as CI passes on it as well;
+      - name: Merge automatically when CI passes
+        if: steps.checks.outcome == 'success' && steps.pr.outputs.pull-request-number
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ steps.pr.outputs.pull-request-number }}
+        run: |
+          gh pr merge "$PR" --auto --squash --delete-branch
+          gh workflow run ci.yml --ref dependencies/update
+
+      - name: Fail if the checks failed
+        if: steps.checks.outcome != 'success'
+        run: exit 1
