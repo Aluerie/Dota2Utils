@@ -36,6 +36,8 @@ Tusk = "Support"
 Chen = "HardSupport"
 
 [list_emoticons]
-# Required by ListEmoticons. Downloads: https://s2v.app/ and https://imagemagick.org/script/download.php
+# Required by ListEmoticons. Download: https://s2v.app/
 source2_viewer_cli = 'C:\Tools\Source2Viewer-CLI.exe'
-image_magick = 'C:\Tools\ImageMagick\magick.exe'
+# Only for `uv run ListEmoticons --from-steam`: an account with Dota 2 in its library and Steam Guard off.
+# steam_username = "throwaway_login"
+# steam_password = "..."

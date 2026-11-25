@@ -385,16 +385,20 @@ name = "listemoticons"
 version = "0.1.0"
 source = { editable = "ListEmoticons" }
 dependencies = [
+    { name = "click" },
     { name = "dota2utils-common" },
     { name = "pillow" },
+    { name = "steamio" },
     { name = "vdf" },
     { name = "vpk" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "click", specifier = ">=8.5.0" },
     { name = "dota2utils-common", editable = "dota2utils-common" },
     { name = "pillow", specifier = ">=12.1.0" },
+    { name = "steamio", git = "https://github.com/Aluerie/steam.py?rev=main" },
     { name = "vdf", specifier = ">=3.4" },
     { name = "vpk", specifier = ">=1.4.0" },
 ]
@@ -818,7 +822,7 @@ wheels = [
 [[package]]
 name = "steamio"
 version = "1.2.0"
-source = { git = "https://github.com/Aluerie/steam.py?rev=main#093813023f16d00b4cc87af41a86868cc608e82f" }
+source = { git = "https://github.com/Aluerie/steam.py?rev=main#ed0f5cd38d23483717c791059bcc77535a2184bf" }
 dependencies = [
     { name = "aiohttp" },
     { name = "beautifulsoup4" },

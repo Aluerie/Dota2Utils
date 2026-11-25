@@ -1,0 +1,66 @@
+name: Emoticons
+
+# Checks Dota 2 for new emoticons and opens a PR with their gifs and the updated page.
+# Needs the STEAM_USERNAME and STEAM_PASSWORD secrets: a (throwaway) Steam account with Dota 2 in its library
+# and Steam Guard turned off - a fresh runner can't answer a Steam Guard code.
+
+on:
+  schedule:
+    - cron: "17 6 1 * *" # monthly
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: emoticons
+
+jobs:
+  update:
+    runs-on: windows-latest
+    steps:
+      # Windows runners check files out with CRLF by default; keep LF like in the repo.
+      - name: Keep LF line endings
+        run: git config --global core.autocrlf false
+
+      - uses: actions/checkout@v5
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install
+        run: uv sync --all-packages --locked
+
+      - name: Download Source 2 Viewer CLI
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $dir = Join-Path $env:RUNNER_TEMP "s2v"
+          gh release download --repo ValveResourceFormat/ValveResourceFormat --pattern "cli-windows-x64.zip" --dir $dir
+          Expand-Archive (Join-Path $dir "cli-windows-x64.zip") -DestinationPath $dir
+          $exe = Join-Path $dir "Source2Viewer-CLI.exe"
+          $config = Join-Path $env:RUNNER_TEMP "config.toml"
+          "[list_emoticons]`nsource2_viewer_cli = '$exe'`n" | Out-File -FilePath $config -Encoding utf8NoBOM
+          "DOTA2UTILS_CONFIG=$config" >> $env:GITHUB_ENV
+
+      - name: Update emoticons from Steam
+        env:
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+        run: uv run ListEmoticons --from-steam
+
+      # Does nothing when there are no changes;
+      - name: Open a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: emoticons/update
+          delete-branch: true
+          add-paths: docs/ListEmoticons
+          commit-message: "🍱 Add new Dota 2 emoticons"
+          title: "🍱 Add new Dota 2 emoticons"
+          body: |
+            New emoticons found in the current Dota 2 build: their gifs and the updated table in `docs/ListEmoticons/index.md`.
+
+            Made by the [Emoticons workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/emoticons.yml).

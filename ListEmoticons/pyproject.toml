@@ -5,14 +5,16 @@ description = "Extract Dota 2 emoticons into gifs and list them on a GitHub Page
 readme = "README.md"
 requires-python = ">=3.15"
 dependencies = [
+    "click>=8.5.0",
     "dota2utils-common",
     "pillow>=12.1.0",
+    "steamio>=1.2.0",
     "vdf>=3.4",
     "vpk>=1.4.0",
 ]
 
 [project.scripts]
-ListEmoticons = "list_emoticons.main:main"
+ListEmoticons = "list_emoticons.main:cli"
 
 [tool.uv.build-backend]
 # The import name stays snake_case (`import list_emoticons`), only the project/command name matches the folder;
